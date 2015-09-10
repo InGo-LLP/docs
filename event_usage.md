@@ -71,11 +71,11 @@ There are many events you can suscribe for each type of widget.
 - load:started
 - load:finished
 - config:loaded
-- render:started'
-- render:finished'
-- 'manual-authorization:started'
-- 'social-authorization:started'
-- 'error'
+- render:started
+- render:finished
+- manual-authorization:started
+- social-authorization:started
+- error
 
 ### Social widget
 - load:started
