@@ -91,14 +91,14 @@ There are many events you can suscribe for each type of widget.
 - posts:sent
 - error
 
-### Registration Widget
+### Confirmation Widget
 - load:started
 - load:finished
 - config:loaded
 - confirmation:started
 - confirmation:finished
 
-### Confirmation widget
+### Registration widget
 - load:started
 - load:finished
 - config:loaded
