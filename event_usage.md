@@ -1,74 +1,14 @@
 # InGo Widget Events
 
 ----
+## Widgets Now Emit Events
 
-## Suscribe to events
+As of version x, all InGo widgets now emit events that an implementer can listen for. These events allow you to take action when something happens in the widget to provide the best experience for your registrants and advocates.
 
-```js
-//Suscribe to an event of a specific widget
-InGo.Events.on('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_ID_HERE'])
-```
-
-```js
-//Suscribe to an event for a set of widgets
-InGo.Events.on('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_1_ID_HERE', 'WIDGET_2_ID_HERE', ..., 'WIDGET_N_ID_HERE'])
-```
-
-```js
-//Suscribe to an event for all widgets
-InGo.Events.on('EVENT_NAME_HERE', function(args) { ... })
-```
-
-## Suscribe to an event only once
-
-```js
-//Suscribe once to an event of a specific widget
-InGo.Events.once('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_ID_HERE'])
-```
-
-```js
-//Suscribe once to an event for a set of widgets
-InGo.Events.once('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_1_ID_HERE', 'WIDGET_2_ID_HERE', ..., 'WIDGET_N_ID_HERE'])
-```
-
-```js
-//Suscribe once to an event for all widgets
-InGo.Events.once('EVENT_NAME_HERE', function(args) { ... })
-```
-
-## Unsuscribe from an event
-
-```js
-//Unsuscribe from an event of a specific widget
-InGo.Events.off('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_ID_HERE'])
-```
-
-```js
-//Unsuscribe from an event for a set of widgets
-InGo.Events.off('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_1_ID_HERE', 'WIDGET_2_ID_HERE', ..., 'WIDGET_N_ID_HERE'])
-```
-
-```js
-//Unsuscribe from an event for all widgets
-InGo.Events.off('EVENT_NAME_HERE', function(args) { ... })
-```
-
-## Create a sub emitter for a specific widget 
-
-In case you need to suscribe to more than one event for the same widget, you can create a sub emitter using the widget id. With the sub emitter you can suscribe or unsuscribe to whatever event of the widget that you want and you do not need to pass the widget id everytime. Moreover, any field that you pass in the option parameter, will be received in the args parameter of the callback function.
-
-```js
-//Get a sub emitter for a specific widget 
-var options = { widgetId: 'WIDGET_ID_HERE', anyparam: ''};
-var emitter = InGo.Events.sub(options);
-//Suscribe to many events for that widget
-emitter.on('EVENT_NAME_HERE', function(args) { ... }) //args include all data in options
-emitter.on('EVENT_2_NAME_HERE', function(args) { ... }) 
-```
 
 ## Types of events
 
-There are many events you can suscribe for each type of widget.
+There are many events you can suscribe for each type of widget. Generally these events cover loading, configuring, and rendering of the widget, and the main "action" that that widget performs.  Below is a complete list of the events each of our widgets emits.
 
 ### Login widget
 - load:started
@@ -108,3 +48,75 @@ There are many events you can suscribe for each type of widget.
 - form-autocomplete:started
 - form-autocomplete:finished
 - error
+
+## Listenting and Reacting to Events
+
+Now that you know what eveents the InGO widgets emit, you can add code to listen for these events and react to them.
+
+### Suscribe to events
+
+
+```js
+//Suscribe to an event of a specific widget
+InGo.Events.on('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_ID_HERE'])
+```
+
+```js
+//Suscribe to an event for a set of widgets
+InGo.Events.on('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_1_ID_HERE', 'WIDGET_2_ID_HERE', ..., 'WIDGET_N_ID_HERE'])
+```
+
+```js
+//Suscribe to an event for all widgets
+InGo.Events.on('EVENT_NAME_HERE', function(args) { ... })
+```
+
+### Suscribe to an event only once
+
+```js
+//Suscribe once to an event of a specific widget
+InGo.Events.once('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_ID_HERE'])
+```
+
+```js
+//Suscribe once to an event for a set of widgets
+InGo.Events.once('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_1_ID_HERE', 'WIDGET_2_ID_HERE', ..., 'WIDGET_N_ID_HERE'])
+```
+
+```js
+//Suscribe once to an event for all widgets
+InGo.Events.once('EVENT_NAME_HERE', function(args) { ... })
+```
+
+### Unsuscribe from an event
+
+```js
+//Unsuscribe from an event of a specific widget
+InGo.Events.off('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_ID_HERE'])
+```
+
+```js
+//Unsuscribe from an event for a set of widgets
+InGo.Events.off('EVENT_NAME_HERE', function(args) { ... }, ['WIDGET_1_ID_HERE', 'WIDGET_2_ID_HERE', ..., 'WIDGET_N_ID_HERE'])
+```
+
+```js
+//Unsuscribe from an event for all widgets
+InGo.Events.off('EVENT_NAME_HERE', function(args) { ... })
+```
+
+### Subscribing to More Than One Event Using a Sub Emitter
+
+If you need to suscribe to more than one event for the same widget, you can optionally create a sub emitter using the widget id. With the sub emitter you can suscribe or unsuscribe to event(s) produced by the widget without the need to pass the widget id every time. You can also pass data in the option parameter. Any data in the option parameter will be received in the args parameter of the callback function you provide.
+
+In case you need to suscribe to more than one event for the same widget, you can create a sub emitter using the widget id. With the sub emitter you can suscribe or unsuscribe to whatever event of the widget that you want and you do not need to pass the widget id everytime. Moreover, any field that you pass in the option parameter, will be received in the args parameter of the callback function.
+
+```js
+//Get a sub emitter for a specific widget 
+var options = { widgetId: 'WIDGET_ID_HERE', anyparam: ''};
+var emitter = InGo.Events.sub(options);
+//Suscribe to many events for that widget
+emitter.on('EVENT_NAME_HERE', function(args) { ... }) //args include all data in options
+emitter.on('EVENT_2_NAME_HERE', function(args) { ... }) 
+```
+
