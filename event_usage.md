@@ -55,12 +55,15 @@ InGo.Events.off('EVENT_NAME_HERE', function(args) { ... })
 
 ## Create a sub emitter for a specific widget 
 
+In case you need to suscribe to more than one event for the same widget, you can create a sub emitter using the widget id. With the sub emitter you can suscribe or unsuscribe to whatever event of the widget that you want and you do not need to pass the widget id everytime. Moreover, any field that you pass in the option parameter, will be received in the args parameter of the callback function.
+
 ```js
 //Get a sub emitter for a specific widget 
 var options = { widgetId: 'WIDGET_ID_HERE', anyparam: ''};
 var emitter = InGo.Events.sub(options);
-//Suscribe to an event for that widget
+//Suscribe to many events for that widget
 emitter.on('EVENT_NAME_HERE', function(args) { ... }) //args include all data in options
+emitter.on('EVENT_2_NAME_HERE', function(args) { ... }) 
 ```
 
 ## Types of events
