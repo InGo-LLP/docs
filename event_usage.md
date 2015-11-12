@@ -3,7 +3,7 @@
 ----
 ## Widgets Now Emit Events
 
-As of version x, all InGo widgets now emit events that an implementer can listen for. These events allow you to take action when something happens in the widget to provide the best experience for your registrants and advocates.
+All InGo widgets now emit events that an implementer can listen for. These events allow you to take action when something happens in the widget to provide the best experience for your registrants and advocates.
 
 
 ## Types of events
@@ -51,7 +51,7 @@ There are many events you can suscribe for each type of widget. Generally these 
 
 ## Listenting and Reacting to Events
 
-Now that you know what eveents the InGO widgets emit, you can add code to listen for these events and react to them.
+Now that you know what eveents the InGO widgets emit, you can add code to listen for these events and react to them. In the following examples, replace 'EVENT_NAME_HERE' with one of the events listed above. The widget ID referenced should be the ID of your unique widget, and must correspond to one of the widgets you've installed in the page.
 
 ### Suscribe to events
 
