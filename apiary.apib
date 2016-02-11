@@ -1,0 +1,814 @@
+FORMAT: 1A
+HOST: http://staging-api-1422319831.us-east-1.elb.amazonaws.com/
+
+# InGo Events API
+
+InGo's Events API allows you to quickly and easily create and manage InGo 
+implementations for your events. With this API you can create a new event, 
+configure your event, create and customize your widgets, all from a REST client. 
+This allows you to quickly create the items you need to quickly provision InGo 
+functionality to all of your events. If you're a third-party event registration company,
+this API will allow you to more easily create and manage InGo capabilities for all of your customers.
+
+**THIS API AND DOCUMENTATION ARE IN ALPHA MODE. PLEASE USE WITH CAUTION AND REPORT ANY ISSUES TO INGO.**
+
+For support, go to <http://support.ingo.me> and be sure to let us know that you're using the API.
+
+# Group Getting Started
+
+The *InGo Events API* is designed to be used for programmatic access
+to the InGo events management system.  Using this API you can create
+all of the necessary artifcats to embed our widgets into your event 
+website(s) in an automated way and begin your social adovacy campain 
+right away. 
+
+A few notes to get started on the right foot:
+
+* Be sure to capture the Unique IDs returned to you so that you can 
+place these within the script templates that render out widgets. Each 
+event and each widget are unique. **If you cross Unique IDs you will be
+advocating for the WRONG event**, so please ensure you are using the 
+correct IDs in your script tags.
+
+* Many code samples are provided for a variety of languages, including
+Raw, cURL, Java, JavaScript, Node.js, Perl, Python, PHP, Ruby, Go, C#
+Visual Basic, Groovy, Objective-C and Swift
+
+* See the [Overview Video](https://www.youtube.com/watch?v=ftQMYAbhX-k)
+
+## Known Issues:
+- The console (where you can exercise the API calls) gets "stuck" and returns a blank page and behaves 
+erratically after about 4 or 5 calls to API endpoints. Apiary is aware of this bug and is working on 
+a resolution.  The way to avoid this is to refresh the page before you make your next call.
+- The overview video (link above) is not really an API overview. This is really a placeholder. We 
+will post a more meaninful, API-focused video as soon as we can make one available.
+
+
+# Group API Status
+The status of the API can be determined using the status endpoints. If you
+attempt to use the API and are getting unexpected errors, checking the 
+status of the API is a good first step.
+
+## Server Availability [/ping]
+
+You can ping the API server to check that the server is running. If you do
+not get a response from the call to ping, please check with our support team
+at http://support.ingo.me
+
+As of: 1.0
+
+### Ping The Server [GET]
+
++ Response 200 (plain/text)
+
+        OK
+
+## API Version [/version]
+
+You can get the API app version the server is running. This information
+includes the environment (staging/production) that you are accessing.
+
+As of: 1.0
+
+### Get The API app Version [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+              "env": "staging",
+              "major": 0,
+              "minor": 3,
+              "patch": 0,
+              "build_number": "149",
+              "commit": "e318746efbabb839299e0bedc4987916758f71ed"
+            }
+
+# Group Security
+The *InGo Events API* is secured using JWT tokens. Most of the
+endpoints of the API require that you provide a valid token in
+order to use the feature. There are a few exceptions (for example
+the ping endpoint). To obtain a token you must authorize.
+
+## Authorizing [/1.0/auth]
+
+In order to use the API you must first authorize and obtain an API token.
+Authorizing allows the *InGo Events API* to verify that you are permitted to 
+access the API and determine what endpoints and objects you have 
+permission to create, update or view.
+
+The authorization endpoint allows an existing authorized user
+to gain access to the API and obtain a security token to be used
+for all secured endpoints. 
+
+IMPORTANT:
+- Make sure that you store this token securely. Anyone with the token can impersonate you.
+- Tokens expire 8 hours from the moment they are generated (subject to change)
+
+Once you've obtained a token you will send this token as your authoization
+for all calls you make to the API.  The only exceptions are /ping and /version
+which do not require authoization.
+
+As of: 1.0
+
+### Authorize and Obtain a Token [POST]
+
++ Attributes
+    + email: joe@example.com (string, required) - user email
+    + pwd: abcdef12345678 (string, required) - user password
+
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni...."
+            }
+
+# Group Managing Events
+Creating and managing your events through the API is simple, but may involve a few calls
+to the API in order to provide the API with a complete picture of your event. At the 
+very core of the event management area is the event itself. 
+
+You should have one event in the InGo events management system for
+each event for which you are running an InGo social media markeing campaign.
+
+## Listing Events [/1.0/events]
+
+You can list all of the events you have created or that are available to you to manage.
+
+As of: 0.1.0
+
+### List All Events [GET]
+
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "creator": "Joe Smith",
+                    "description": "This event promises to be the best event ever",
+                    "start_c": "2016-09-28T00:00:00.000Z",
+                    "end_c": "2014-09-30T00:00:00.000Z",
+                    "livedate": null,
+                    "name": "The Business Conference",
+                    "uniqueid": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
+                    "websiteurl": "http://www.example.com/event1/register",
+                    "registrationplatformid": 3,
+                    "registrationplatformapikey": "ALK3SJLA92AS35980",
+                    "registrationplatformeventid": "ev132",
+                    "registrationplatformeventurl": "http://greatevents.com/events/ev",
+                    "urlparammask": "",
+                    "corsdomain": "*",
+                    "usepostregistration": false,
+                    "state": "testing",
+                    "account_id": 1
+                },
+                {
+                    "creator": "John Smith",
+                    "description": "This event promises to be the second best event ever",
+                    "start_c": "2016-05-21T00:00:00.000Z",
+                    "end_c": "2014-05-23T00:00:00.000Z",
+                    "livedate": null,
+                    "name": "The Business Conference",
+                    "uniqueid": "CS5TWAAK0A0LVNEKNJPLNYCLPKET3P42",
+                    "websiteurl": "http://www.example.com/event2/register",
+                    "registrationurl": "http://www.example.com/event2/register",
+                    "registrationplatformid": 3,
+                    "registrationplatformapikey": "ALK3SJLA92AS35980",
+                    "registrationplatformeventid": "ev133",
+                    "registrationplatformeventurl": "http://greatevents.com/events/ev",
+                    "urlparammask": "",
+                    "corsdomain": "*",
+                    "usepostregistration": false,
+                    "state": "testing",
+                    "account_id": 1
+                }
+            ]
+
+## Creating Events [/1.0/events/]
+
+You can create a new event. 
+
+As of: 0.1.0
+
+### Create an Event [POST]
+
++ Attributes
+    + name: The Business Conference (string, required) - the name of the event
+    + start_c: `2016-09-28` (string, required) - the start date for the event
+    + end_c: `2016-10-01` (string, required) - the end date for the event
+    + registrationurl: `http://www.example.com/event2/register` (string, required) - the url where users will be directed to register
+    + description: This event promises to be the second best event ever (string, required) - describes the event
+    + websiteurl: `http://www.example.com/event2/register` (string, required) - the website of the event
+    + registrationplatform: 1 (number, required) - obtained from call to /registrationplatform
+    + registrationplatformeventid: null (string) - if yusing a registration platform, the event ID for that platform
+    + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
+    + urlparamsmask: null (string) - registration platform url mask
+    + corsdomains: * (string, required) - a comma separated list of domains where InGo code will run, or * for any
+    + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
+    + account_id: 1 (number, required) - indicates which account owns this event, use /events endpoint to obtain the id
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "uniqueId": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL"
+            }
+
+## Getting Events [/1.0/events/{eventId}]
+
+You can get the details for one of your events.
+
+As of: 0.1.0
+
+### Get an Event [GET]
+
++ Parameters
+    + eventId: BA8A4314276C45398FFEA33C55CD3F96 (string, required) - Unique Id of the event.
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+
+        
+        {
+            "id": 1,
+            "creator": "Joe Smith",
+            "description": "This event promises to be the best event ever",
+            "startDate": "",
+            "endDate": "",
+            "liveDate": "",
+            "name": "The Business Conference",
+            "uniqueId": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
+            "websiteUrl": "http://www.example.com/register",
+            "registrationPlatformId": 3,
+            "registrationPlatformApiKey": "ALK3SJLA92AS35980",
+            "registrationPlatformEventId": "ev132",
+            "registrationPlatformEventUrl": "http://greatevents.com/events",
+            "urlParamMask": "",
+            "corsDomain": "*",
+            "usePostRegistration": false,
+            "facebookEventId": "myfbID",
+            "state": "testing",
+            "expectedRegCount": 14000,
+            "accountId": 1
+        }
+
+## Updating Events [/upload/1.0/events/{eventIdToUpdate}/]
+
+You can update one of your events.
+
+**NOT IMPLEMENTED YET**
+
+### Update an Event [PUT]
+
++ Parameters
+    + eventIdToUpdate: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event
+
++ Attributes
+    + name: The Business Conference (string, required) - the name of the event
+    + start_c: `2016-09-28` (string, required) - the start date for the event
+    + end_c: `2016-10-01` (string, required) - the end date for the event
+    + registrationurl: `http://www.example.com/event2/register` (string, required) - the url where users will be directed to register
+    + description: This event promises to be the second best event ever (string, required) - describes the event
+    + websiteurl: `http://www.example.com/event2/register` (string, required) - the website of the event
+    + registrationplatform: 1 (number, required) - obtained from call to /registrationplatform
+    + registrationplatformeventid: null (string) - if yusing a registration platform, the event ID for that platform
+    + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
+    + urlparamsmask: null (string) - registration platform url mask
+    + corsdomains: * (string, required) - a comma separated list of domains where InGo code will run, or * for any
+    + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
+    + account_id: 1 (number, required) - indicates which account owns this event, use /events endpoint to obtain the id
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+            }
+
+## Deleting Events [/1.0/events/{eventIdToDelete}]
+
+You can delete one of your Events
+
+**NOT IMPLEMENTED YET**
+
+As of: 0.1.0
+
+### Delete an Event [DELETE]
+
++ Parameters
+    + eventIdToDelete: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "uniqueId": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL"
+            }
+
+        
+# Group Managing Event Images        
+        
+Events can have images assoicated to them. These images help InGo brand posts made by event 
+registrants and social email templates. There are four types of images:
+
+| Type     | Description                                         | Expected Dimensions |
+|----------|-----------------------------------------------------|---------------------|
+| header   | Image used as the header for your events            |       110×45       |
+| post     | Image used as the image content in registrant posts |       1024×512      |
+| email    | Image used within email templates                   |       625×110       |
+| attendee | Image used as the banner to brand the attendee page |       920×120       |
+
+## Uploding Images [/upload/1.0/events/{eventId}/images]
+
+You can create a widget for one of your events.
+
+As of: 0.1.0
+
+### Uploading an Image For an Event [POST]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+
++ Request (application/x-www-form-urlencoded)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
+    + Body
+            
+            {
+                files: getting the proper syntax here...
+            }
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+            }
+
+
+## Listing Images [/1.0/events/{eventId}/images]
+
+You can list the images associated with one of your events.
+
+As of: 0.1.0
+
+### Get Images For an Event [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "social-post-logo":
+                    {
+                        "url":"https://s3.amazonaws.com/ingo.development.us-east.imgs/DTXY3NE0YLUJNSME/VF1KWUN52NJ3BFY22JJ3E2GHBES0JQO4.jpg"
+                    }
+            }
+
+# Group Managing Event Advocacy Templates
+
+Advocacy Templates define the text and urls used for social media interaction.
+Each event has it's own advocacy templates. If you do not define any advocacy 
+templates the master defaults will be used. An advocacy template allows you to 
+customize the way that your advocates interact with social media through posts
+and invites.
+
+Advocacy Template Types:
+
+| Template Type  | Description  |
+|----------------|---------------|
+| advocacy_post | the text used by default for posting by an advocate (Social Widget) |
+| advocacy_url | the url of the link a viewer of the advocacy post can use to "see more" |
+| attendee_post | the text used by default for notifying contacts when registering for the event |
+| attendee_url | the url of the link a viewer of the registration post can use to "see more" |
+| invitation | the text used the default text used for |
+
+Advocacy templates can be customized *per* Social Network. Below are the service sesignations:
+
+| Service Designation | Information |
+|---------|--------| 
+| facebook | Facebook: http://www.facebook.com |
+| linkedin | LinkedIn: http://www.linkedin.com |
+| twitter  | Twitter: http://www.twitter.com |
+| google | Google+: http://plus.google.com |
+| xing | Xing: http://www.xing.com |
+
+
+The following languages are supported for custom advocacy templates:
+
+| Locale | Description |
+|--------|------------|
+| ar | Arabic |
+| fr | French |
+| pt-PT | Portuguese (Portugal) |
+| zh-CN | Chinese (Standard) |
+| it | Italian |
+| pt-BR | Portuguese (Brazil) |
+| nl | Dutch |
+| de | German |
+| ru | Russian |
+| en | English |
+| es | Spanish |
+
+## Listing Event Advocacy Templates [/1.0/events/{eventId}/advocacy-templates]
+
+You can list all of the advocacy templates for one of your events.
+
+### List the Advocacy Templates for an Event [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event.
+
++ Request
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "template_type": "advocacy_post",
+                    "locale": "en",
+                    "text": "Check out The Business Conference"
+                },
+                {
+                    "template_type": "attendee_post",
+                    "locale": "en",
+                    "text": "I just registered for The Business Conference"
+                },
+                {
+                    "social_service": "facebook",
+                    "template_type": "advocacy_post",
+                    "locale": "en",
+                    "text": "Hey friends, check out The Business Conference"
+                },
+                {
+                    "social_service": "facebook",
+                    "template_type": "attendee_post",
+                    "locale": "en",
+                    "text": "Hey friends, I just registered for The Business Conference"
+                }
+            ]
+
+
+# Group Managing Widgets
+
+| Widget Type       | Usage                                                                       | 
+|-------------------|-----------------------------------------------------------------------------|
+| social            | used for socially adovcating for the event (invites, posts, who's in)       |
+| login             | used to allow event attendees to authorize use of their social netowrk      |
+| registration      | used to auto-fill registration data from social network data                |
+| confirmation      | used at the end of your registration flow to signify completed registration |
+
+## Creating Widgets [/1.0/events/{eventId}/widget-configs/]
+
+You can create a widget for and event that is available to you to manage.
+
+As of: 0.1.0
+
+### Create a Widget [POST]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event for the widget(s)
+
++ Attributes
+    + type: social (string, required) - the type of the widget to create
+    + version: 0.5.1 (string, required) - the version of the widget (must be an existing version)
+    + custom_css (array) - optional array of custom css urls
+    + custom_js (array) - optional array of custom js urls
+    + params (object, required) - the parameters for the widget
+        
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+            }
+
+## Listing Widgets [/1.0/events/{eventId}/widget-configs]
+
+You can get the list of existing widget for and event that is available to you to manage.
+
+As of: 0.1.0
+
+### List the Widgets for an Event [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event for the widget(s)
+
++ Request
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+                    "type": "social",
+                    "key": "social-S5LI",
+                    "version": "0.5.1",
+                    "conference_id": "431",
+                    "custom_css":
+                    [
+                    ],
+                    "custom_js":
+                    [
+                    ],
+                    "json": "{"css":["http://cdn.ingo.me/widgets-social/0.5.1/css/ingo.social.widget.css"],"js":["http://cdn.ingo.me/widgets-social/0.5.1/js/ingo.social.widget.js"],"useJQuery":true,"type":"social","version":"0.5.1","status":0,"params":{"ingoId":"BA8A4314276C45398FFEA33C55CD3F96"}}",
+                    "created_at": "2016-02-04T21:06:52.691Z",
+                    "status": "Production Ready"
+                },
+                {
+                    "unique_id": "T4IGMGRFQIPHWZE5LSYCQDY32SU1FSP3",
+                    "type": "login",
+                    "key": "login-S5LI",
+                    "version": "0.1.0",
+                    "conference_id": "431",
+                    "custom_css":
+                    [
+                    ],
+                    "custom_js":
+                    [
+                    ],
+                    "json": "{"css":["http://cdn.ingo.me/widgets-login/0.1.0/css/ingo.login.widget.css"],"js":["http://cdn.ingo.me/widgets-login/0.1.0/js/ingo.login.widget.js"],"useJQuery":true,"type":"login","version":"0.1.0","status":0,"params":{"ingoId":"BA8A4314276C45398FFEA33C55CD3F96"}}",
+                    "created_at": "2016-02-04T21:06:52.691Z",
+                    "status": "Production Ready"
+                }
+            ]
+
+
+## Getting Widgets [/1.0/events/{eventId}/widget-configs/{widgetId}]
+
+You can get the details of an existing widget for and event that is available to you to manage.
+
+As of: 0.1.0
+
+### Get a Widget [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event for the widget(s)
+    + widgetId: LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5 (string, required) - Unique Id of the widget
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+
+            {
+                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+                "type": "social",
+                "key": "social-S5LI",
+                "version": "0.5.1",
+                "conference_id": "431",
+                "custom_css":
+                [
+                ],
+                "custom_js":
+                [
+                ],
+                "json": "{"css":["http://cdn.ingo.me/widgets-social/0.5.1/css/ingo.social.widget.css"],"js":["http://cdn.ingo.me/widgets-social/0.5.1/js/ingo.social.widget.js"],"useJQuery":true,"type":"social","version":"0.5.1","status":0,"params":{"ingoId":"BA8A4314276C45398FFEA33C55CD3F96"}}",
+                "created_at": "2016-02-04T21:06:52.691Z",
+                "status": "Production Ready"
+            }
+
+## Deleting Widgets [/1.0/events/{eventId}/widget-configs/{widgetIdToDelete}/]
+
+You can delete an existing widget for and event that is available to you to manage.
+
+As of: 0.1.0
+
+### Delete a Widget [DELETE]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event for the widget(s)
+    + widgetIdToDelete: LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5 (string, required) - Unique Id of the widget
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+            }
+
+## Updating Widgets [/1.0/events/{eventId}/widget-configs/{widgetIdToUpdate}/]
+
+You can update an existing widget. You should send not empty object.
+
+As of: 0.1.0
+
+### Updating a Widget [PATCH]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event for the widget(s)
+    + widgetIdToUpdate: LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5 (string, required) - Unique Id of the widget
+
++ Attributes
+    + custom_css (array) - optional array of custom css urls
+    + custom_js (array) - optional array of custom js urls
+    + params (object) - the parameters for the widget
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5"
+            }
+
+# Group Managing Accounts
+
+## Listing Accounts [/1.0/accounts]
+
+You can get a list of all the accounts you are associated with.
+
+As of: 0.1.0
+
+### List Accounts [GET]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            [
+                {
+                    "id": 107,
+                    "name": "Acme Account"
+                },
+                {
+                    "id": 236,
+                    "name": "ABest Events Account"
+                }
+            ]
+
+## Geting Accounts [/1.0/accounts/{accountId}]
+
+You can get an accounts by ID.
+
+NOTE: You may only retrieve accounts you have permission to use.
+
+As of: 0.1.0
+
+### Get an Account [GET]
+
++ Parameters
+    + accountId: 1 (number, required) - the ID of the event for which the new widget is being created
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "id": 107,
+                "name": "Acme Account"
+            }
+
+# Group Managing Registration Platforms
+
+## Listing Registration Platforms [/1.0/registrationplatforms/]
+
+You can get a list of all the registration platforms to associate with your events.
+
+As of: 0.1.0
+
+### List all Registration Platforms [GET]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            [
+                {
+                    "id": 1,
+                    "key_c": "busyconf",
+                    "cors_domains":
+                    [
+                        "http://staging.busyconf.com",
+                        "https://busyconf.com",
+                        "http://busyconf.dev",
+                        "http://busyconf.com",
+                        "http://alpha.busyconf.dev"
+                    ]
+                },
+                {
+                    "id": 2,
+                    "key_c": "cds",
+                    "cors_domains":
+                    [
+                        "https://www.xpressreg.net",
+                        "http://www.xpressreg.net",
+                        "https://dev1.cdsreg.com",
+                        "https://prod.staging.xpressreg.net"
+                    ]
+                }
+            ]
+
+## Getting Registration Platforms [/1.0/registrationplatforms/{registrationPlatformId}]
+
+You can get a list of all the registration platforms to associate with your events.
+
+As of: 0.1.0
+
+### Get a Registration Platform [GET]
+
++ Parameters
+    + registrationPlatformId: 1 (number, required) - the ID of the registration platform to get
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "id": 1,
+                "key_c": "busyconf",
+                "cors_domains":
+                [
+                    "http://staging.busyconf.com",
+                    "https://busyconf.com",
+                    "http://busyconf.dev",
+                    "http://busyconf.com",
+                    "http://alpha.busyconf.dev"
+                ]
+            }
+
+# Data Structures
+
+## Event (object)
+
++ name: Business Conference
++ description: A great business conference we're putting together 
++ websiteurl: http://www.greatbusinessconference.com/register
