@@ -505,7 +505,10 @@ this behavior for some or all of the supported social networks.
 
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
-    + qualifier: url (string, optional) - see qualifiers above
+    + qualifier: url (enum[string], optional) - see qualifiers above
+        + Members
+            + url
+            + event_id
     + social_service: facebook (enum[string], optional) -  the social service designation 
         + Members
             + facebook
@@ -521,6 +524,18 @@ this behavior for some or all of the supported social networks.
             + invitation_subject
             + invitation_text
     + locale: en (string, requred) - the use this template text only for this locale
+        + Members
+            + ar - Arabic
+            + fr - French 
+            + pt-PT - Portuguese (Portugal)
+            + zh-CN - Chinese (Standard)
+            + it - Italian 
+            + pt-BR - Portuguese (Brazil)
+            + nl - Dutch
+            + de - German
+            + ru - Russian
+            + en - English
+            + es - Spanish        
     
 + Attributes
     + text: Come experience the best event of the year (string, required) - the parameters for the widget
