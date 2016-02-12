@@ -415,10 +415,9 @@ Advocacy Template Types:
 | Template Type  | Description  |
 |----------------|---------------|
 | advocacy_post | the text used by default for posting by an advocate (Social Widget) |
-| advocacy_url | the url of the link a viewer of the advocacy post can use to "see more" |
 | attendee_post | the text used by default for notifying contacts when registering for the event |
-| attendee_url | the url of the link a viewer of the registration post can use to "see more" |
-| invitation | the text used the default text used for |
+| invitation_subject | the text used for the subject of an invite  |
+| invitation_body | the text used the default text used for an invitation |
 
 Advocacy templates can be customized *per* Social Network. Below are the service sesignations:
 
@@ -446,6 +445,13 @@ The following languages are supported for custom advocacy templates:
 | ru | Russian |
 | en | English |
 | es | Spanish |
+
+Qualifiers:
+
+| Qualifier | Description |
+|--------|------|
+| event_id | indicates that the text is actually the event_id and that all the post or invite text details should be taken from the event data directly. |
+| url | indicates that the text is the url that should be used in the links for the post or invite |
 
 ## Listing Event Advocacy Templates [/1.0/events/{eventId}/advocacy-templates]
 
@@ -489,6 +495,37 @@ You can list all of the advocacy templates for one of your events.
                 }
             ]
 
+## Creating Avocacy Templates [/1.0/events/{eventId}/advocacy-templates/{?qualifier}{?social_service}{?template_type}{?locale}]
+
+You can create advocacy templates for your event to customize the content of a post or invite. You can 
+change what text appears for posts and invites and what url the post or invite will link to. You can customize
+this behavior for some or all of the supported social networks.
+
+### Create an Advocacy Template [POST]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    + qualifier: null (string, required) - null, event_id or url; see qualifiers above
+    + social_service: facebook (string, required) the social service designation 
+    `+ template_type: advocacy_post (string, required)`
+    + locale: en (string, required)
+    
+
++ Attributes
+    + text: Come experience the best event of the year (string, required) - the parameters for the widget
+        
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+            }
+
 
 # Group Managing Widgets
 
@@ -508,7 +545,7 @@ As of: 0.1.0
 ### Create a Widget [POST]
 
 + Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event for the widget(s)
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
 
 + Attributes
     + type: social (string, required) - the type of the widget to create
@@ -538,7 +575,7 @@ As of: 0.1.0
 ### List the Widgets for an Event [GET]
 
 + Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event for the widget(s)
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event
 
 + Request
     + Headers
@@ -593,7 +630,7 @@ As of: 0.1.0
 ### Get a Widget [GET]
 
 + Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event for the widget(s)
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event
     + widgetId: LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5 (string, required) - Unique Id of the widget
 
 + Request (application/json)
@@ -630,7 +667,7 @@ As of: 0.1.0
 ### Delete a Widget [DELETE]
 
 + Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event for the widget(s)
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event
     + widgetIdToDelete: LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5 (string, required) - Unique Id of the widget
 
 + Request (application/json)
@@ -654,7 +691,7 @@ As of: 0.1.0
 ### Updating a Widget [PATCH]
 
 + Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event for the widget(s)
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event
     + widgetIdToUpdate: LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5 (string, required) - Unique Id of the widget
 
 + Attributes
@@ -714,7 +751,7 @@ As of: 0.1.0
 ### Get an Account [GET]
 
 + Parameters
-    + accountId: 1 (number, required) - the ID of the event for which the new widget is being created
+    + accountId: 1 (number, required) - the ID of the account to get
 
 + Request (application/json)
     + Headers
