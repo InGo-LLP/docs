@@ -506,8 +506,14 @@ this behavior for some or all of the supported social networks.
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
     + qualifier: url (string, optional) - see qualifiers above
-    + social_service: facebook (string, optional) -  the social service designation 
-    + template_type: advocacy post (enum[string], required) - the template type to customize (underscores are reomved here in the doc because of a bug in Apiary, soon to be fixed)
+    + social_service: facebook (enum[string], optional) -  the social service designation 
+        + Members
+            + facebook
+            + linkedin
+            + twitter
+            + google
+            + xing
+    + template_type: advocacy post (enum[string], required) - the template type to customize (underscores are reomved here in the doc due to bug in Apiary, soon to be fixed)
         + Members
             + advocacy post
             + advocacy_post
