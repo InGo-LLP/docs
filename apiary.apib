@@ -495,6 +495,61 @@ You can list all of the advocacy templates for one of your events.
                 }
             ]
 
+## Getting Avocacy Templates [/1.0/events/{eventId}/advocacy-templates/{?qualifier,social_service,template_type,locale} ]
+
+You can retrieve an advocacy template.
+
+### Get an Advocacy Template [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    + qualifier: url (enum[string], optional) - see qualifiers above
+        + Members
+            + url
+            + event_id
+    + social_service: facebook (enum[string], optional) -  the social service designation 
+        + Members
+            + facebook
+            + linkedin
+            + twitter
+            + google
+            + xing
+    + template_type: advocacy post (enum[string], required) - the template type (underscores are reomved here in the doc due to bug in Apiary, soon to be fixed)
+        + Members
+            + advocacy post
+            + advocacy_post
+            + attendee_post
+            + invitation_subject
+            + invitation_text
+    + locale: en (string, requred) - the use this template text only for this locale
+        + Members
+            + ar - Arabic
+            + fr - French 
+            + pt-PT - Portuguese (Portugal)
+            + zh-CN - Chinese (Standard)
+            + it - Italian 
+            + pt-BR - Portuguese (Brazil)
+            + nl - Dutch
+            + de - German
+            + ru - Russian
+            + en - English
+            + es - Spanish        
+    
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+                {
+                    "qualifier": null,
+                    "template_type": "advocacy_post",
+                    "locale": "en",
+                    "text": "Check out The Business Conference"
+                }
+
 ## Creating Avocacy Templates [/1.0/events/{eventId}/advocacy-templates{?qualifier,social_service,template_type,locale}]
 
 You can create advocacy templates for your event to customize the content of a post or invite. You can 
@@ -538,7 +593,7 @@ this behavior for some or all of the supported social networks.
             + es - Spanish        
     
 + Attributes
-    + text: Come experience the best event of the year (string, required) - the parameters for the widget
+    + text: Come experience the best event of the year (string, required) - the text to use
         
 + Request (application/json)
     + Headers
@@ -548,10 +603,70 @@ this behavior for some or all of the supported social networks.
 + Response 201 (application/json)
     + Body
     
-            {
-                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
-            }
+                {
+                    "qualifier": null,
+                    "template_type": "advocacy_post",
+                    "locale": "en",
+                    "text": "Check out The Business Conference"
+                }
 
+## Updating Avocacy Templates [/1.0/events/{eventId}/advocacy-templates/{?qualifier,social_service,template_type,locale}]
+
+You can update advocacy templates for your event.
+
+### Updating an Advocacy Template [PATCH]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    + qualifier: url (enum[string], optional) - see qualifiers above
+        + Members
+            + url
+            + event_id
+    + social_service: facebook (enum[string], optional) -  the social service designation 
+        + Members
+            + facebook
+            + linkedin
+            + twitter
+            + google
+            + xing
+    + template_type: advocacy post (enum[string], required) - the template type to customize (underscores are reomved here in the doc due to bug in Apiary, soon to be fixed)
+        + Members
+            + advocacy post
+            + advocacy_post
+            + attendee_post
+            + invitation_subject
+            + invitation_text
+    + locale: en (string, requred) - the use this template text only for this locale
+        + Members
+            + ar - Arabic
+            + fr - French 
+            + pt-PT - Portuguese (Portugal)
+            + zh-CN - Chinese (Standard)
+            + it - Italian 
+            + pt-BR - Portuguese (Brazil)
+            + nl - Dutch
+            + de - German
+            + ru - Russian
+            + en - English
+            + es - Spanish        
+    
++ Attributes
+    + text: Come experience the best event of the year (string, required) - the text to use
+        
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+                {
+                    "qualifier": null,
+                    "template_type": "advocacy_post",
+                    "locale": "en",
+                    "text": "Check out The Business Conference"
+                }
 
 # Group Managing Widgets
 
