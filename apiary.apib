@@ -353,28 +353,33 @@ You can create a widget for one of your events.
 As of: 0.1.0
 
 ### Uploading an Image For an Event [POST]
+NOTE: This example actually has an InGo icon png file in the body that you can upload if you like. Enjoy!
 
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
 
-+ Request (application/x-www-form-urlencoded)
++ Request (application/form-data; boundary=---------------------------386215073532303139996316699)
     + Headers
     
             Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
     
     + Body
+
+            -----------------------------386215073532303139996316699
+            Content-Disposition: form-data; name="social-post-logo"; filename="ingologo_with_gradient.png"
+            Content-Type: application/octet-stream
             
-            {
-                files: getting the proper syntax here...
-            }
-    
+            -----------------------------386215073532303139996316699--            
+
 + Response 201 (application/json)
     + Body
     
-            {
-                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
-            }
-
+            [
+                {
+                    "url":"https://s3.amazonaws.com/ingo.development.us-east.imgs/9a821432-92da-41/01cd1e3c-2470-43b1-815b-f78e6c103561.png",
+                    "type":"social-post-logo"
+                }
+            ]
 
 ## Listing Images [/1.0/events/{eventId}/images]
 
