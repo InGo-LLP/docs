@@ -126,6 +126,66 @@ As of: 1.0
                 "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni...."
             }
 
+## Listing Users [/1.0/users{?email}]
+
+Administrators can obtain a list of the users in the system
+
+**SECURITY**: You must have administrative privileges to use this endpoint
+
+### List Users [GET]
+
++ Parameters
+    + email: admin1@letsingo.com (string, optional) - use to get a single user by email address
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+
+            [
+                {
+                    "email": "admin@letsingo.com",
+                    "locale": "en-US"
+                },
+                {
+                    "email": "user1@letsingo.com",
+                    "locale": "en-US"
+                }
+            ]
+
+## Creating Users [/1.0/users/]
+
+Administrators can create a new user in the system. When you create a new user, you do not set the user's password. Instead you are
+provided a one-time use tokenized url called _setpasswordurl_.  Send this url to the new user so that the user can
+log into the admin console and begin to manage their events.
+
+**SECURITY**: You must have administrative privileges to use this endpoint
+
+### Create a New User [POST]
+
++ Attributes
+    + email: admin@letsingo.com (string, required) - the email of the user
+    + locale: `en-US` (string, required) - the start date for the event
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+
+            {
+                "email": "user1@letsingo.com",
+                "locale": "en-US",
+                "setpasswordurl": "http://admin.ingo.me/set-password?token=3ad447f0b057b4ae086947ee8c3027e1103d8020"
+            }
+
+
+
 # Group Managing Events
 Creating and managing your events through the API is simple, but may involve a few calls
 to the API in order to provide the API with a complete picture of your event. At the 
