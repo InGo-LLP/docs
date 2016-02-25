@@ -263,8 +263,8 @@ As of: 0.1.0
 
 + Attributes
     + name: The Business Conference (string, required) - the name of the event (must be unique)
-    + start_c: `2016-09-28` (string, required) - the start date for the event
-    + end_c: `2016-10-01` (string, required) - the end date for the event
+    + start_c: `2016-09-28T00:00:00.000Z` (string, required) - the start date for the event
+    + end_c: `2016-10-01T00:00:00.000Z` (string, required) - the end date for the event
     + registrationurl: `http://www.example.com/event2/register` (string, required) - the url where users will be directed to register
     + description: This event promises to be the second best event ever (string, required) - describes the event
     + websiteurl: `http://www.example.com/event2/register` (string, required) - the website of the event
@@ -308,26 +308,23 @@ As of: 0.1.0
 
         
         {
-            "id": 1,
             "creator": "Joe Smith",
             "description": "This event promises to be the best event ever",
-            "startDate": "",
-            "endDate": "",
-            "liveDate": "",
+            "start_c": "2016-09-28T00:00:00.000Z",
+            "end_c": "2014-09-30T00:00:00.000Z",
+            "livedate": null,
             "name": "The Business Conference",
-            "uniqueId": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
-            "websiteUrl": "http://www.example.com/register",
-            "registrationPlatformId": 3,
-            "registrationPlatformApiKey": "ALK3SJLA92AS35980",
-            "registrationPlatformEventId": "ev132",
-            "registrationPlatformEventUrl": "http://greatevents.com/events",
-            "urlParamMask": "",
-            "corsDomain": "*",
-            "usePostRegistration": false,
-            "facebookEventId": "myfbID",
+            "uniqueid": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
+            "websiteurl": "http://www.example.com/event1/register",
+            "registrationplatformid": 3,
+            "registrationplatformapikey": "ALK3SJLA92AS35980",
+            "registrationplatformeventid": "ev132",
+            "registrationplatformeventurl": "http://greatevents.com/events/ev",
+            "urlparammask": "",
+            "corsdomain": "*",
+            "usepostregistration": false,
             "state": "testing",
-            "expectedRegCount": 14000,
-            "accountId": 1
+            "account_id": 1
         }
 
 ## Updating Events [/upload/1.0/events/{eventIdToUpdate}/]
