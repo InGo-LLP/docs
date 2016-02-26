@@ -204,7 +204,9 @@ each event for which you are running an InGo social media markeing campaign.
 
 ## Listing Events [/1.0/events]
 
-You can list all of the events you have created or that are available to you to manage.
+You can list all of your events.
+
+**SECURITY:** You may only view events you created or have been assigned permission to.
 
 As of: 0.1.0
 
@@ -265,6 +267,8 @@ As of: 0.1.0
 
 You can create a new event. 
 
+**SECURITY:** You may only create events for accounts you have permission to use. A valid account is required.
+
 As of: 0.1.0
 
 ### Create an Event [POST]
@@ -299,6 +303,8 @@ As of: 0.1.0
 ## Getting Events [/1.0/events/{eventId}]
 
 You can get the details for one of your events.
+
+**SECURITY:** You may only get events you have permission to.
 
 As of: 0.1.0
 
@@ -416,6 +422,8 @@ registrants and social email templates. There are four types of images:
 You can upload images for one of your events. To update an existing image for an image type, simply 
 upload an image specifying the same image type again. 
 
+**SECURITY:** You may only upload image data for events you have permission to use.
+
 As of: 0.1.0
 
 ### Uploading an Image For an Event [POST]
@@ -451,6 +459,8 @@ NOTE: This example actually has an InGo icon png file in the body that you can u
 ## Listing Images [/1.0/events/{eventId}/images]
 
 You can list the images associated with one of your events.
+
+**SECURITY:** You may only view image data for events you have permission to use.
 
 As of: 0.1.0
 
@@ -529,6 +539,8 @@ Qualifiers:
 
 You can list all of the advocacy templates for one of your events.
 
+**SECURITY:** You may only view advocacy templates for events you have permission to use.
+
 ### List the Advocacy Templates for an Event [GET]
 
 + Parameters
@@ -570,6 +582,8 @@ You can list all of the advocacy templates for one of your events.
 ## Getting Avocacy Templates [/1.0/events/{eventId}/advocacy-templates/{?qualifier,social_service,template_type,locale} ]
 
 You can retrieve an advocacy template.
+
+**SECURITY:** You may only view advocacy templates for events you have permission to use.
 
 ### Get an Advocacy Template [GET]
 
@@ -628,6 +642,8 @@ You can create advocacy templates for your event to customize the content of a p
 change what text appears for posts and invites and what url the post or invite will link to. You can customize
 this behavior for some or all of the supported social networks.
 
+**SECURITY:** You may only create advocacy templates for events you have permission to use.
+
 ### Create an Advocacy Template [POST]
 
 + Parameters
@@ -685,6 +701,8 @@ this behavior for some or all of the supported social networks.
 ## Updating Avocacy Templates [/1.0/events/{eventId}/advocacy-templates/{?qualifier,social_service,template_type,locale}]
 
 You can update advocacy templates for your event.
+
+**SECURITY:** You may only update advocacy templates for events you have permission to use.
 
 ### Updating an Advocacy Template [PATCH]
 
@@ -753,6 +771,8 @@ You can update advocacy templates for your event.
 
 You can create a widget for and event that is available to you to manage.
 
+**SECURITY:** You may only create widgets for events you have permission to use.
+
 As of: 0.1.0
 
 ### Create a Widget [POST]
@@ -782,6 +802,8 @@ As of: 0.1.0
 ## Listing Widgets [/1.0/events/{eventId}/widget-configs]
 
 You can get the list of existing widget for and event that is available to you to manage.
+
+**SECURITY:** You may view widgets for events you have permission to use.
 
 As of: 0.1.0
 
@@ -840,6 +862,8 @@ As of: 0.1.0
 
 You can get the details of an existing widget for and event that is available to you to manage.
 
+**SECURITY:** You may view widgets for events you have permission to use.
+
 As of: 0.1.0
 
 ### Get a Widget [GET]
@@ -878,6 +902,8 @@ As of: 0.1.0
 
 You can delete an existing widget for and event that is available to you to manage.
 
+**SECURITY:** You may only delete widgets for events you have permission to use.
+
 As of: 0.1.0
 
 ### Delete a Widget [DELETE]
@@ -901,6 +927,8 @@ As of: 0.1.0
 ## Updating Widgets [/1.0/events/{eventId}/widget-configs/{widgetIdToUpdate}/]
 
 You can update an existing widget. You should send not empty object.
+
+**SECURITY:** You may only update widgets for events you have permission to use.
 
 As of: 0.1.0
 
@@ -931,7 +959,9 @@ As of: 0.1.0
 
 ## Listing Accounts [/1.0/accounts]
 
-You can get a list of all the accounts you are associated with.
+You can get a list of accounts.
+
+**SECURITY:** You may only retrieve accounts you have permission to use.
 
 As of: 0.1.0
 
@@ -960,7 +990,7 @@ As of: 0.1.0
 
 You can get an accounts by ID.
 
-NOTE: You may only retrieve accounts you have permission to use.
+**SECURITY:** You may only retrieve accounts you have permission to use.
 
 As of: 0.1.0
 
@@ -987,6 +1017,8 @@ As of: 0.1.0
 ## Listing Registration Platforms [/1.0/registrationplatforms/]
 
 You can get a list of all the registration platforms to associate with your events.
+
+**SECURITY:** All Registration Platform details are available to all users.
 
 As of: 0.1.0
 
@@ -1029,6 +1061,8 @@ As of: 0.1.0
 ## Getting Registration Platforms [/1.0/registrationplatforms/{registrationPlatformId}]
 
 You can get a list of all the registration platforms to associate with your events.
+
+**SECURITY:** All Registration Platform details are available to all users.
 
 As of: 0.1.0
 
