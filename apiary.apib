@@ -234,7 +234,7 @@ As of: 0.1.0
                     "livedate": null,
                     "name": "The Business Conference",
                     "uniqueid": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
-                    "websiteurl": "http://www.example.com/event1/register",
+                    "website_url": "http://www.example.com/event1/register",
                     "registrationplatformid": 3,
                     "registrationplatformapikey": "ALK3SJLA92AS35980",
                     "registrationplatformeventid": "ev132",
@@ -253,7 +253,7 @@ As of: 0.1.0
                     "livedate": null,
                     "name": "The Business Conference",
                     "uniqueid": "CS5TWAAK0A0LVNEKNJPLNYCLPKET3P42",
-                    "websiteurl": "http://www.example.com/event2/register",
+                    "website_url": "http://www.example.com/event2/register",
                     "registrationurl": "http://www.example.com/event2/register",
                     "registrationplatformid": 3,
                     "registrationplatformapikey": "ALK3SJLA92AS35980",
@@ -283,7 +283,7 @@ As of: 0.1.0
     + end_date: `2016-10-01T00:00:00.000Z` (string, required) - the end date for the event
     + registrationurl: `http://www.example.com/event2/register` (string, required) - the url where users will be directed to register
     + description: This event promises to be the second best event ever (string, required) - describes the event
-    + websiteurl: `http://www.example.com/event2/register` (string, required) - the website of the event
+    + website_url: `http://www.example.com/event2/register` (string, required) - the website of the event
     + registrationplatform: 1 (number, required) - obtained from call to /registrationplatform
     + registrationplatformeventid: null (string) - if yusing a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
@@ -333,7 +333,7 @@ As of: 0.1.0
             "livedate": null,
             "name": "The Business Conference",
             "uniqueid": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
-            "websiteurl": "http://www.example.com/event1/register",
+            "website_url": "http://www.example.com/event1/register",
             "registrationplatformid": 3,
             "registrationplatformapikey": "ALK3SJLA92AS35980",
             "registrationplatformeventid": "ev132",
@@ -362,14 +362,14 @@ You can update one of your events.
     + end_c: `2016-10-01` (string, required) - the end date for the event
     + registrationurl: `http://www.example.com/event2/register` (string, required) - the url where users will be directed to register
     + description: This event promises to be the second best event ever (string, required) - describes the event
-    + websiteurl: `http://www.example.com/event2/register` (string, required) - the website of the event
+    + website_url: `http://www.example.com/event2/register` (string, required) - the website of the event
     + registrationplatform: 1 (number, required) - obtained from call to /registrationplatform
-    + registrationplatformeventid: null (string) - if yusing a registration platform, the event ID for that platform
+    + registrationplatformeventid: null (string) - if using a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
     + urlparamsmask: null (string) - registration platform url mask
     + corsdomains: * (string, required) - a comma separated list of domains where InGo code will run, or * for any
     + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
-    + account_id: 1 (number, required) - indicates which account owns this event, use /events endpoint to obtain the id
+    + account_id: 1 (number, required) - indicates which account owns this event, use /accounts endpoint to obtain the id
 
 + Request (application/json)
     + Headers
