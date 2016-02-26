@@ -358,14 +358,14 @@ You can update one of your events.
     + name: The Business Conference (string, required) - the name of the event
     + start_c: `2016-09-28` (string, required) - the start date for the event
     + end_c: `2016-10-01` (string, required) - the end date for the event
-    + registrationurl: `http://www.example.com/event2/register` (string, required) - the url where users will be directed to register
+    + registration_url: `http://www.example.com/event2/register` (string, required) - the url where users will be directed to register
     + description: This event promises to be the second best event ever (string, required) - describes the event
     + website_url: `http://www.example.com/event2/register` (string, required) - the website of the event
-    + registrationplatform: 1 (number, required) - obtained from call to /registrationplatform
-    + registrationplatformeventid: null (string) - if using a registration platform, the event ID for that platform
+    + registration_platform: 1 (number, required) - obtained from call to /registrationplatform
+    + registration_platformevent_id: null (string) - if using a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
-    + urlparamsmask: null (string) - registration platform url mask
-    + corsdomains: * (string, required) - a comma separated list of domains where InGo code will run, or * for any
+    + url_params_mask: null (string) - registration platform url mask
+    + cors_domains: * (string, required) - a comma separated list of domains where InGo code will run, or * for any
     + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
     + account_id: 1 (number, required) - indicates which account owns this event, use /accounts endpoint to obtain the id
 
