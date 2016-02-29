@@ -239,7 +239,7 @@ As of: 0.1.0
                     "registration_platform_event_id": "ev132",
                     "registration_platform_event_url": "http://greatevents.com/events/ev",
                     "url_parammask": "",
-                    "cors_domain": "*",
+                    "cors_domain": ["*"],
                     "use_post_registration": false,
                     "state": "testing",
                     "account_id": 1
@@ -258,7 +258,7 @@ As of: 0.1.0
                     "registration_platform_event_id": "ev133",
                     "registration_platform_event_url": "http://greatevents.com/events/ev",
                     "url_parammask": "",
-                    "cors_domain": "*",
+                    "cors_domain": ["*"],
                     "use_post_registration": false,
                     "state": "testing",
                     "account_id": 1
@@ -282,11 +282,11 @@ As of: 0.1.0
     + registration_url: `http://www.example.com/event2/register` (string, required) - the url where users will be directed to register
     + description: This event promises to be the second best event ever (string, required) - describes the event
     + website_url: `http://www.example.com/event2/register` (string, required) - the website of the event
-    + registration_platform: 1 (number, required) - obtained from call to /registrationplatform
+    + registration_platform_id: 1 (number, required) - obtained from call to /registrationplatform
     + registration_platform_event_id: null (string) - if yusing a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
     + url_params_mask: null (string) - registration platform url mask
-    + cors_domains: * (string, required) - a comma separated list of domains where InGo code will run, or * for any
+    + cors_domains: ["*"] (array[string], required) - an array of domains where InGo code will run, or * for any
     + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
     + account_id: 1 (number, required) - indicates which account owns this event, use /accounts endpoint to obtain the id
 
@@ -337,7 +337,7 @@ As of: 0.1.0
             "registration_platform_event_id": "ev132",
             "registration_platform_event_url": "http://greatevents.com/events/ev",
             "url_params_mask": "",
-            "cors_domain": "*",
+            "cors_domain": ["*"],
             "use_post_registration": false,
             "state": "testing",
             "account_id": 1
@@ -365,7 +365,7 @@ You can update one of your events.
     + registration_platformevent_id: null (string) - if using a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
     + url_params_mask: null (string) - registration platform url mask
-    + cors_domains: * (string, required) - a comma separated list of domains where InGo code will run, or * for any
+    + cors_domains: ["*"] (array[string], required) - an array of domains where InGo code will run, or * for any
     + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
     + account_id: 1 (number, required) - indicates which account owns this event, use /accounts endpoint to obtain the id
 
