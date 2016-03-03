@@ -777,6 +777,84 @@ As of: 1.0
 | registration      | used to auto-fill registration data from social network data                |
 | confirmation      | used at the end of your registration flow to signify completed registration |
 
+LOGIN Widget Available Parameters
+-----------------------
+| Parameter Name | Meaning | Default | Versions |
+|--------|---------|-------|---|
+| autostart | Should dialog automatically open on page load? | false | ALL |
+| breakout | Is the login widget Break out of iframe? | false | ALL |
+| closeModalOnManual | Close on manual registration? | false | ALL |
+| defaultManualFieldValue.allowIdentify | Default value for allow to identify permission | true | ALL |
+| defaultManualFieldValue.allowPost | Default value for allow to post permission | true | ALL |
+| defaultManualFieldValue.companyName | Default value for company name input |  | ALL |
+| defaultManualFieldValue.companyPosition | Default value for company position input |  | ALL |
+| defaultManualFieldValue.email | Default value for email input |  | ALL |
+| defaultManualFieldValue.firstName | Default value for first name input |  | ALL |
+| defaultManualFieldValue.lastName | Default value for last name input |  | ALL |
+| disableClose | Can user close dialog? | false | ALL |
+| forwardQueryString | Forward Query String? | false | ALL |
+| hidePermissions.allowIdentify | Hide the identify permission checkbox? | false | ALL |
+| hidePermissions.allowPost | Hide the post permission checkbox? | false | ALL |
+| lang | Language | en | ALL |
+| layout | Layout | standard | ALL |
+| manual | Url for manual registrations | | ALL |
+| modal | Is widget running as dialog? | false | ALL |
+| networks.facebook | Is facebook login enabled? | true | ALL |
+| networks.google | Is google login enabled? | false | ALL |
+| networks.linkedin | Is linkedin login enabled? | true | ALL |
+| networks.twitter | Is twitter login enabled? | false | ALL |
+| networks.xing | Is xing login enabled? | false | ALL |
+| previousUrl.url | Social Login Previous URL |  | ALL |
+| previousUrl.useCurrent | Use the current page for Social Login Previous URL? | false | ALL |
+| registerColor | Color for the register manually button |  | ALL |
+| registerDisplayFields | Should the register manually button slide down the manual fields? | true | ALL |
+| requiredFields.companyName | Require company name? | true | ALL |
+| requiredFields.companyPosition | Require position? | true | ALL |
+| requiredFields.firstName | Require first name? | true | ALL |
+| requiredFields.lastName | Require last name? | true | ALL |
+| showManual | Should dialog show manual fields? | false | ALL |
+| useRadioPermissions | Use radio buttons for permissions | false | 1.0.8+ |
+| whiteLabel | Hide InGo branding? | true | ALL |
+| texts.{lang}.header | Key header | Register Socially (en) | ALL |
+| texts.{lang}.headerSub | Key headerSub | Win prizes, earn points and connect with people!. (en) | ALL |
+| texts.{lang}.label.button.facebook | Key label.button.facebook. | Facebook (en) | ALL |
+| texts.{lang}.label.button.google | Key label.button.google. | Google+ (en) | ALL |
+| texts.{lang}.label.button.linkedin | Key label.button.linkedin. | LinkedIn (en) | ALL |
+| texts.{lang}.label.button.manual | Key label.button.manual. | Continue (en) | ALL |
+| texts.{lang}.label.button.register | Key label.button.register. | Register Manually (en) | ALL |
+| texts.{lang}.label.button.twitter | Key label.button.twitter. | Twitter (en) | ALL |
+| texts.{lang}.label.button.xing | Key label.button.xing. | Xing (en) | ALL |
+| texts.{lang}.label.checkbox.allowIdentify | Key label.checkbox.allowIdentify. | Make me visible to other attendees (en) | ALL |
+| texts.{lang}.label.checkbox.allowPost | Key label.checkbox.allowPost. | Let my network know that I'm attending the event (en) | ALL |
+| texts.{lang}.label.radio.no | Key label.radio.no. | No (en) | ALL |
+| texts.{lang}.label.radio.yes | Key label.radio.yes. | Yes (en) | ALL |
+| texts.{lang}.placeholder.companyName | Key placeholder.companyName. | Company (en) | ALL |
+| texts.{lang}.placeholder.companyPosition | Key placeholder.companyPosition. | Position (en) | ALL |
+| texts.{lang}.placeholder.email | Key placeholder.email. | Email (en) | ALL |
+| texts.{lang}.placeholder.firstName | Key placeholder.firstName. | First Name (en) | ALL |
+| texts.{lang}.placeholder.lastName | Key placeholder.lastName. | Last Name (en) | ALL |
+| texts.{lang}.privacyPolicy | Key privacyPolicy. | Privacy Policy (en) | ALL |
+| texts.{lang}.privacyPolicyUrl | Key privacyPolicyUrl. | /privacy-policy/ (en) | ALL |
+
+Note: the `{lang}` portion of the above paramenters should be replaced with an approprate supported language tag.
+
+
+Supported Language Tags
+----------------------
+| Locale | Description |
+|--------|------------|
+| ar | Arabic |
+| fr | French |
+| pt-PT | Portuguese (Portugal) |
+| zh-CN | Chinese (Standard) |
+| it | Italian |
+| pt-BR | Portuguese (Brazil) |
+| nl | Dutch |
+| de | German |
+| ru | Russian |
+| en | English |
+| es | Spanish |
+
 ## Creating Widgets [/1.0/events/{eventId}/widget-configs/]
 
 You can create a widget for and event that is available to you to manage.
