@@ -838,8 +838,61 @@ LOGIN Widget Available Parameters
 | texts.{lang}.privacyPolicy | Key privacyPolicy. | Privacy Policy (en) | ALL |
 | texts.{lang}.privacyPolicyUrl | Key privacyPolicyUrl. | /privacy-policy/ (en) | ALL |
 
-Note: the `{lang}` portion of the above paramenters should be replaced with an approprate supported language tag.
+SOCIAL Widget Available Parameters
+-----------------------
+| Parameter Name | Meaning | Default | Versions |
+|--------|---------|-------|---|
+| customHeight|Custom height for widget| | ALL |
+| fluidWidth|Should the widget fill whole parent block?|false| ALL |
+| inviteForOnlyEnabledNetworks|Limit invitations to enabled networks|true| ALL |
+| lang|Language|en| ALL |
+| networks.facebook|Is facebook login enabled?|true| ALL |
+| networks.google|Is google login enabled?|false| ALL |
+| networks.linkedin|Is linkedin login enabled?|true| ALL |
+| networks.twitter|Is twitter login enabled?|true| ALL |
+| networks.xing|Is xing login enabled?|false| ALL |
+| numberOfPreselectedContacts|Number of preselected contacts|6| ALL |
+| renderMode|Render mode|replace| ALL |
+| show|Which tab to show?|invitation| ALL |
+| showTab.invitation|Show Invites Tab?|true| ALL |
+| showTab.share|Show Share Tab?|true| ALL |
+| showTab.whosin|Show Who is In Tab?|true| ALL |
+| texts.en.authButton.facebook|Key authButton.facebook (en)|Facebook| ALL 
+| texts.en.authButton.google|Key authButton.google (en)|Google| ALL |
+| texts.en.authButton.linkedin|Key authButton.linkedin (en)|LinkedIn| ALL |
+| texts.en.authButton.twitter|Key authButton.twitter (en)|Twitter| ALL |
+| texts.en.authButton.xing|Key authButton.xing (en)|Xing| ALL |
+| texts.en.dropdown.logout|Key dropdown.logout (en)|Logout| ALL |
+| texts.en.invitation.error.blankMessage|Key invitation.error.blankMessage (en)|Please provide a message| ALL |
+| texts.en.invitation.error.facebookContactsCount|Key invitation.error.facebookContactsCount (en)|Cannot tag more than 10 persons in a Facebook invitation| ALL |
+| texts.en.invitation.error.twitterMessageLength|Key invitation.error.twitterMessageLength (en)|Twitter message must be under 140 characters| ALL |
+| texts.en.invitation.filter.showAll|Key invitation.filter.showAll (en)|Show all| ALL |
+| texts.en.invitation.filter.someSelected|Key invitation.filter.someSelected (en)|#{count} ((contact|contacts)) selected| ALL |
+| texts.en.invitation.preview.close|Key invitation.preview.close (en)|Close Preview| ALL |
+| texts.en.invitation.preview.open|Key invitation.preview.open (en)|Preview| ALL |
+| `texts.en.invitation.preview.placeholder._` | `Key invitation.preview.placeholder._ (en)` |You should come because ...| ALL |
+| texts.en.invitation.preview.placeholder.fb|Key invitation.preview.placeholder.fb (en)|You are tagging your Facebook friends publicly, say something to encourage them to come to the show!| ALL |
+| texts.en.invitation.preview.send|Key invitation.preview.send (en)|Send Invites| ALL |
+| texts.en.invitation.search.placeholder|Key invitation.search.placeholder (en)|Search people, titles, companies, etc| ALL |
+| texts.en.invitation.sendInvite.inProcess|Key invitation.sendInvite.inProcess (en)|Inviting...| ALL |
+| texts.en.invitation.sendInvite.invite|Key invitation.sendInvite.invite (en)|Invite selected contacts| ALL |
+| texts.en.invitation.subHeader.Authed|Key invitation.subHeader.Authed (en)|Invite your contacts. Select from the list below then enter a message| ALL |
+| texts.en.invitation.subHeader.NotAuthed|Key invitation.subHeader.NotAuthed (en)|Sign in socially| ALL |
+| texts.en.invitation.subHeader.welcome|Key invitation.subHeader.welcome (en)|Invite your contacts. Experience an event tailored to you| ALL |
+| texts.en.invitation.tabName|Key invitation.tabName (en)|Invites| ALL |
+| texts.en.share.sendPost.inProcess|Key share.sendPost.inProcess (en)|Sending Post...| ALL |
+| texts.en.share.sendPost.post|Key share.sendPost.post (en)|Post| ALL |
+| texts.en.share.sendPost.title|Key share.sendPost.title (en)|Please select a social network to post about the event| ALL |
+| texts.en.share.tabName|Key share.tabName (en)|Share| ALL |
+| texts.en.whosin.nousers.placeholder|Key whosin.nousers.placeholder (en)|There are no attendees here yet| ALL |
+| texts.en.whosin.search.placeholder|Key whosin.search.placeholder (en)|Search people who are attending| ALL |
+| texts.en.whosin.subHeader.NotAuthed|Key whosin.subHeader.NotAuthed (en)|Sign in socially| ALL |
+| texts.en.whosin.subHeader.welcome|Key whosin.subHeader.welcome (en)|See who is attending. Experience an event tailored to you| ALL |
+| texts.en.whosin.tabName|Key whosin.tabName (en)|Who's In| ALL |
+| whiteLabel|Hide InGo branding?|true| ALL |
 
+
+Note: the `{lang}` portion of the above paramenters should be replaced with an approprate supported language tag.
 
 Supported Language Tags
 ----------------------
