@@ -815,8 +815,6 @@ LOGIN Widget Available Parameters
 | requiredFields.firstName | Require first name? | true | ALL |
 | requiredFields.lastName | Require last name? | true | ALL |
 | showManual | Should dialog show manual fields? | false | ALL |
-| useRadioPermissions | Use radio buttons for permissions | false | 1.0.8+ |
-| whiteLabel | Hide InGo branding? | true | ALL |
 | texts.{lang}.header | Key header | Register Socially (en) | ALL |
 | texts.{lang}.headerSub | Key headerSub | Win prizes, earn points and connect with people!. (en) | ALL |
 | texts.{lang}.label.button.facebook | Key label.button.facebook. | Facebook (en) | ALL |
@@ -837,6 +835,8 @@ LOGIN Widget Available Parameters
 | texts.{lang}.placeholder.lastName | Key placeholder.lastName. | Last Name (en) | ALL |
 | texts.{lang}.privacyPolicy | Key privacyPolicy. | Privacy Policy (en) | ALL |
 | texts.{lang}.privacyPolicyUrl | Key privacyPolicyUrl. | /privacy-policy/ (en) | ALL |
+| useRadioPermissions | Use radio buttons for permissions | false | 1.0.8+ |
+| whiteLabel | Hide InGo branding? | true | ALL |
 
 SOCIAL Widget Available Parameters
 -----------------------
@@ -857,39 +857,64 @@ SOCIAL Widget Available Parameters
 | showTab.invitation|Show Invites Tab?|true| ALL |
 | showTab.share|Show Share Tab?|true| ALL |
 | showTab.whosin|Show Who is In Tab?|true| ALL |
-| texts.en.authButton.facebook|Key authButton.facebook (en)|Facebook| ALL 
-| texts.en.authButton.google|Key authButton.google (en)|Google| ALL |
-| texts.en.authButton.linkedin|Key authButton.linkedin (en)|LinkedIn| ALL |
-| texts.en.authButton.twitter|Key authButton.twitter (en)|Twitter| ALL |
-| texts.en.authButton.xing|Key authButton.xing (en)|Xing| ALL |
-| texts.en.dropdown.logout|Key dropdown.logout (en)|Logout| ALL |
-| texts.en.invitation.error.blankMessage|Key invitation.error.blankMessage (en)|Please provide a message| ALL |
-| texts.en.invitation.error.facebookContactsCount|Key invitation.error.facebookContactsCount (en)|Cannot tag more than 10 persons in a Facebook invitation| ALL |
-| texts.en.invitation.error.twitterMessageLength|Key invitation.error.twitterMessageLength (en)|Twitter message must be under 140 characters| ALL |
-| texts.en.invitation.filter.showAll|Key invitation.filter.showAll (en)|Show all| ALL |
-| texts.en.invitation.filter.someSelected|Key invitation.filter.someSelected (en)|#{count} ((contact|contacts)) selected| ALL |
-| texts.en.invitation.preview.close|Key invitation.preview.close (en)|Close Preview| ALL |
-| texts.en.invitation.preview.open|Key invitation.preview.open (en)|Preview| ALL |
-| `texts.en.invitation.preview.placeholder._` | `Key invitation.preview.placeholder._ (en)` |You should come because ...| ALL |
-| texts.en.invitation.preview.placeholder.fb|Key invitation.preview.placeholder.fb (en)|You are tagging your Facebook friends publicly, say something to encourage them to come to the show!| ALL |
-| texts.en.invitation.preview.send|Key invitation.preview.send (en)|Send Invites| ALL |
-| texts.en.invitation.search.placeholder|Key invitation.search.placeholder (en)|Search people, titles, companies, etc| ALL |
-| texts.en.invitation.sendInvite.inProcess|Key invitation.sendInvite.inProcess (en)|Inviting...| ALL |
-| texts.en.invitation.sendInvite.invite|Key invitation.sendInvite.invite (en)|Invite selected contacts| ALL |
-| texts.en.invitation.subHeader.Authed|Key invitation.subHeader.Authed (en)|Invite your contacts. Select from the list below then enter a message| ALL |
-| texts.en.invitation.subHeader.NotAuthed|Key invitation.subHeader.NotAuthed (en)|Sign in socially| ALL |
-| texts.en.invitation.subHeader.welcome|Key invitation.subHeader.welcome (en)|Invite your contacts. Experience an event tailored to you| ALL |
-| texts.en.invitation.tabName|Key invitation.tabName (en)|Invites| ALL |
-| texts.en.share.sendPost.inProcess|Key share.sendPost.inProcess (en)|Sending Post...| ALL |
-| texts.en.share.sendPost.post|Key share.sendPost.post (en)|Post| ALL |
-| texts.en.share.sendPost.title|Key share.sendPost.title (en)|Please select a social network to post about the event| ALL |
-| texts.en.share.tabName|Key share.tabName (en)|Share| ALL |
-| texts.en.whosin.nousers.placeholder|Key whosin.nousers.placeholder (en)|There are no attendees here yet| ALL |
-| texts.en.whosin.search.placeholder|Key whosin.search.placeholder (en)|Search people who are attending| ALL |
-| texts.en.whosin.subHeader.NotAuthed|Key whosin.subHeader.NotAuthed (en)|Sign in socially| ALL |
-| texts.en.whosin.subHeader.welcome|Key whosin.subHeader.welcome (en)|See who is attending. Experience an event tailored to you| ALL |
-| texts.en.whosin.tabName|Key whosin.tabName (en)|Who's In| ALL |
+| texts.{lang}.authButton.facebook|Key authButton.facebook |Facebook (en) | ALL |
+| texts.{lang}.authButton.google|Key authButton.google |Google (en) | ALL |
+| texts.{lang}.authButton.linkedin|Key authButton.linkedin |LinkedIn (en) | ALL |
+| texts.{lang}.authButton.twitter|Key authButton.twitter |Twitter (en) | ALL |
+| texts.{lang}.authButton.xing|Key authButton.xing |Xing (en) | ALL |
+| texts.{lang}.dropdown.logout|Key dropdown.logout |Logout (en) | ALL |
+| texts.{lang}.invitation.error.blankMessage|Key invitation.error.blankMessage |Please provide a message (en) | ALL |
+| texts.{lang}.invitation.error.facebookContactsCount|Key invitation.error.facebookContactsCount |Cannot tag more than 10 persons in a Facebook invitation (en) | ALL |
+| texts.{lang}.invitation.error.twitterMessageLength|Key invitation.error.twitterMessageLength |Twitter message must be under 140 characters (en) | ALL |
+| texts.{lang}.invitation.filter.showAll|Key invitation.filter.showAll |Show all (en) | ALL |
+| texts.{lang}.invitation.filter.someSelected|Key invitation.filter.someSelected | #{count} ((contact&#124;contacts)) selected (en) | ALL |
+| texts.{lang}.invitation.preview.close|Key invitation.preview.close |Close Preview (en) | ALL |
+| texts.{lang}.invitation.preview.open|Key invitation.preview.open |Preview (en) | ALL |
+| texts.{lang}.invitation.preview.placeholder.`_` | Key invitation.preview.placeholder._  |You should come because ... (en) | ALL |
+| texts.{lang}.invitation.preview.placeholder.fb|Key invitation.preview.placeholder.fb |You are tagging your Facebook friends publicly, say something to encourage them to come to the show! (en) | ALL |
+| texts.{lang}.invitation.preview.send|Key invitation.preview.send |Send Invites (en) | ALL |
+| texts.{lang}.invitation.search.placeholder|Key invitation.search.placeholder |Search people, titles, companies, etc (en) | ALL |
+| texts.{lang}.invitation.sendInvite.inProcess|Key invitation.sendInvite.inProcess |Inviting... (en) | ALL |
+| texts.{lang}.invitation.sendInvite.invite|Key invitation.sendInvite.invite |Invite selected contacts (en) | ALL |
+| texts.{lang}.invitation.subHeader.Authed|Key invitation.subHeader.Authed |Invite your contacts. Select from the list below then enter a message (en) | ALL |
+| texts.{lang}.invitation.subHeader.NotAuthed|Key invitation.subHeader.NotAuthed |Sign in socially (en) | ALL |
+| texts.{lang}.invitation.subHeader.welcome|Key invitation.subHeader.welcome |Invite your contacts. Experience an event tailored to you (en) | ALL |
+| texts.{lang}.invitation.tabName|Key invitation.tabName |Invites (en) | ALL |
+| texts.{lang}.share.sendPost.inProcess|Key share.sendPost.inProcess |Sending Post... (en) | ALL |
+| texts.{lang}.share.sendPost.post|Key share.sendPost.post |Post (en) | ALL |
+| texts.{lang}.share.sendPost.title|Key share.sendPost.title |Please select a social network to post about the event (en) | ALL |
+| texts.{lang}.share.tabName|Key share.tabName |Share (en) | ALL |
+| texts.{lang}.whosin.nousers.placeholder|Key whosin.nousers.placeholder |There are no attendees here yet (en) | ALL |
+| texts.{lang}.whosin.search.placeholder|Key whosin.search.placeholder |Search people who are attending (en) | ALL |
+| texts.{lang}.whosin.subHeader.NotAuthed|Key whosin.subHeader.NotAuthed |Sign in socially (en) | ALL |
+| texts.{lang}.whosin.subHeader.welcome|Key whosin.subHeader.welcome |See who is attending. Experience an event tailored to you (en) | ALL |
+| texts.{lang}.whosin.tabName|Key whosin.tabName |Who's In (en) | ALL |
 | whiteLabel|Hide InGo branding?|true| ALL |
+
+CONFIRMATION Widget Available Paramters
+-----------------------
+| Parameter Name | Meaning | Default | Versions |
+|--------|---------|-------|---|
+| attendee.company|Company name| | ALL |
+| attendee.email|Email| | ALL |
+| attendee.firstName|First name| | ALL |
+| attendee.lastName|Last name| | ALL |
+| attendee.title|Company position| | ALL |
+| lang|Locale of widget| | ALL |
+
+REGISTRATION Widget Available Paramters
+-----------------------
+| Parameter Name | Meaning | Default | Versions |
+|--------|---------|-------|---|
+| fields.user.company|Selector for user's company name|(null)| ALL |
+| fields.user.company_position|Selector for user's company position|(null)| ALL |
+| fields.user.email|Selector for user email|(null)| ALL |
+| fields.user.firstName|Selector for user first name|(null)| ALL |
+| fields.user.industry|Selector for user industry|(null)| ALL |
+| fields.user.interests|Selector for user interests|(null)| ALL |
+| fields.user.lastName|Selector for user last name|(null)| ALL |
+| save|Sync user's information back to InGo?|true| ALL |
+
 
 
 Note: the `{lang}` portion of the above paramenters should be replaced with an approprate supported language tag.
