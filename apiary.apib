@@ -157,10 +157,12 @@ As of: 1.0
 
             [
                 {
+                    "id": 1,
                     "email": "admin@letsingo.com",
                     "locale": "en-US"
                 },
                 {
+                    "id": 2,
                     "email": "user1@letsingo.com",
                     "locale": "en-US"
                 }
@@ -191,12 +193,135 @@ As of: 1.0
     + Body
 
             {
+                "id": 1,
                 "email": "user1@letsingo.com",
                 "locale": "en-US",
                 "setPasswordUrl": "http://admin.ingo.me/set-password?token=3ad447f0b057b4ae086947ee8c3027e1103d8020"
             }
 
+## Listing Events Users Can Access [/1.0/users/{userId}/events]
 
+Administrators can list events a user can access. 
+
+**SECURITY**: You must have administrative privileges to use this endpoint
+
+As of: 1.0
+
+### Get Events A User Can Access [GET]
+
++ Parameters
+    + userId: 1 (integer, required) - Id of the user.
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+
+            {
+                "event_unique_id": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
+                "name": "The Business Conference"
+                "user_id": 1,
+                "email": "user1@letsingo.com",
+            }
+
+## Listing Users Who Can Access An Event [/1.0/evnet/{eventUniqueId}/users]
+
+Administrators can list user who can access an event.
+
+**SECURITY**: You must have administrative privileges to use this endpoint
+
+As of: 1.0
+
+### Get Events A User Can Access [GET]
+
++ Parameters
+    + eventUniqueId: "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL" (stirng, required) - unique_id of the evnet.
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+
+            {
+                "event_unique_id": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
+                "name": "The Business Conference"
+                "user_id": 1,
+                "email": "user1@letsingo.com",
+            }
+
+## Giving Users Access To An Event [/1.0/evnet/{eventUniqueId}/users/]
+
+Administrators can give a user access to an event.
+
+**SECURITY**: You must have administrative privileges to use this endpoint
+
+As of: 1.0
+
+### Give a User Access to an Event [POST]
+
++ Parameters
+    + eventUniqueId: "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL" (stirng, required) - unique_id of the evnet.
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
+    + Body
+
+            {
+                "user_id": 1
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "event_unique_id": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
+                "name": "The Business Conference"
+                "user_id": 1,
+                "email": "user1@letsingo.com",
+            }
+
+## Giving Event Access To Users [/1.0/users/{userId}/events/]
+
+Administrators can give event access to a user. This is a synonymous call to "Give a User Access to an Event".
+
+**SECURITY**: You must have administrative privileges to use this endpoint
+
+As of: 1.0
+
+### Give Event Access to a User [POST]
+
++ Parameters
+    + userId: 1 (integer, required) - the id of the user.
+
++ Request (application/json)
+    + Headers
+    
+            Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
+    + Body
+
+            {
+                event_unique_id: "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL"
+            }
+
++ Response 201 (application/json)
+    + Body
+
+            {
+                "event_unique_id": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL",
+                "name": "The Business Conference"
+                "user_id": 1,
+                "email": "user1@letsingo.com",
+            }
 
 # Group Managing Events
 Creating and managing your events through the API is simple, but may involve a few calls
@@ -227,7 +352,7 @@ As of: 0.1.0
 
             [
                 {
-                    "creator": "Joe Smith",
+                    "creator": "user1@letsingo.com",
                     "description": "This event promises to be the best event ever",
                     "start_date": "2016-09-28T00:00:00.000Z",
                     "end_date": "2014-09-30T00:00:00.000Z",
@@ -245,7 +370,7 @@ As of: 0.1.0
                     "account_id": 1
                 },
                 {
-                    "creator": "John Smith",
+                    "creator": "user1@letsingo.com",
                     "description": "This event promises to be the second best event ever",
                     "start_date": "2016-05-21T00:00:00.000Z",
                     "end_date": "2014-05-23T00:00:00.000Z",
@@ -267,7 +392,7 @@ As of: 0.1.0
 
 ## Creating Events [/1.0/events/]
 
-You can create a new event. 
+You can create a new event. As the creator, you are automatically given access to the created event.
 
 **SECURITY:** You may only create events for accounts you have permission to use. A valid account is required.
 
@@ -406,7 +531,6 @@ As of: 0.1.0
                 "uniqueId": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL"
             }
 
-        
 # Group Managing Event Images        
         
 Events can have images assoicated to them. These images help InGo brand posts made by event 
