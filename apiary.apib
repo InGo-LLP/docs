@@ -555,7 +555,13 @@ upload an image specifying the same image type again.
 As of: 0.1.0
 
 ### Uploading an Image For an Event [POST]
-NOTE: This example actually has an InGo icon png file in the body that you can upload if you like. Enjoy!
+**KNOWN ISSUE:** The example code provided in the console and examples sections of this
+documentation are not good examples of how to upload form-data data for most languages
+or for the raw request/response example. Typically for cURL for example, one might
+send a file to an http endpoint with 
+`curl -F "image[file]=@file.jpg" http://apiendpoint.com/images`
+The documentation is limited to a raw request/response display which is atypical 
+and frankly not the recommended way to execute a file upload API call.
 
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
@@ -941,6 +947,7 @@ LOGIN Widget Available Parameters
 | requiredFields.firstName | Require first name? | true | ALL |
 | requiredFields.lastName | Require last name? | true | ALL |
 | showManual | Should dialog show manual fields? | false | ALL |
+| target | the css selector of an element that will trigger the popup (required for popup that does not autostart) | false | ALL |
 | texts.{lang}.header | Key header | Register Socially (en) | ALL |
 | texts.{lang}.headerSub | Key headerSub | Win prizes, earn points and connect with people!. (en) | ALL |
 | texts.{lang}.label.button.facebook | Key label.button.facebook. | Facebook (en) | ALL |
