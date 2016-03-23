@@ -1313,6 +1313,34 @@ As of: 0.1.0
                 "name": "Acme Account"
             }
 
+## Creating Accounts [/1.0/accounts/]            
+Administrators can create accounts. You can specify a parent account by Id. To get a list
+of accounts and their Ids, see "Listing Accounts."
+
+**SECURITY**: You must have administrative privileges to use this endpoint
+
+As of: 1.0
+            
+### Create an Account [POST]
+
++ Attributes
+    + name: My Account (string, required) - the name of the account to create (must be unique)
+    + parent_account_id: 1 (number, required) - the id of the parent account (defaults to INGO parent)
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "id": 108,
+                "name": "My Account"
+            }
+        
+
 # Group Managing Registration Platforms
 
 ## Listing Registration Platforms [/1.0/registrationplatforms/]
