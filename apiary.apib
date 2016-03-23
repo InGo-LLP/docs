@@ -1068,6 +1068,11 @@ Supported Language Tags
 | en | English |
 | es | Spanish |
 
+Widget Versions
+---------------
+We recommend you always specify "latest" as the widget version when creating widgets.
+Check the portal for existing widget versions if you need to create a specific version of a widget.
+
 ## Creating Widgets [/1.0/events/{eventId}/widget-configs/]
 
 You can create a widget for and event that is available to you to manage.
@@ -1083,7 +1088,7 @@ As of: 0.1.0
 
 + Attributes
     + type: social (string, required) - the type of the widget to create
-    + version: 0.5.1 (string, required) - the version of the widget (must be an existing version)
+    + version: latest (string, required) - the version of the widget (must be an existing version or "latest")
     + custom_css (array) - optional array of custom css urls
     + custom_js (array) - optional array of custom js urls
     + params (object, required) - the parameters for the widget
@@ -1098,6 +1103,20 @@ As of: 0.1.0
     
             {
                 "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+                "type": "social",
+                "key": "social-S5LI",
+                "version": "0.5.1",
+                "conference_id": "431",
+                "custom_css":
+                [
+                ],
+                "custom_js":
+                [
+                ],
+                "json": "{"css":["http://cdn.ingo.me/widgets-social/0.5.1/css/ingo.social.widget.css"],"js":["http://cdn.ingo.me/widgets-social/0.5.1/js/ingo.social.widget.js"],"useJQuery":true,"type":"social","version":"0.5.1","status":0,"params":{"ingoId":"BA8A4314276C45398FFEA33C55CD3F96"}}",
+                "created_at": "2016-02-04T21:06:52.691Z",
+                "status": "Production Ready",
+                "script": "<script src=\"https://cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5\"></script>"
             }
 
 ## Listing Widgets [/1.0/events/{eventId}/widget-configs]
