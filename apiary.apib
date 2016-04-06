@@ -1362,15 +1362,18 @@ As of: 1.0
 
 # Group Managing Registration Platforms
 
-## Listing Registration Platforms [/1.0/registrationplatforms/]
+## Listing Registration Platforms [/1.0/registrationplatforms/{?key_c}]
 
-You can get a list of all the registration platforms to associate with your events.
+You can get a list of all the registration platforms to associate with your events. Can be filtered by name (key_c).
 
 **SECURITY:** All Registration Platform details are available to all users.
 
 As of: 0.1.0
 
 ### List all Registration Platforms [GET]
+
++ Parameters
+    + key_c: Great Events (string, optional) - the name of the registration platform to filter the list by
 
 + Request (application/json)
     + Headers
