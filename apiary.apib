@@ -1007,6 +1007,19 @@ REGISTRATION Widget Available Paramters
 
 Note: the `{lang}` portion of the above paramenters should be replaced with an approprate supported language tag.
 
+IMPORTANT: paramters listed with dot notation above, like `showTab.invitation` and `showTab.share` are specified
+with nested object notation like this:
+
+```
+"params": { 
+    "showTab": { 
+        "invitation" : false, 
+        "share" : false 
+    }
+  } 
+```
+DO NOT specify these parameters with dot notation.
+
 Supported Language Tags
 ----------------------
 | Locale | Description |
