@@ -831,7 +831,7 @@ As of: 1.0
                     "text": "Check out The Business Conference"
                 }
 
-## Removing Advocacy Template [DELETE]
+### Removing Advocacy Template [DELETE]
 
 You can remove advocacy template for your event.
 
@@ -854,6 +854,100 @@ As of: 1.0
                     "locale": "en",
                     "text": "Check out The Business Conference"
                 }
+
+
+
+# Group Managing Event Keywords
+
+## Managing Event Keyword [/1.0/events/{eventId}/keywords/{keywordId}]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    + keywordId: 1000 (number, required) - the ID of keyword
+
+### Edit Event Keyword [PATCH]
+
++ Attributes
+    + value: abc (string) - one word to match, must be only one word and lowercased
+    + cost: 1 (number) - cost of this keyword, default 1
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id": 1000,
+                "value": "word",
+                "cost": 10
+            }
+
+### Delete Event Keyword [DELETE]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id": 1000,
+                "value": "word",
+                "cost": 10
+            }
+
+## Managing Event Keywords Set [/1.0/events/{eventId}/keywords]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+
+### Get all Event Keywords [GET]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+                [
+                    {
+                        "id": 1000,
+                        "value": "word",
+                        "cost": 10
+                    }
+                ]
+
+### Create new Event Keyword [POST]
+
++ Attributes
+    + value: abc (string, required) - one word to match, must be only one word and lowercased
+    + cost: 1 (number) - cost of this keyword, default 1
+    
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+                "id": 1000,
+                "value": "word",
+                "cost": 10
+            }
+
 
 # Group Managing Widgets
 
@@ -1048,6 +1142,9 @@ Supported Language Tags
 | ru | Russian |
 | en | English |
 | es | Spanish |
+
+
+
 
 Widget Versions
 ---------------
