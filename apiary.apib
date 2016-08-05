@@ -1522,6 +1522,59 @@ As of: 0.1.0
                 ]
             }
 
+# Group Getting Statistics For Your Event
+        
+You can get recent statistical data for your event from the API similar to what is present 
+in the Events Manager dashboard.
+
+## Getting Statistics For an Event [/1.0/events/{eventId}/statistics]
+
+You can get the current statistics for your events.
+
+**SECURITY:** You may only view the statistics for events you have permission to see.
+
+As of: 0.1.0
+
+### Get Statistics For an Event [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "advocate_count":2,
+                "unregistered_advocate_count":1,
+                "attendee_count":5,
+                "advocate_by_network_count":
+                {
+                    "linkedin":1,
+                    "facebook":2
+                },
+                "registrant_count":1,
+                "acquisition_count":3,
+                "network_reach":
+                {
+                    "linkedin":3,
+                    "facebook":10
+                },
+                "social_message_count":
+                {
+                    "facebook":2
+                },
+                "social_post_count":
+                {
+                    "facebook":2
+                }
+            }
+
+            
 # Group Troubleshooting Your Event
         
 Widgets produce tracking events that can help you determine if they are
