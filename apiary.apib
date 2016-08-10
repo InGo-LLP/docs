@@ -1407,7 +1407,9 @@ As of: 0.1.0
     
             {
                 "id": 107,
-                "name": "Acme Account"
+                "name": "Acme Account",
+                "`parent_account_id`": 1,
+                "advocates_purchased": 0
             }
 
 ## Creating Accounts [/1.0/accounts/]            
@@ -1435,9 +1437,43 @@ As of: 1.0
     
             {
                 "id": 108,
-                "name": "My Account"
+                "name": "My Account",
+                "`parent_account_id`": 1,
+                "advocates_purchased": 0
             }
         
+## Updating Accounts [/1.0/accounts/{accountId}/]            
+Administrators can update accounts. To update an account, you must supply an
+account ID. To get a list of accounts and their Ids, see "Listing Accounts."
+
+**SECURITY**: You must have administrative privileges to use this endpoint
+
+As of: 1.0
+            
+### Increment the Advocates Purchased for an Account [PATCH]
+
++ Parameters
+    + accountId: 1 (number, required) - the account to update
+
++ Attributes
+    + advocatesToAdd: 1 (number, required) - the amount of advocates to increment by
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "id": 108,
+                "name": "My Account",
+                "`parent_account_id`": 1,
+                "advocates_purchased": 2000
+            }
+        
+
 
 # Group Managing Registration Platforms
 
