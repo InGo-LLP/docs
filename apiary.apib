@@ -10,7 +10,7 @@ This allows you to quickly create the items you need to quickly provision InGo
 functionality to all of your events. If you're a third-party event registration company,
 this API will allow you to more easily create and manage InGo capabilities for all of your customers.
 
-**THIS API AND DOCUMENTATION ARE IN ALPHA MODE. PLEASE USE WITH CAUTION AND REPORT ANY ISSUES TO INGO.**
+**THIS API AND DOCUMENTATION ARE IN BETA MODE. PLEASE USE WITH CAUTION AND REPORT ANY ISSUES TO INGO.**
 
 For support, go to <http://support.ingo.me> and be sure to let us know that you're using the API.
 
@@ -36,6 +36,26 @@ Visual Basic, Groovy, Objective-C and Swift
 
 * This documentation provides examples that will access a testing endpoint.
 Production endpoint is `https://partner-api.ingo.me/`
+
+* We are adding search to GET endpoints. Where specified you may use simple (string)
+and complex (json) parameters.  Reference the "Listing All Events" endpoint
+documentation for an example of how to specify this filtering criteria.
+Keywords accepted in JSON syntax are:
+
+> | Search&nbsp;Keyword | Example Query String |
+> |-----|----|----|
+> | equal | ?name={equal:"The Best Event"} |
+> | notEqual | ?name={notEqual:"The Best Event"} |
+> | in | name={in:"The Best Event,The Other Best Event"} (simplified version name=The Best Event,The Other Best Event) |
+> | notIn | name={notIn:"The Best Event,The Other Best Event"} |
+> | startsWith | name={startsWtih:"The Best"} (case insensitive) |
+> | endsWith | name={endsWtih:"Event"} (case insensitive) |
+> | contains | name={contains:"Best"} (case insensitive) |
+> | similarTo | name={startsWtih:"Best"} (fuzzy match, case insensitive) |
+> | greaterThan | start_date={greaterThan:"2016-01-15"} |
+> | lessThan | end_date={lessThan:"2016-06-01"} (case insensitive) |
+
+We will add "SEARCHABLE" to endpoints that provide this functionality.
 
 * See the [Overview Video](https://www.youtube.com/watch?v=ftQMYAbhX-k)
 
@@ -337,19 +357,24 @@ each event for which you are running an InGo social media markeing campaign.
 
 ## Listing Events [/1.0/events]
 
-You can list all of your events.
+You can list all of your events or a filtered set of your events. The query parameters used
+in the "List All Events" example are representational.  You may use any attribute of 
+the event object to define criteria for your search.
 
 **SECURITY:** You may only view events you created or have been assigned permission to.
+
+**SEARCHABLE** See the Getting Started section for more details on how to provide criteria.
 
 As of: 0.1.0
 
 ### List All Events [GET]
 
-
 + Request (application/json)
     + Headers
     
             Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
+
     
 + Response 200 (application/json)
     + Body
@@ -690,7 +715,7 @@ Qualifiers:
 |--------|------|
 | url | indicates that the text is the url that should be used in the links for the post or invite |
 
-## Listing Event Advocacy Templates [/1.0/events/{eventId}/advocacy-templates]
+## Event Advocacy Templates Management [/1.0/events/{eventId}/advocacy-templates]
 
 You can list all of the advocacy templates for one of your events.
 
