@@ -334,11 +334,49 @@ There are two ways to invoke this widget:
 
     Note that attributes must be correctly encoded.
 
-  - **Method Four:** Assumed that was used login widget with manual field enabled.
+ - **Method Four:** Assumed that was used login widget with manual field enabled.
     Registration site does not allow to use `<script>` tags. In this case need to use such snippet:
 
     ```html
     <img href="//ingo.me/api/v1/widget/confirmation/empty.gif"></img>
+    ```
+
+ - **ADDITIONAL ATTENDEES:** If the attendee registered additional attendees, you must add one extra call for each additional attendee with the parameter additional = true. It works only with method 2 and 3:
+
+  - Method Two: 
+
+  ```html
+   <script
+    async
+    src="//cdn.ingo.me/widgets-loader/0.9.1/js/ingo.loader.widget.js"></script>
+   <script>
+     window.InGo.ingoWidget({
+       widgetId: "[INGO-WIDGET-ID]",
+       attendee: {
+         additional: true,
+         email: "##User’s email here##",
+         firstName: "##User’s first name here##",
+         lastName: "##User’s last name here##",
+         company: "##User’s company here##",
+         title: "##User’s job title here##"
+     }});
+   </script>
+  ```
+
+  - Method Three:
+
+    ```html
+       <script
+         async
+         src="//cdn.ingo.me/widgets-loader/0.9.1/js/ingo.loader.widget.js"
+         data-ingo-id="[INGO-WIDGET-ID]"
+         data-ingo-attendee.additional="true"
+         data-ingo-attendee.email="##User’s email here##"
+         data-ingo-attendee.first-name="##User’s first name here##"
+         data-ingo-attendee.last-name="##User’s last name here##"
+         data-ingo-attendee.company="##User’s company here##"
+         data-ingo-attendee.title="##User’s job title here##"></script>
+
     ```
 
 ----
