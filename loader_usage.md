@@ -348,7 +348,7 @@ There are two ways to invoke this widget:
   ```html
    <script
     async
-    src="//cdn.ingo.me/widgets-loader/0.9.1/js/ingo.loader.widget.js"></script>
+    src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"></script>
    <script>
      window.InGo.ingoWidget({
        widgetId: "[INGO-WIDGET-ID]",
@@ -368,7 +368,7 @@ There are two ways to invoke this widget:
     ```html
        <script
          async
-         src="//cdn.ingo.me/widgets-loader/0.9.1/js/ingo.loader.widget.js"
+         src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
          data-ingo-id="[INGO-WIDGET-ID]"
          data-ingo-attendee.additional="true"
          data-ingo-attendee.email="##User’s email here##"
