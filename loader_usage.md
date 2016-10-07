@@ -86,7 +86,6 @@ Simple example of `<script>` (for more instructions read further):
 
 ```html
 <script
-   async
    src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
    data-ingo-id="WIDGET_ID_HERE"></script>
 ```
@@ -130,7 +129,6 @@ How to install this widget on a Web page:
 
    ```html
    <script
-      async
       src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]"></script>
    ```
@@ -141,7 +139,6 @@ How to install this widget on a Web page:
 
    ```html
    <script
-      async
       src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]" data-ingo-button="Register Now!"></script>
    ```
@@ -152,7 +149,6 @@ How to install this widget on a Web page:
 
    ```html
    <script
-      async
       src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]" data-ingo-target="CSS SELECTOR HERE"></script>
    ```
@@ -215,7 +211,6 @@ For example page has these forms and fields:
 
    ```html
    <script
-      async
       src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]"></script>
    ```
@@ -253,7 +248,6 @@ For example page has these forms and fields:
 
    ```html
    <script
-      async
       src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]"></script>
    ```
