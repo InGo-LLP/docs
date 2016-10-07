@@ -1665,7 +1665,7 @@ Widgets produce tracking events that can help you determine if they are
 running properly. You can get a list of all potential issues with your 
 event's widgets.
 
-## Listing Widget Problems [/1.0/events/{eventId}/problems/widgets]
+## Listing Widget Problems [/1.0/events/{eventId}/problems/widgets{?start,end}]
 
 You can list the widget problems for your events. You can supply a date range 
 but the date range may not exceed 14 days. If you do not supply a date range
@@ -1680,10 +1680,8 @@ As of: 0.1.0
 
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
-
-+ Attributes
-    + start - optional start date for period to analyze
-    + end - optional end date for period to analyze (cannot exceed 14 days from start date)
+    + start: `2016-02-04T21:06:52.691Z` (string, optional) - start date for period to analyze
+    + end: `2016-02-04T21:06:52.691Z` (string, optional) - end date for period to analyze (cannot exceed 14 days from start date)
 
 + Request (application/json)
     + Headers
