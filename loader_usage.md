@@ -87,7 +87,7 @@ Simple example of `<script>` (for more instructions read further):
 ```html
 <script
    async
-   src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+   src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
    data-ingo-id="WIDGET_ID_HERE"></script>
 ```
 
@@ -131,7 +131,7 @@ How to install this widget on a Web page:
    ```html
    <script
       async
-      src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+      src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]"></script>
    ```
 
@@ -142,7 +142,7 @@ How to install this widget on a Web page:
    ```html
    <script
       async
-      src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+      src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]" data-ingo-button="Register Now!"></script>
    ```
 
@@ -153,7 +153,7 @@ How to install this widget on a Web page:
    ```html
    <script
       async
-      src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+      src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]" data-ingo-target="CSS SELECTOR HERE"></script>
    ```
 
@@ -162,7 +162,7 @@ How to install this widget on a Web page:
    Add to the bottom of page such snippet:
 
    ```html
-   <script src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"></script>
+   <script src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"></script>
    ```
 
    Assume in page exists `<button id="button">Register</button>` and need to make widget pop-up appearing on click:
@@ -178,7 +178,7 @@ How to install this widget on a Web page:
    Add to the bottom of page such snippet:
 
    ```html
-   <script src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"></script>
+   <script src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"></script>
    ```
 
    Assume in page exists `<div id="login-form"></div>` and need to make widget appearing inside of this element:
@@ -216,7 +216,7 @@ For example page has these forms and fields:
    ```html
    <script
       async
-      src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+      src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]"></script>
    ```
  - **Directly executed code with widget ID**
@@ -224,7 +224,7 @@ For example page has these forms and fields:
    Add to the bottom of page such snippet:
 
    ```html
-   <script src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"></script>
+   <script src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"></script>
    ```
 
    After form appeared on page, need to execute such code:
@@ -254,7 +254,7 @@ For example page has these forms and fields:
    ```html
    <script
       async
-      src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+      src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
       data-ingo-id="[INGO-WIDGET-ID]"></script>
    ```
 
@@ -263,7 +263,7 @@ For example page has these forms and fields:
    Add to the bottom of page such snippet:
 
    ```html
-   <script src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"></script>
+   <script src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"></script>
    ```
 
    After container created you need to execute such code:
@@ -292,7 +292,7 @@ There are two ways to invoke this widget:
 
     ```html
       <script
-        src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+        src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
         data-ingo-id="[INGO-WIDGET-ID]"></script>
     ```
 
@@ -301,7 +301,7 @@ There are two ways to invoke this widget:
 
   ```html
    <script
-    src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"></script>
+    src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"></script>
    <script>
      window.InGo.ingoWidget({
        widgetId: "[INGO-WIDGET-ID]",
@@ -320,7 +320,7 @@ There are two ways to invoke this widget:
 
     ```html
        <script
-         src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+         src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
          data-ingo-id="[INGO-WIDGET-ID]"
          data-ingo-attendee.email="##User’s email here##"
          data-ingo-attendee.first-name="##User’s first name here##"
@@ -345,7 +345,7 @@ There are two ways to invoke this widget:
 
   ```html
    <script
-    src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"></script>
+    src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"></script>
    <script>
      window.InGo.ingoWidget({
        widgetId: "[INGO-WIDGET-ID]",
@@ -364,7 +364,7 @@ There are two ways to invoke this widget:
 
     ```html
        <script
-         src="//cdn.ingo.me/widgets-loader/X.X.X/js/ingo.loader.widget.js"
+         src="//cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js"
          data-ingo-id="[INGO-WIDGET-ID]"
          data-ingo-attendee.additional="true"
          data-ingo-attendee.email="##User’s email here##"
