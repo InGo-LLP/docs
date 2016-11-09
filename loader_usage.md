@@ -9,48 +9,46 @@
 InGo empowers attendees to be Advocates for your event who create larger, more social,
 and more valuable events through a series of organizer customized widgets that include:
 
-- Login Widget to accelerate registration and spread excitement about the event; the first opportunity for leaders to be empowered.
-- Registration Widget to autofill information based on the users social network.
-- Confirmation Widget to confirm an attendee has completed registration and post to his network.
-- Social Widget to encourage more adoption by allowing leaders to see who is attending, or encouraging leaders to invite their key contacts.
+- The Activator (formerlly Login Widget) to accelerate registration and spread excitement about the event; the first opportunity for leaders to be empowered.
+- The Autofiller (formerlly Registration Widget) is used to autofill information based on the users social network profile.
+- The Authorizer (formerlly Confirmation Widget) to used to i) confirm an attendee who has completed registration, ii) to post to his or her network (if they allowed us) and finally iii) displays the user in the Amplifier (formerlly Social Widget).
+- The Amplifier (formerlly Social Widget) is used to encourage more adoption by allowing registrants to see who is attending, or encouraging thems to invite their key contacts.
 
 ## Types of Widgets
 
-### Login Widget
+### Activator Widget
 
-The Login Widget is where most registrants become InGo Users, so installing this widget is
-critical to a successful InGo implementation. Installing Login allows registrants to see InGo’s
-`suggested invitees` on the Social Widget immediately upon reaching the confirmation page,
+The Activator (formerlly Login Widge) is where most registrants become InGo Users, so installing this widget is
+critical to a successful InGo implementation. Installing the Activator allows registrants to see InGo’s
+`suggested invitees` on the Amplifier (formerlly Social Widget) immediately upon reaching the confirmation page,
 increasing the number of invites sent.
 
 ![login](img/widget-login.png)
 
-### Registration Widget
+### Autofiller Widget
 
-The Registration Widget executes auto-completion or auto-fill. It auto-fills parameters pulled through from
-the Login Widget, including: `First Name, Last Name, Email, Company, and Title`. The Registration Widget
+The Autofiller (formerlly Registration Widget) executes auto-completion or auto-fill. It auto-fills parameters pulled through from
+the Activator Widget, including: `First Name, Last Name, Email, Company, and Title`. The Autofiller
 is installed on each page where autofill is desired.
 
-This widget helps speed up the registration process for attendees giving them a more enjoyable registration experience.
+This widget helps speed the registration process for attendees giving them a more enjoyable registration experience.
 
+### Amplifier Widget
 
-### Social Widget
-
-The Social Widget houses two tabs; the `Who’s In` tab and the `Invite` tab. `Who’s In` provides a
-visualization of who is attending your event. The Invites tab gives registrants the opportunity
-to invite their social connections to the event.
+The Amplifier (formerlly Social Widget) houses three tabs; the `Who’s In`, `Invite` tab and the `Share` tab. `Who’s In` provides a visualization of who is attending your event. The Invites tab gives registrants the opportunity
+to invite their social connections to the event and the Share tab gives the opportunity to send a post/tweet or status update to their preferred network.
 
 ![social](img/widget-social.png)
 
-Per InGo Best Practices, the Social Widget should be installed `above the fold` on the confirmation page
+Per InGo Best Practices, the Amplifier Widget should be installed `above the fold` on the confirmation page
 so registrants are more inclined to invite their InGo-suggested friends to your event. Installing `above the fold`
 translates to higher adoption rates, pending any other major call-to-action items that may distract from
-the registration call-to-action. The InGo Social Widget shoudl be the singular call to action with no other social network buttons to distract the user.
+the registration call-to-action. The Amplifier should be the singular call to action with no other social network buttons to distract the user.
 
 
-### Confirmation Widget
+### Authorizer Widget
 
-The Confirmation Widget is used to confirm when a registrant has completed the registration process.
+The Authorizer (formerlly Confirmation Widget) is used to confirm when a registrant has completed the registration process.
 It collects the following parameters from all registrants (social and manual) to ensure that the
 Registrant has completed registration.
 
@@ -68,19 +66,19 @@ This widget is also responsible for sending posts that go on the registrants soc
 ## Recommended Installation for an event Web site
 
 1. Confirmation Page (final registration page)
-  1. Confirmation Widget
-  2. Social Widget with Invitation tab as default
+  1. Authorizer Widget
+  2. Amplifier Widget with Invitation tab as default
 1. Registration Pages
-  1. Registration Widget to autocomplete data
+  1. Autofiller Widget to autocomplete data
 1. Event Home Page
-  1. Login Widget
-  2. Social Widget with Who’s In as default
+  1. Activator Widget
+  2. Amplifier Widget with Who’s In as default
 
 When creating widgets on this site, all widget IDs will be provided in the instructions sent to the Developer/Marketing Manager or Event Point of Contact who is actually installing the code. IDs are unique and valid only during the event lifetime.
 
 ### Using `<script>` tags (most common and prefered way for all widgets)
 
-For Login Widget and Social Widget need to insert `<script>` tag inside of webpage in place where widget should appear. For Registration Widget need to insert `<script>` tag after registration form(s). For Confirmation Widget `<script>` tag can be inserted at any place, but inserting it earlier on page prefered (e.g. to the bottom of `<head>` tag).
+For the Activator (formerlly Login Widget) and Amplifier (formerlly Social Widget), you will need to insert `<script>` tag inside of webpage in place where widget should appear. For the Autofiller (formerlly Registration Widget), you will need to insert `<script>` tag after registration form(s). And finally for the Authorizer (formerlly Confirmation Widget), the `<script>` tag can be inserted at any place, but inserting it earlier on page prefered (e.g. to the bottom of `<head>` tag).
 
 Simple example of `<script>` (for more instructions read further):
 
@@ -92,7 +90,7 @@ Simple example of `<script>` (for more instructions read further):
 
 All next methods is not recommended for general usage, but should be used on some exceptional cases described in each method.
 
-### Call widget code directly (for registration, social, login widgets)
+### Call widget code directly (for Activator, Amplifier and Autofiller)
 
 This method should be used if you need some specific behaviour to call widgets. For example you create part of page with other scripts.
 
@@ -106,7 +104,7 @@ InGo.ingoWidget({ widgetId: 'WIDGET_ID_HERE' });
 InGo.$('selector').ingoWidget({ widgetId: 'WIDGET_ID_HERE' });
 ```
 
-### Use `<iframe>` (for social, login widgets)
+### Use `<iframe>` (for Amplifier -- formerlly "Social" and Activator -- formerlly "Login" widgets)
 
 If your site has incompatible with InGo Widgets scipts. Most frequent example is prototype.js.
 
@@ -117,7 +115,7 @@ To use this method insert in place where widget should appear `<iframe src="//in
 
 You can copy any code snippet for usage.
 
-### Login Widget
+### Activator Widget (formerlly "Login")
 
 The `data-ingo-target` attribute of `<script>` tag may be specified with the CSS selector of a element for which widget will be applied.
 
@@ -145,7 +143,7 @@ How to install this widget on a Web page:
 
  - **Served as pop-up overlay or embedded for specific target element**
 
-   If page already contain container element or button which should be used to trigger the login widget modal. Need to specify this element CSS selector in `data-ingo-target` attribute:
+   If page already contain container element or button which should be used to trigger the Activator widget modal. Need to specify this element CSS selector in `data-ingo-target` attribute:
 
    ```html
    <script
@@ -197,7 +195,7 @@ How to install this widget on a Web page:
 
 ----
 
-### Registration Widget
+### Autofiller Widget (formerlly "Registration")
 
 For example page has these forms and fields:
 
@@ -232,13 +230,13 @@ For example page has these forms and fields:
 
 ----
 
-### Social Widget
+### Amplifier Widget (formerlly "Social Widget)
 
- * Social Widget State 1: `Who’s In`
+ * Amplifier Widget State 1: `Who’s In`
    *  The whosin tab lets users see who already registered for event
- * Social Widget State 2: `Invites`
+ * Amplifier Widget State 2: `Invites`
    * The invites tab lets users invite their friends (imported from authorized social networks.)
- * Social Widget State 3: `Share`
+ * Amplifier Widget State 3: `Share`
    * The share tab allows users share their event experience using social services`
 
  - ** Embedded mode with widget ID (prefered way)**
@@ -277,12 +275,12 @@ For example page has these forms and fields:
    Also you will need to edit `style` attribute to make iframe appearing correct for specific set of settings and situations.
 ----
 
-### Confirmation Widget
+### Authorizer Widget (formerly "Confirmation)
 
 There are two ways to invoke this widget:
 
  - **Method One:** Every user that hits this page will have gone through the Login Widget first -
-    (the login widget must include manual fields or it must be impossible to register without a social account)
+    (the Activator widget must include manual fields or it must be impossible to register without a social account)
 
     ```html
       <script
