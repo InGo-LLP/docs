@@ -499,7 +499,7 @@ As of: 0.1.0
             "account_id": 1
         }
 
-## Updating Events [/upload/1.0/events/{eventIdToUpdate}/]
+## Updating Events [/1.0/events/{eventIdToUpdate}/]
 
 You can update one of your events.
 
@@ -512,8 +512,8 @@ You can update one of your events.
 
 + Attributes
     + name: The Business Conference (string, optional) - the name of the event
-    + start_c: `2016-09-28` (string, optional) - the start date for the event
-    + end_c: `2016-10-01` (string, optional) - the end date for the event
+    + start_date: `2016-09-28` (string, optional) - the start date for the event
+    + end_date: `2016-10-01` (string, optional) - the end date for the event
     + registration_url: `http://www.example.com/event2/register` (string, optional) - the url where users will be directed to register
     + description: This event promises to be the second best event ever (string, optional) - describes the event
     + `target_reg_count`: 1234 (number, optional) - the target number of registrants for your account 
@@ -525,6 +525,7 @@ You can update one of your events.
     + cors_domains: example.com (array, optional) - an array of domains where InGo code will run, or * for any
     + `use_post_registration`: false (boolean, optional) - defauls to false, whether the widgets will be used after the event is over
     + live_date: `2016-09-28` (string, optional) - the date your event will go live
+    + state: live (string, optional) - one of {live,closed,archived,testing,deleted}
 
 + Request (application/json)
     + Headers
