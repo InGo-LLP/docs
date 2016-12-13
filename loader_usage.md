@@ -27,6 +27,7 @@ increasing the number of invites sent.
 
 ### Autofiller Widget
 
+
 The Autofiller (formerly Registration Widget) executes auto-completion or auto-fill. It auto-fills parameters pulled through from
 the Activator Widget, including: `First Name, Last Name, Email, Company, and Title`. The Autofiller
 is installed on each page where autofill is desired.
