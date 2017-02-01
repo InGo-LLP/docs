@@ -1651,6 +1651,54 @@ As of: 0.1.0
                 ]
             }
 
+
+# Group Getting Event Registrant List
+        
+You can get registrant data for your event from the API similar to what is present 
+in the Events Manager dashboard.
+
+## Getting Registrats For an Event [/1.0/events/{eventId}/registrants]
+
+You can get the registrants for your events.
+
+**SECURITY:** You may only view the registrants for events you have permission to see.
+
+As of: 0.1.0
+
+### Get Registrants For an Event [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            [
+                {
+                    "registrant_id":2,
+                    "event_unique_id":"CO0JBASML3NRE5W4FZCURIDE4XPURLLJ",
+                    "first_name":"John",
+                    "last_name":"Smith",
+                    "display_name":"John Smith",
+                    "email":"johnsmith@mailinator.com",
+                    "confirmation_time":"2017-02-01T03:44:30.618Z",
+                    "picture_url":"https://s3.amazonaws.com/ingo.development.us-east.imgs/PWFCFI/2986035060128968n.jpg",
+                    "created_at":"2017-02-01T03:44:30.618Z",
+                    "title":"Operations Manager",
+                    "visible":true,
+                    "notify_enabled":true,
+                    "company_name":"Example Company",
+                    "is_exhibitor":false,
+                    "social_registrant":true
+                }
+            ]
+
+
 # Group Getting Statistics For Your Event
         
 You can get recent statistical data for your event from the API similar to what is present 
@@ -1674,7 +1722,7 @@ As of: 0.1.0
     
             Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
     
-+ Response 201 (application/json)
++ Response 200 (application/json)
     + Body
     
             {
