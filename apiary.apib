@@ -593,16 +593,18 @@ registrants and social email templates. There are four types of images:
 | email-banner | Image used within email templates                   |       625×110       |
 | attendee-banner | Image used as the banner to brand the attendee page |       920×120       |
 
-## Uploding Images [/upload/1.0/events/{eventId}/images]
+## Uploding Images Option 1 [/upload/1.0/events/{eventId}/images]
 
-You can upload images for one of your events. To update an existing image for an image type, simply 
+You can upload images for one of your events using form data. 
+
+NOTE: To update an existing image for an image type, simply 
 upload an image specifying the same image type again. 
 
 **SECURITY:** You may only upload image data for events you have permission to use.
 
 As of: 0.1.0
 
-### Uploading an Image For an Event [POST]
+### Uploading an Image for an Event with Form Data [POST]
 **KNOWN ISSUE:** The example code provided in the console and examples sections of this
 documentation are not good examples of how to upload form-data data for most languages
 or for the raw request/response example. Typically for cURL for example, one might
@@ -637,6 +639,48 @@ and frankly not the recommended way to execute a file upload API call.
                     "type":"social-post-logo"
                 }
             ]
+
+
+## Uploding Images Option 2 [/1.0/events/{eventId}/images/]
+
+You can upload images for one of your events from a URL.
+
+NOTE: To update an existing image for an image type, simply 
+upload an image specifying the same image type again. 
+
+**SECURITY:** You may only upload image data for events you have permission to use.
+
+As of: 0.1.0
+
+### Uploading an Image for an Event from a URL [POST]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+
++ Request (application/json)
+    + Headers
+
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    + Body
+    
+            [
+                {
+                    "name": "attendee-banner",
+                    "url": "http://example.com/image.gif"
+                }
+            ]
+
++ Response 201 (application/json)
+    + Body
+    
+            [
+                {
+                    "url":"https://s3.amazonaws.com/ingo.development.us-east.imgs/9a821432-92da-41/01cd1e3c-2470-43b1-815b-f78e6c103561.png",
+                    "type":"attendee-banner"
+                }
+            ]
+
+
 
 ## Listing Images [/1.0/events/{eventId}/images]
 
