@@ -1657,7 +1657,7 @@ As of: 0.1.0
 You can get registrant data for your event from the API similar to what is present 
 in the Events Manager dashboard.
 
-## Getting Registrats For an Event [/1.0/events/{eventId}/registrants]
+## Getting Registrants For an Event [/1.0/events/{eventId}/registrants]
 
 You can get the registrants for your events.
 
@@ -1697,6 +1697,89 @@ As of: 0.1.0
                     "social_registrant":true
                 }
             ]
+
+
+# Group Getting Network Attending for Registrant
+        
+You can get a list of social contacts that a registrant has that are also registered for the same event.
+
+## Getting Social Network Attendance for an Event Registrants [/1.0/events/{eventId}/registrants/{registrantId}/network-attending]
+
+You can get the registrants for your events.
+
+**SECURITY:** You may only view the registrants for events you have permission to see.
+
+As of: 0.1.0
+
+### Get Social Network Attendance for an Event Registrant [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+    + registrantId: 37 (int, required) -- the ID of the registrant for whom to get the social network attendance
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            [
+                {
+                    "registrant_id":35120,
+                    "last_name":"Jim",
+                    "first_name":"Smithington",
+                    "display_name":"Jim Smithington",
+                    "email":"jsmithington@gmail.com",
+                    "title":null,
+                    "company_name":"Interiors Unlimited",
+                    "picture_url":"https://s3.amazonaws.com/ingo.production.us-east.imgs/IF1UN5SSFM40X503/572431_10151799124414877_70235255277_n.jpg",
+                    "verification_picture_url":"https://www.linkedin.com/mpr/mprx/0_xbKKrj4ZLmSiFo-a1iISGJLzfD_nQ1ZVsasdf1h_MY5ATQFExN7muPKBJRNGhftasdf118BZYbISiLB-Oo230F64ZrIS_LBmRV23ttjSDFSDFtVeAPZ9uspJ",
+                    "verified":true -- this indicates that the registrant has been positively matched to the social contact vs fuzzy match
+                }
+            ]
+
+
+# Group Getting Event Invitations
+        
+You can get invitatios that were sent for your event from the API.
+
+## Getting Event Invitations by Advocate [/1.0/events/{eventId}/impressions/invitations/user/{userId}]
+
+You can get the invitations for your events.
+
+**SECURITY:** You may only view information for events you have permission to see.
+
+As of: 0.1.0
+
+### Get Event Invitations by Advocate [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+    + userId: 2 (int, required) -- the ID of the Advocate who sent the invites
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            [
+              {
+                "firstname": "John",
+                "lastname": "Smith",
+                "picture": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/KEAAQMzhlNGQ2YT...RiMQ.jpg",
+                "conference": "Best Event Ever",
+                "position": "Director",
+                "sent_date": "2015-11-15T16:42:46.610Z",
+                "registered": true,
+                "network": "linkedin"
+              }
+            ]
+
 
 
 # Group Getting Statistics For Your Event
