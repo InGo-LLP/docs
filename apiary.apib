@@ -396,7 +396,8 @@ As of: 0.1.0
                     "cors_domain": ["*"],
                     "use_post_registration": false,
                     "state": "testing",
-                    "account_id": 1
+                    "account_id": 1,
+                    "facebook_page_id": "123"
                 },
                 {
                     "creator": "user1@letsingo.com",
@@ -415,7 +416,8 @@ As of: 0.1.0
                     "cors_domain": ["*"],
                     "use_post_registration": false,
                     "state": "testing",
-                    "account_id": 1
+                    "account_id": 1,
+                    "facebook_page_id": "123"
                 }
             ]
 
@@ -438,12 +440,13 @@ As of: 0.1.0
     + `target_reg_count`: 1234 (number, optional) - the target number of registrants for your account 
     + website_url: `http://www.example.com/event2/register` (string, required) - the website of the event
     + registration_platform: 1 (number, required) - obtained from call to /registrationplatform
-    + registration_platform_event_id: null (string) - if yusing a registration platform, the event ID for that platform
+    + `registration_platform_event_id`: null (string) - if yusing a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
-    + url_params_mask: null (string) - registration platform url mask
+    + `url_params_mask`: null (string) - registration platform url mask
     + cors_domains: example.com (array, required) - an array of domains where InGo code will run, or * for any
     + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
     + account_id: 1 (number, required) - indicates which account owns this event, use /accounts endpoint to obtain the id
+    + `facebook_page_id`: 140489442646654  (string) - facebook page id used for creating post at facebook
 
 + Request (application/json)
     + Headers
@@ -496,7 +499,8 @@ As of: 0.1.0
             "cors_domain": ["example.com"],
             "use_post_registration": false,
             "state": "testing",
-            "account_id": 1
+            "account_id": 1,
+            "facebook_page_id": "123"
         }
 
 ## Updating Events [/1.0/events/{eventIdToUpdate}/]
@@ -519,13 +523,14 @@ You can update one of your events.
     + `target_reg_count`: 1234 (number, optional) - the target number of registrants for your account 
     + website_url: `http://www.example.com/event2/register` (string, optional) - the website of the event
     + registration_platform: 1 (number, optional) - obtained from call to /registrationplatform
-    + registration_platformevent_id: null (string, optional) - if using a registration platform, the event ID for that platform
+    + `registration_platform_event_id`: null (string, optional) - if using a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, optional) - if you registration platform requires an API key
-    + url_params_mask: null (string, optional) - registration platform url mask
+    + `url_params_mask`: null (string, optional) - registration platform url mask
     + cors_domains: example.com (array, optional) - an array of domains where InGo code will run, or * for any
     + `use_post_registration`: false (boolean, optional) - defauls to false, whether the widgets will be used after the event is over
     + live_date: `2016-09-28` (string, optional) - the date your event will go live
     + state: live (string, optional) - one of {live,closed,archived,testing,deleted}
+    + `facebook_page_id`: 140489442646654 (string) - facebook page id to use while posting
 
 + Request (application/json)
     + Headers
@@ -553,7 +558,8 @@ You can update one of your events.
                 "cors_domain": ["example.com"],
                 "use_post_registration": false,
                 "state": "testing",
-                "account_id": 1
+                "account_id": 1,
+                "facebook_page_id": "123"
             }
 
 ## Deleting Events [/1.0/events/{eventIdToDelete}]
