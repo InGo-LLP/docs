@@ -587,6 +587,112 @@ As of: 0.1.0
                 "uniqueId": "KET3PCS5TWAAK0ANYCLP420LVNEKNJPL"
             }
 
+
+# Group Managing Event Features
+Event Features or "capabilities" can be managed via the API.  Current features you can manage are:
+
+| Feature | Description |
+|------|----------------------------------------|
+| ingo.event.notifications | Whether event eemail notifications will be sent |
+| ingo.event.posts | Whether social posts will be made during registration and sharing |
+| ingo.event.invites | Whether social invitations can be sent by advocates |
+
+## Add Event Features [/1.0/events/{eventId}/features]
+
+### Add/Create an Event Feature [POST]
+
++ Attributes
+    + value: abc (string, required) - one word to match, must be only one word and lowercased
+    + cost: 1 (number) - cost of this keyword, default 1
+    
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+                "id": 1000,
+                "value": "word",
+                "cost": 10
+            }
+
+
+## Getting Event Features [/1.0/events/{eventId}/features/]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+
+### Get all Event Features [GET]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+                [
+                    {
+                        "feature": "ingo.event.notifications",
+                        "enabled": "true"
+                    }
+                ]
+
+
+## Editing Event Features [/1.0/events/{eventId}/features/{feature}]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    + feature: ingo.event.notifications (string, required) - the feature to be set
+
+### Edit Event Feature [PATCH]
+
++ Attributes
+    + enabled: true (boolean) - whether the feature is enabled or disabled for this event
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "feature": "ingo.event.notifications",
+                "enabled": "true"
+            }
+
+## Deleting Event Features [/1.0/events/{eventId}/features/{feature}/]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    + feature: ingo.event.notifications (string, required) - the feature to be set
+
+### Delete Event Feature [DELETE]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "feature": "ingo.event.notifications",
+                "enabled": "true"
+            }
+
+
 # Group Managing Event Images        
         
 Events can have images assoicated to them. These images help InGo brand posts made by event 
