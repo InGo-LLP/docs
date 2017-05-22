@@ -589,7 +589,8 @@ As of: 0.1.0
 
 
 # Group Managing Event Features
-Event Features or "capabilities" can be managed via the API.  Current features you can manage are:
+Event Features or "capabilities" can be managed via the API.  Enabling and disabling features is achieved
+by simply associating or disassociating a feature with an event. Current features you can manage are:
 
 | Feature | Description |
 |------|----------------------------------------|
@@ -606,8 +607,7 @@ Event Features or "capabilities" can be managed via the API.  Current features y
     
 + Attributes
     + code: ingo.event.notifications (string, required) - the code of the feature to add
-    + enabled: true (boolean, required) - whether or not the feature is enabled
-    
+
 + Request (application/json)
     + Headers
     
@@ -618,9 +618,7 @@ Event Features or "capabilities" can be managed via the API.  Current features y
     + Body
     
             {
-                "id": 1000,
-                "value": "word",
-                "cost": 10
+                "code": "ingo.event.notification"
             }
 
 
@@ -642,36 +640,14 @@ Event Features or "capabilities" can be managed via the API.  Current features y
     
                 [
                     {
-                        "code": "ingo.event.notifications",
-                        "enabled": "true"
+                        "code": "ingo.event.notifications"
+                    },
+                    {
+                        "code": "ingo.event.posts"
                     }
+
                 ]
 
-
-## Editing Event Features [/1.0/events/{eventId}/features/{feature}]
-
-+ Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
-    + feature: ingo.event.notifications (string, required) - the feature to be set
-
-### Edit Event Feature [PATCH]
-
-+ Attributes
-    + enabled: true (boolean) - whether the feature is enabled or disabled for this event
-
-+ Request (application/json)
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "code": "ingo.event.notifications",
-                "enabled": "true"
-            }
 
 ## Deleting Event Features [/1.0/events/{eventId}/features/{feature}/]
 
@@ -691,8 +667,7 @@ Event Features or "capabilities" can be managed via the API.  Current features y
     + Body
     
             {
-                "code": "ingo.event.notifications",
-                "enabled": "true"
+                "code": "ingo.event.notifications"
             }
 
 
