@@ -602,8 +602,8 @@ Event Features or "capabilities" can be managed via the API.  Current features y
 ### Add/Create an Event Feature [POST]
 
 + Attributes
-    + value: abc (string, required) - one word to match, must be only one word and lowercased
-    + cost: 1 (number) - cost of this keyword, default 1
+    + code: "ingo.event.notifications" (string, required) - the code of the feature to add
+    + enabled: true (boolean, required) - whether or not the feature is enabled
     
 + Request (application/json)
     + Headers
@@ -639,7 +639,7 @@ Event Features or "capabilities" can be managed via the API.  Current features y
     
                 [
                     {
-                        "feature": "ingo.event.notifications",
+                        "code": "ingo.event.notifications",
                         "enabled": "true"
                     }
                 ]
@@ -666,7 +666,7 @@ Event Features or "capabilities" can be managed via the API.  Current features y
     + Body
     
             {
-                "feature": "ingo.event.notifications",
+                "code": "ingo.event.notifications",
                 "enabled": "true"
             }
 
@@ -688,7 +688,7 @@ Event Features or "capabilities" can be managed via the API.  Current features y
     + Body
     
             {
-                "feature": "ingo.event.notifications",
+                "code": "ingo.event.notifications",
                 "enabled": "true"
             }
 
