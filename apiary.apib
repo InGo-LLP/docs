@@ -1970,10 +1970,82 @@ As of: 0.1.0
 
             
 # Group Troubleshooting Your Event
+
+## Listing Widget Events [/1.0/events/{eventId}/widget-configs/{widgetId}/widget-events]
         
-Widgets produce tracking events that can help you determine if they are
-running properly. You can get a list of all potential issues with your 
-event's widgets.
+Widgets produce tracking events (activity log) that can help you determine if they are
+running properly. You can get a list of all events for a particular widget.
+
+**SECURITY:** You may only view the widget events for events you have permission to see.
+
+As of: 0.1.0
+
+### Get Widget Events For an Event [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            [ 
+                { 
+                    "event":"render:started",
+                    "widget_type":"login",
+                    "widget_id":"W3RFVUG0DHMXMHII02DPBEQVUDJAKYQE",
+                    "widget_version":"1.1.1",
+                    "url":"https://www.example.com/loginpage",
+                    "session_id":"yn6bp0nnxd0w1eo72ocowwapz",
+                    "note":"",
+                    "client_id":"IT-823267877000.0466614842731",
+                    "event_time":"2017-01-014 13:34:27.527000-04"}
+                },
+                                { 
+                    "event":"render:finished",
+                    "widget_type":"login",
+                    "widget_id":"W3RFVUG0DHMXMHII02DPBEQVUDJAKYQE",
+                    "widget_version":"1.1.1",
+                    "url":"https://www.example.com/loginpage",
+                    "session_id":"yn6bp0nnxd0w1eo72ocowwapz",
+                    "note":"",
+                    "client_id":"IT-823267877000.0466614842731",
+                    "event_time":"2017-01-014 13:34:56.527000-04"}
+                }
+
+            ]
+
+
+## Counting Widget Events [/1.0/events/{eventId}/widget-configs/{widgetId}/widget-events/count]
+        
+Widgets produce tracking events (activity log) that can help you determine if they are
+running properly. You can get a count of all events for a particular widget.
+
+**SECURITY:** You may only view the widget events for events you have permission to see.
+
+As of: 0.1.0
+
+### Get Widget Events For an Event [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+    
++ Response 200 (application/json)
+    + Body
+    
+            { 
+                "count":2,
+            }
+
 
 ## Listing Widget Problems [/1.0/events/{eventId}/problems/widgets{?start,end}]
 
