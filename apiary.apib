@@ -393,7 +393,7 @@ As of: 0.1.0
                     "registration_platform_event_id": "ev132",
                     "registration_platform_event_url": "http://greatevents.com/events/ev",
                     "url_parammask": "",
-                    "cors_domain": ["*"],
+                    "cors_domains": ["*"],
                     "use_post_registration": false,
                     "state": "testing",
                     "account_id": 1,
@@ -413,7 +413,7 @@ As of: 0.1.0
                     "registration_platform_event_id": "ev133",
                     "registration_platform_event_url": "http://greatevents.com/events/ev",
                     "url_parammask": "",
-                    "cors_domain": ["*"],
+                    "cors_domains": ["*"],
                     "use_post_registration": false,
                     "state": "testing",
                     "account_id": 1,
@@ -443,7 +443,7 @@ As of: 0.1.0
     + `registration_platform_event_id`: null (string) - if yusing a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, required) - if you registration platform requires an API key
     + `url_params_mask`: null (string) - registration platform url mask
-    + cors_domains: example.com (array, required) - an array of domains where InGo code will run, or * for any
+    + cors_domains: example.com (array, required) - an array of domains where InGo code will run, or * for any, can be array or comma separated values ("https://one.com,https://two.com")
     + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
     + account_id: 1 (number, required) - indicates which account owns this event, use /accounts endpoint to obtain the id
     + `facebook_page_id`: 140489442646654  (string) - facebook page id used for creating post at facebook
@@ -496,7 +496,7 @@ As of: 0.1.0
             "registration_platform_event_id": "ev132",
             "registration_platform_event_url": "http://greatevents.com/events/ev",
             "url_params_mask": "",
-            "cors_domain": ["example.com"],
+            "cors_domains": ["example.com"],
             "use_post_registration": false,
             "state": "testing",
             "account_id": 1,
@@ -524,7 +524,7 @@ You can update one of your events.
     + `registration_platform_event_id`: null (string, optional) - if using a registration platform, the event ID for that platform
     + `registration_platform_api_key`: SOMEOTHERAPIKEY (string, optional) - if you registration platform requires an API key
     + `url_params_mask`: null (string, optional) - registration platform url mask
-    + cors_domains: example.com (array, optional) - an array of domains where InGo code will run, or * for any
+    + cors_domains: example.com (array, optional) - an array of domains where InGo code will run, or * for any, can be array or comma separated values ("https://one.com,https://two.com")
     + `use_post_registration`: false (boolean, optional) - defauls to false, whether the widgets will be used after the event is over
     + live_date: `2016-09-28` (string, optional) - the date your event will go live
     + state: live (string, optional) - one of {live,closed,archived,testing,deleted}
@@ -553,7 +553,7 @@ You can update one of your events.
                 "registration_platform_event_id": "ev132",
                 "registration_platform_event_url": "http://greatevents.com/events/ev",
                 "url_params_mask": "",
-                "cors_domain": ["example.com"],
+                "cors_domains": ["example.com"],
                 "use_post_registration": false,
                 "state": "testing",
                 "account_id": 1,
@@ -1044,6 +1044,132 @@ As of: 1.0
                     "text": "Check out The Business Conference"
                 }
 
+
+# Group Managing Event Contacts
+You can manage contacts for your events. Contacts are people that you want to send 
+notifications to that are not necessarily authenticated users. Each contact has an
+email address, name, company and role. The role, name, and company are arbitrary text
+but should be used to capture the contacts relationship to the event. For example you 
+might add contacts that are installers. You might add a contact that is an event manager
+for a number of your events.
+
+## Creating Event Contacts [/1.0/events/{eventId}/contacts/]
+You can create a contact for your event.
+
+### Create an Event Contact [POST]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+
++ Attributes
+    + email: abc@abc.com (string) - email address of contact, must be valid email format
+    + name: Joe Smith (string) - name of the contact (optional)
+    + company: A Best Company (string) - the company of the contact (optional)
+    + role: Installer (string) - the role of the contact (optional)
+    
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+                "id": 1000,
+                "email": "abc@abc.com",
+                "name": "Joe Smith",
+                "company": "A Best Company",
+                "role": "Installer"
+            }
+            
+
+## Listing Event Contacts [/1.0/events/{eventId}/contacts]
+You can list the contacts you've created for your event.
+
+### Get all Event Contacts [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+                [
+                    {
+                        "id": 1000,
+                        "email": "abc@abc.com",
+                        "name": "Joe Smith",
+                        "company": "A Best Company",
+                        "role": "Installer"
+                    }
+                ]
+                
+                
+## Updating Event Contacts [/1.0/events/{eventId}/contacts/{contactId}]
+You can update an existing contact you've previously created for your event.
+
+### Update Event Contact [PATCH]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    + contactId: 1000 (number, required) - the ID of contact
+
++ Attributes
+    + email: abc@abc.com (string) - email address of contact, must be valid email format
+    + name: Joe Smith (string) - name of the contact (optional)
+    + company: A Best Company (string) - the company of the contact (optional)
+    + role: Installer (string) - the role of the contact (optional)
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id": 1000,
+                "email": "abc@abc.com",
+                "name": "Joe Smith",
+                "company": "A Best Company",
+                "role": "Installer"
+            }
+
+## Deleting Event Contacts [/1.0/events/{eventId}/contacts/{contactId}/]
+You can remove contacts you've previously created for your event.
+
+### Delete Event Contacts [DELETE]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    + contactId: 1000 (number, required) - the ID of contact
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id": 1000,
+                "email": "abc@abc.com",
+                "name": "Joe Smith",
+                "company": "A Best Company",
+                "role": "Installer"
+            }
 
 
 # Group Managing Event Keywords
@@ -2028,7 +2154,7 @@ running properly. You can get a count of all events for a particular widget.
 
 As of: 0.1.0
 
-### Get Widget Events For an Event [GET]
+### Get Widget Events Counts For an Event [GET]
 
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
