@@ -37,7 +37,7 @@ Visual Basic, Groovy, Objective-C and Swift
 * This documentation provides examples that will access a testing endpoint.
 Production endpoint is `https://partner-api.ingo.me/`
 
-* We are adding search to GET endpoints. Where specified you may use simple (string)
+* You may use search logic with most GET endpoints. Where specified you may use simple (string)
 and complex (json) parameters.  Reference the "Listing All Events" endpoint
 documentation for an example of how to specify this filtering criteria.
 Keywords accepted in JSON syntax are:
@@ -1880,9 +1880,13 @@ As of: 0.1.0
 You can get registrant data for your event from the API similar to what is present 
 in the Events Manager dashboard.
 
-## Getting Registrants For an Event [/1.0/events/{eventId}/registrants]
+## Getting Registrants For an Event [/1.0/events/{eventId}/registrants{?is_exhibitor,confirmation_time,social_registrant,notify_enabled,external_registration_id}]
 
-You can get the registrants for your events.
+You can get the registrants for your events. Note that you can use search query parameters to filter registrants.
+
+**IMPORTANT:** The registrants endpoint returns the value `notify_enabled` which you MUST RESPECT.
+DO NOT SEND ANY MATERIAL VIA EMAIL OR ANY OTHER FORM IF THIS VALUE IS FALSE.
+THE REGISTRANT HAS OPTED OUT OF NOTIFICATIONS AND YOU MUST RESPECT THE REGISTRANT'S WISHES.
 
 **SECURITY:** You may only view the registrants for events you have permission to see.
 
@@ -1892,6 +1896,11 @@ As of: 0.1.0
 
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+    + is_exhibitor: true (boolean, optional) - whether the registrant is an exhibitor or not, default is ALL
+    + confirmation_time: `2017-01-01T00:00:00.000Z` (string, optional) - the confirmation time, see search conditions in getting started
+    + social_registrant: true (boolean, optional) - whether the registrant is social or not, default is ALL
+    + notify_enabled: true (boolean, optional) - whether notify is enabled for registrant
+    + external_registration_id: 12345678 (string, optional) - the external registration id provided to the authorizer widget when registrant was confirmed
 
 + Request (application/json)
     + Headers
@@ -1917,7 +1926,8 @@ As of: 0.1.0
                     "notify_enabled":true,
                     "company_name":"Example Company",
                     "is_exhibitor":false,
-                    "social_registrant":true
+                    "social_registrant":true,
+                    "external_registration_id":"12345678"
                 }
             ]
 
