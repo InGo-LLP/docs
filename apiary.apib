@@ -612,7 +612,7 @@ by simply associating or disassociating one or more features with an event. Curr
     
             [
                 {
-                    "code": "ingo.event.notification"
+                    "code": "ingo.event.notifications"
                 }
             ]
 
@@ -621,8 +621,6 @@ by simply associating or disassociating one or more features with an event. Curr
     + Body
     
             [{
-                "code": "ingo.event.notification",
-                "name": "Send Notifications"
             }]
 
 
@@ -645,11 +643,13 @@ by simply associating or disassociating one or more features with an event. Curr
                 [
                     {
                         "code": "ingo.event.notifications",
-                        "name": "Send Notifications"
+                        "name": "Send Notifications",
+                        "enabled": true
                     },
                     {
                         "code": "ingo.event.posts",
                         "name": "Send Social Posts"
+                        "enabled": false
                     }
 
                 ]
@@ -659,7 +659,7 @@ by simply associating or disassociating one or more features with an event. Curr
 
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
-    + feature: ingo.event.notifications (string, required) - the feature to be set
+    + feature: ingo.event.notifications (string, required) - the feature to be deleted
 
 ### Delete Event Feature [DELETE]
 
@@ -670,12 +670,6 @@ by simply associating or disassociating one or more features with an event. Curr
 
 + Response 200 (application/json)
 
-    + Body
-    
-            {
-                "code": "ingo.event.notifications",
-                "name": "Send Notifications"
-            }
 
 
 # Group Managing Event Images        
