@@ -79,6 +79,20 @@ The status of the API can be determined using the status endpoints. If you
 attempt to use the API and are getting unexpected errors, checking the 
 status of the API is a good first step.
 
+# Group Rate Limiting
+
+Most of API endpoints are rate limited. If you are rate limited API servers starts to return 429 status
+code for all responses. To see if rate limit applied for some endpoint you can check `X-RateLimit-Limit` http header. 
+It contains maximum number request user can do within time window (current time window for all
+endpoints is 10 minutes). Remaining requests within current time windows could be inspected via `X-RateLimit-Remaining` header.
+
+Rate Limit Rules:
+
+1. Authorization endpoint allow at most 100 requests within 10 minutes from 1 ip.
+2. All endpoints that require authentication limited to 10000 requests within 10 minutes from 1 user from 1 ip.
+
+If you are rate limited you can check ramaining time at `Retry-After` http header, which contains number of milliseconds you need to wait.
+
 ## Server Availability [/ping]
 
 You can ping the API server to check that the server is running. If you do
