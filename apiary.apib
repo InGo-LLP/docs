@@ -2065,7 +2065,7 @@ You can list attendee contacts for some attendee
 You can get recent statistical data for your event from the API similar to what is present 
 in the Events Manager dashboard.
 
-## Getting Statistics For an Event [/1.0/events/{eventId}/statistics]
+## Getting Statistics For an Event [/1.0/events/{eventId}/statistics{?start,end}]
 
 You can get the current statistics for your events.
 
@@ -2074,9 +2074,12 @@ You can get the current statistics for your events.
 As of: 0.1.0
 
 ### Get Statistics For an Event [GET]
-
+t
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
+    + start: `2016-02-04T21:06:52.691Z` (string, optional) - start date for period to analyze
+    + end: `2016-02-04T21:06:52.691Z` (string, optional) - end date for period to analyze (cannot exceed 14 days from start date)
+
 
 + Request (application/json)
     + Headers
