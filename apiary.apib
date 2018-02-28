@@ -10,8 +10,6 @@ This allows you to quickly create the items you need to quickly provision InGo
 functionality to all of your events. If you're a third-party event registration company,
 this API will allow you to more easily create and manage InGo capabilities for all of your customers.
 
-**THIS API AND DOCUMENTATION ARE IN BETA MODE. PLEASE USE WITH CAUTION AND REPORT ANY ISSUES TO INGO.**
-
 For support, go to <http://support.ingo.me> and be sure to let us know that you're using the API.
 
 # Group Getting Started
@@ -843,23 +841,29 @@ Advocacy templates can be customized *per* Social Network. Below are the service
 | twitter  | Twitter: http://www.twitter.com |
 | google | Google+: http://plus.google.com |
 | xing | Xing: http://www.xing.com |
+| vk | VK: http://www.vk.com |
 
 
 The following languages are supported for custom advocacy templates:
 
+----------------------
 | Locale | Description |
 |--------|------------|
-| ar | Arabic |
-| fr | French |
-| pt-PT | Portuguese (Portugal) |
-| zh-CN | Chinese (Standard) |
-| it | Italian |
-| pt-BR | Portuguese (Brazil) |
-| nl | Dutch |
-| de | German |
-| ru | Russian |
 | en | English |
+| de | German |
 | es | Spanish |
+| it | Italian |
+| fr | French |
+| ru | Russian |
+| nl | Dutch |
+| pt-PT | Portuguese (Portugal) |
+| pt-BR | Portuguese (Brazil) |
+| zh-CN | Chinese (Standard) |
+| ar | Arabic |
+| ja | Japanese |
+| tr | |
+| th | Thai |
+| ko-KR | Korean (South) |
 
 Qualifiers:
 
@@ -1276,7 +1280,7 @@ You can remove contacts you've previously created for your event.
 
 # Group Managing Widgets
 
-Widget Types
+## Widget Types
 -----------------
 | Widget Type       | Usage                                                                       | 
 |-------------------|-----------------------------------------------------------------------------|
@@ -1298,145 +1302,204 @@ with nested object notation like this:
 ```
 DO NOT specify these parameters with dot notation.
 
-LOGIN Widget Available Parameters
------------------------
-| Parameter Name | Meaning | Default | Versions |
-|--------|---------|-------|---|
-| autostart | Should dialog automatically open on page load? | false | ALL |
-| breakout | Is the login widget Break out of iframe? | false | ALL |
-| closeModalOnManual | Close on manual registration? | false | ALL |
-| defaultManualFieldValue.allowIdentify | Default value for allow to identify permission | true | ALL |
-| defaultManualFieldValue.allowPost | Default value for allow to post permission | true | ALL |
-| defaultManualFieldValue.companyName | Default value for company name input |  | ALL |
-| defaultManualFieldValue.companyPosition | Default value for company position input |  | ALL |
-| defaultManualFieldValue.email | Default value for email input |  | ALL |
-| defaultManualFieldValue.firstName | Default value for first name input |  | ALL |
-| defaultManualFieldValue.lastName | Default value for last name input |  | ALL |
-| disableClose | Can user close dialog? | false | ALL |
-| forwardQueryString | Forward Query String? | false | ALL |
-| hidePermissions.allowIdentify | Hide the identify permission checkbox? | false | ALL |
-| hidePermissions.allowPost | Hide the post permission checkbox? | false | ALL |
-| isExhibitor | Mark all users who login through this widget as exhibitors | false | v1.4.0+ |
-| lang | Language | en | ALL |
-| layout | Layout | standard | ALL |
-| manual | Url for manual registrations | | ALL |
-| modal | Is widget running as dialog? | false | ALL |
-| networks.facebook | Is facebook login enabled? | true | ALL |
-| networks.google | Is google login enabled? | false | ALL |
-| networks.linkedin | Is linkedin login enabled? | true | ALL |
-| networks.twitter | Is twitter login enabled? | false | ALL |
-| networks.xing | Is xing login enabled? | false | ALL |
-| previousUrl.url | Social Login Previous URL |  | ALL |
-| previousUrl.useCurrent | Use the current page for Social Login Previous URL? | false | ALL |
-| registerColor | Color for the register manually button |  | ALL |
-| registerDisplayFields | Should the register manually button slide down the manual fields? | true | ALL |
-| requiredFields.companyName | Require company name? | true | ALL |
-| requiredFields.companyPosition | Require position? | true | ALL |
-| requiredFields.firstName | Require first name? | true | ALL |
-| requiredFields.lastName | Require last name? | true | ALL |
-| showManual | Should dialog show manual fields? | false | ALL |
-| target | the css selector of an element that will trigger the popup (required for popup that does not autostart) | false | ALL |
-| texts.{lang}.header | Key header | Register Socially (en) | ALL |
-| texts.{lang}.headerSub | Key headerSub | Win prizes, earn points and connect with people!. (en) | ALL |
-| texts.{lang}.label.button.facebook | Key label.button.facebook. | Facebook (en) | ALL |
-| texts.{lang}.label.button.google | Key label.button.google. | Google+ (en) | ALL |
-| texts.{lang}.label.button.linkedin | Key label.button.linkedin. | LinkedIn (en) | ALL |
-| texts.{lang}.label.button.manual | Key label.button.manual. | Continue (en) | ALL |
-| texts.{lang}.label.button.register | Key label.button.register. | Register Manually (en) | ALL |
-| texts.{lang}.label.button.twitter | Key label.button.twitter. | Twitter (en) | ALL |
-| texts.{lang}.label.button.xing | Key label.button.xing. | Xing (en) | ALL |
-| texts.{lang}.label.checkbox.allowIdentify | Key label.checkbox.allowIdentify. | Make me visible to other attendees (en) | ALL |
-| texts.{lang}.label.checkbox.allowPost | Key label.checkbox.allowPost. | Let my network know that I'm attending the event (en) | ALL |
-| texts.{lang}.label.radio.no | Key label.radio.no. | No (en) | ALL |
-| texts.{lang}.label.radio.yes | Key label.radio.yes. | Yes (en) | ALL |
-| texts.{lang}.placeholder.companyName | Key placeholder.companyName. | Company (en) | ALL |
-| texts.{lang}.placeholder.companyPosition | Key placeholder.companyPosition. | Position (en) | ALL |
-| texts.{lang}.placeholder.email | Key placeholder.email. | Email (en) | ALL |
-| texts.{lang}.placeholder.firstName | Key placeholder.firstName. | First Name (en) | ALL |
-| texts.{lang}.placeholder.lastName | Key placeholder.lastName. | Last Name (en) | ALL |
-| texts.{lang}.privacyPolicy | Key privacyPolicy. | Privacy Policy (en) | ALL |
-| texts.{lang}.privacyPolicyUrl | Key privacyPolicyUrl. | /privacy-policy/ (en) | ALL |
-| useRadioPermissions | Use radio buttons for permissions | false | 1.0.8+ |
-| whiteLabel | Hide InGo branding? | true | ALL |
+## Parameters And Versions
+Please note that the list of parameters documented below are for the latest widget versions only.
 
-SOCIAL Widget Available Parameters
+## LOGIN (ACTIVATOR) Widget Available Parameters
 -----------------------
-| Parameter Name | Meaning | Default | Versions |
+| Parameter | Meaning | Required | Default |
 |--------|---------|-------|---|
-| customHeight|Custom height for widget| | ALL |
-| fluidWidth|Should the widget fill whole parent block?|false| ALL |
-| inviteForOnlyEnabledNetworks|Limit invitations to enabled networks|true| ALL |
-| lang|Language|en| ALL |
-| networks.facebook|Is facebook login enabled?|true| ALL |
-| networks.google|Is google login enabled?|false| ALL |
-| networks.linkedin|Is linkedin login enabled?|true| ALL |
-| networks.twitter|Is twitter login enabled?|true| ALL |
-| networks.xing|Is xing login enabled?|false| ALL |
-| numberOfPreselectedContacts|Number of preselected contacts|6| ALL |
-| renderMode|Render mode|replace| ALL |
-| show|Which tab to show?|invitation| ALL |
-| showTab.invitation|Show Invites Tab?|true| ALL |
-| showTab.share|Show Share Tab?|true| ALL |
-| showTab.whosin|Show Who is In Tab?|true| ALL |
-| filters.filterLastNDays|Show only registrants from the the last N days in Who's In tab|-1(all)|2.7.3+ |
-| filters.filterWithPicsOnly|Show only registrants that have pics in Who's In tab (does not filter pics that fail to load, just those without pics)|false|2.7.3+ |
-| texts.{lang}.authButton.facebook|Key authButton.facebook |Facebook (en) | ALL |
-| texts.{lang}.authButton.google|Key authButton.google |Google (en) | ALL |
-| texts.{lang}.authButton.linkedin|Key authButton.linkedin |LinkedIn (en) | ALL |
-| texts.{lang}.authButton.twitter|Key authButton.twitter |Twitter (en) | ALL |
-| texts.{lang}.authButton.xing|Key authButton.xing |Xing (en) | ALL |
-| texts.{lang}.dropdown.logout|Key dropdown.logout |Logout (en) | ALL |
-| texts.{lang}.invitation.error.blankMessage|Key invitation.error.blankMessage |Please provide a message (en) | ALL |
-| texts.{lang}.invitation.error.facebookContactsCount|Key invitation.error.facebookContactsCount |Cannot tag more than 10 persons in a Facebook invitation (en) | ALL |
-| texts.{lang}.invitation.error.twitterMessageLength|Key invitation.error.twitterMessageLength |Twitter message must be under 140 characters (en) | ALL |
-| texts.{lang}.invitation.filter.showAll|Key invitation.filter.showAll |Show all (en) | ALL |
-| texts.{lang}.invitation.filter.someSelected|Key invitation.filter.someSelected | #{count} ((contact&#124;contacts)) selected (en) | ALL |
-| texts.{lang}.invitation.preview.close|Key invitation.preview.close |Close Preview (en) | ALL |
-| texts.{lang}.invitation.preview.open|Key invitation.preview.open |Preview (en) | ALL |
-| texts.{lang}.invitation.preview.placeholder.`_` | Key invitation.preview.placeholder._  |You should come because ... (en) | ALL |
-| texts.{lang}.invitation.preview.placeholder.fb|Key invitation.preview.placeholder.fb |You are tagging your Facebook friends publicly, say something to encourage them to come to the show! (en) | ALL |
-| texts.{lang}.invitation.preview.send|Key invitation.preview.send |Send Invites (en) | ALL |
-| texts.{lang}.invitation.search.placeholder|Key invitation.search.placeholder |Search people, titles, companies, etc (en) | ALL |
-| texts.{lang}.invitation.sendInvite.inProcess|Key invitation.sendInvite.inProcess |Inviting... (en) | ALL |
-| texts.{lang}.invitation.sendInvite.invite|Key invitation.sendInvite.invite |Invite selected contacts (en) | ALL |
-| texts.{lang}.invitation.subHeader.Authed|Key invitation.subHeader.Authed |Invite your contacts. Select from the list below then enter a message (en) | ALL |
-| texts.{lang}.invitation.subHeader.NotAuthed|Key invitation.subHeader.NotAuthed |Sign in socially (en) | ALL |
-| texts.{lang}.invitation.subHeader.welcome|Key invitation.subHeader.welcome |Invite your contacts. Experience an event tailored to you (en) | ALL |
-| texts.{lang}.invitation.tabName|Key invitation.tabName |Invites (en) | ALL |
-| texts.{lang}.share.sendPost.inProcess|Key share.sendPost.inProcess |Sending Post... (en) | ALL |
-| texts.{lang}.share.sendPost.post|Key share.sendPost.post |Post (en) | ALL |
-| texts.{lang}.share.sendPost.title|Key share.sendPost.title |Please select a social network to post about the event (en) | ALL |
-| texts.{lang}.share.tabName|Key share.tabName |Share (en) | ALL |
-| texts.{lang}.whosin.nousers.placeholder|Key whosin.nousers.placeholder |There are no attendees here yet (en) | ALL |
-| texts.{lang}.whosin.search.placeholder|Key whosin.search.placeholder |Search people who are attending (en) | ALL |
-| texts.{lang}.whosin.subHeader.NotAuthed|Key whosin.subHeader.NotAuthed |Sign in socially (en) | ALL |
-| texts.{lang}.whosin.subHeader.welcome|Key whosin.subHeader.welcome |See who is attending. Experience an event tailored to you (en) | ALL |
-| texts.{lang}.whosin.tabName|Key whosin.tabName |Who's In (en) | ALL |
-| whiteLabel|Hide InGo branding?|true| ALL |
+| manual | URL for registrations | true |  |
+| isManualScript | Is registration URL a script? | false | false |
+| newWindow | Open registration URL in new Window | false | false |
+| layout | Layout | false | standard |
+| networks.facebook | Enable Facebook login | false | true |
+| networks.linkedin | Enable LinkedIn login | false | true |
+| networks.google | Enable Google login | false | false |
+| networks.twitter | Enable Twitter login | false | false |
+| networks.xing | Enable XING login | false | false |
+| networks.vk | Enable VK login | false | false |
+| modal | Run widget as a dialog | false | false |
+| disableClose | Disable dialog close | false | false |
+| autostart | Auto open dialog? | false | false |
+| closeModalOnManual | Close dialog upon manual registration | false | false |
+| authInPopup | Perform social authorization in popup | false | true |
+| fields.email.hide | Hide the email textbox | false | false |
+| fields.firstName.hide | Hide the first name textbox | false | false |
+| fields.lastName.hide | Hide the last name textbox | false | false |
+| fields.companyName.hide | Hide the company textbox | false | false |
+| fields.companyPosition.hide | Hide the position textbox | false | false |
+| fields.allowNotify.hide | Hide the notifications permission checkbox | false | false |
+| fields.allowIdentify.hide | Hide the identify permission checkbox | false | false |
+| previousUrl.url | URL to Redirect to on cancel | false |  |
+| previousUrl.useCurrent | Redirect to the current page on cancel | false | false |
+| breakout | Break out of iframe | false | false |
+| poweredBy | Show 'Powered by InGo' | false | true |
+| forwardQueryString | Forward Query String | false | false |
+| disableManualFields | Disable manual registration | false | false |
+| showManual | Automatically show manual fields | false | false |
+| registerDisplayFields | Slide down the manual fields | false | false |
+| showManualAsButton | Display manual registration option as a button | false | false |
+| registerColor | Manual registration button color | false |  |
+| fields.email.required | Require email? | false | true |
+| fields.firstName.required | Require first name? | false | true |
+| fields.lastName.required | Require last name? | false | true |
+| fields.companyName.required | Require company name? | false | true |
+| fields.companyPosition.required | Require position? | false | true |
+| fields.firstName.defaultValue | Default value for first name input | false |  |
+| fields.lastName.defaultValue | Default value for last name input | false |  |
+| fields.email.defaultValue | Default value for email input | false |  |
+| fields.companyName.defaultValue | Default value for company name input | false |  |
+| fields.companyPosition.defaultValue | Default value for company position input | false |  |
+| fields.allowNotify.defaultValue | Default value for allow to notify permission | false | true |
+| fields.allowIdentify.defaultValue | Default value for allow to identify permission | false | true |
+| lang | Language | false | en |
+| useRadioPermissions | Use radio buttons for permissions | false | false |
+| fields.isExhibitor.defaultValue | Mark all attendees that login through this widget as Exhibitors | false | false |
+| ui.height | Height | false |  |
+| ui.width | Width | false |  |
+| ui.fontFamily | Base font family | false |  |
+| ui.borderWidth | Border width | false |  |
+| ui.borderColor | Border color | false |  |
+| ui.background | Background | false |  |
+| ui.textColor | Base text color | false |  |
+| ui.popup.marginTop | Top margin of widget in popup mode | false |  |
+| simulateServerUnavailable | Simulate InGo widget backend failing to respond | false | false |
+| simulateFailureResponses | Simulate InGo widget backend encountering error | false | false |
+| texts.en.label.button.google | Key label.button.google (en) | false | Google+ |
+| texts.en.label.button.twitter | Key label.button.twitter (en) | false | Twitter |
+| texts.en.label.button.linkedin | Key label.button.linkedin (en) | false | LinkedIn |
+| texts.en.label.button.facebook | Key label.button.facebook (en) | false | Facebook |
+| texts.en.label.button.xing | Key label.button.xing (en) | false | Xing |
+| texts.en.label.button.vk | Key label.button.vk (en) | false | VK |
+| texts.en.label.button.manual | Key label.button.manual (en) | false | Continue |
+| texts.en.label.button.register | Key label.button.register (en) | false | Register Manually |
+| texts.en.label.link.register | Key label.link.register (en) | false | or click here to register with your email |
+| texts.en.label.allowIdentify | Key label.allowIdentify (en) | false | Let people know I'm going to the event |
+| texts.en.label.allowNotify | Key label.allowNotify (en) | false | Notify me when my contacts register |
+| texts.en.tooltip.allowNotify | Key tooltip.allowNotify (en) | false | Events are better together! We will notify you via e-mail when one of your friends registers. |
+| texts.en.tooltip.allowIdentify | Key tooltip.allowIdentify (en) | false | This gives us permission to post on your social profile when you've registered. Announcing your attendance will influence your friends and encourage them to join you. This also gives us permission to display you in the "Who's-In" view for the event and e-mail notifications. |
+| texts.en.label.radio.yes | Key label.radio.yes (en) | false | Yes |
+| texts.en.label.radio.no | Key label.radio.no (en) | false | No |
+| texts.en.placeholder.firstName | Key placeholder.firstName (en) | false | First Name |
+| texts.en.placeholder.lastName | Key placeholder.lastName (en) | false | Last Name |
+| texts.en.placeholder.email | Key placeholder.email (en) | false | Email |
+| texts.en.placeholder.companyName | Key placeholder.companyName (en) | false | Company |
+| texts.en.placeholder.companyPosition | Key placeholder.companyPosition (en) | false | Position |
+| texts.en.header | Key header (en) | false | Register Socially |
+| texts.en.headerSub | Key headerSub (en) | false | Register using social media to speed up your registration, see who's going and invite your friends and contacts! |
+| texts.en.privacyPolicy | Key privacyPolicy (en) | false | Privacy Policy |
+| texts.en.privacyPolicyUrl | Key privacyPolicyUrl (en) | false | https://www.ingo.me/privacy-policy |
 
-CONFIRMATION Widget Available Parameters
------------------------
-| Parameter Name | Meaning | Default | Versions |
-|--------|---------|-------|---|
-| attendee.company|Company name| | ALL |
-| attendee.email|Email| | ALL |
-| attendee.firstName|First name| | ALL |
-| attendee.lastName|Last name| | ALL |
-| attendee.title|Company position| | ALL |
-| lang|Locale of widget| | ALL |
 
-REGISTRATION Widget Available Parameters
+## SOCIAL (AMPLIFIER) Widget Available Parameters
 -----------------------
-| Parameter Name | Meaning | Default | Versions |
-|--------|---------|-------|---|
-| fields.user.company|Selector for user's company name|(null)| ALL |
-| fields.user.company_position|Selector for user's company position|(null)| ALL |
-| fields.user.email|Selector for user email|(null)| ALL |
-| fields.user.firstName|Selector for user first name|(null)| ALL |
-| fields.user.industry|Selector for user industry|(null)| ALL |
-| fields.user.interests|Selector for user interests|(null)| ALL |
-| fields.user.lastName|Selector for user last name|(null)| ALL |
-| save|Sync user's information back to InGo?|true| ALL |
+| Parameter Name | Meaning | Required | Default |
+|-----|---------|-------|---|
+| networks.facebook | Is facebook login enabled? | false | true |
+| networks.linkedin | Is linkedin login enabled? | false | true |
+| networks.google | Is google login enabled? | false | false |
+| networks.twitter | Is twitter login enabled? | false | true |
+| networks.xing | Is xing login enabled? | false | false |
+| networks.vk | Is VK login enabled? | false | false |
+| show | Which tab to show? | false | invitation |
+| lang | Language | false | en |
+| showTab.invitation | Show Invites Tab? | false | true |
+| showTab.whosin | Show Who is In Tab? | false | true |
+| showTab.share | Show Share Tab? | false | true |
+| preselectedContacts.facebook | How many facebook contacts preselected? | false | 6 |
+| preselectedContacts.linkedin | How many linkedin contacts preselected? | false | 6 |
+| preselectedContacts.twitter | How many twitter contacts preselected? | false | 0 |
+| preselectedContacts.xing | How many xing contacts preselected? | false | 6 |
+| preselectedContacts.google | How many google contacts preselected? | false | 0 |
+| preselectedContacts.vk | How many vk contacts preselected? | false | 6 |
+| poweredBy | Show 'Powered by InGo' | false | true |
+| ui.height | Height | false |  |
+| ui.width | Width | false |  |
+| ui.fontFamily | Base font family | false |  |
+| ui.borderWidth | Border width | false |  |
+| ui.borderColor | Border color | false |  |
+| ui.background | Background | false |  |
+| ui.textColor | Base text color | false |  |
+| filters.filterLastNDays | Show registrants from the last N days in Who's In | false | -1 |
+| filters.filterWithPicsOnly | Show only registrants that have pictures | false | false |
+| texts.en.dropdown.logout | Key dropdown.logout (en) | false | Logout |
+| texts.en.authButton.linkedin | Key authButton.linkedin (en) | false | LinkedIn |
+| texts.en.authButton.google | Key authButton.google (en) | false | Google |
+| texts.en.authButton.twitter | Key authButton.twitter (en) | false | Twitter |
+| texts.en.authButton.facebook | Key authButton.facebook (en) | false | Facebook |
+| texts.en.authButton.xing | Key authButton.xing (en) | false | Xing |
+| texts.en.authButton.vk | Key authButton.vk (en) | false | VK |
+| texts.en.whosin.tabName | Key whosin.tabName (en) | false | Who's In |
+| texts.en.whosin.subHeader.welcome | Key whosin.subHeader.welcome (en) | false | See who is attending. Experience an event tailored to you. |
+| texts.en.whosin.search.placeholder | Key whosin.search.placeholder (en) | false | Search people who are attending |
+| texts.en.whosin.nousers.placeholder | Key whosin.nousers.placeholder (en) | false | There are no attendees here yet. |
+| texts.en.whosin.tooltip.social-filter | Key whosin.tooltip.social-filter (en) | false | Click to filter by your {service} contacts |
+| texts.en.invitation.tabName | Key invitation.tabName (en) | false | Invites |
+| texts.en.invitation.subHeader.NotAuthed | Key invitation.subHeader.NotAuthed (en) | false | Sign in socially |
+| texts.en.invitation.subHeader.welcome | Key invitation.subHeader.welcome (en) | false | Invite your contacts. Experience an event tailored to you. |
+| texts.en.invitation.subHeader.Authed | Key invitation.subHeader.Authed (en) | false | Invite your contacts. Select from the list below then enter a message. |
+| texts.en.invitation.search.placeholder | Key invitation.search.placeholder (en) | false | Search people, titles, companies, etc |
+| texts.en.invitation.sendInvite.inProcess | Key invitation.sendInvite.inProcess (en) | false | Inviting... |
+| texts.en.invitation.sendInvite.invite | Key invitation.sendInvite.invite (en) | false | Invite {count, plural, one{1 contact} other{# contacts}} |
+| texts.en.invitation.preview.placeholder | Key invitation.preview.placeholder (en) | false | You should come because ... |
+| texts.en.invitation.preview.placeholder.facebook | Key invitation.preview.placeholder.facebook (en) | false | You are tagging your Facebook friends publicly, say something to encourage them to come to the show! |
+| texts.en.invitation.filter.someSelected | Key invitation.filter.someSelected (en) | false | Show selected |
+| texts.en.invitation.filter.showAll | Key invitation.filter.showAll (en) | false | Show all |
+| texts.en.invitation.popup.invitesQueued.title | Key invitation.popup.invitesQueued.title (en) | false | {count, plural, one{Invite On Its Way!} other{# Invites On Their Way!}} |
+| texts.en.invitation.popup.invitesQueued.text | Key invitation.popup.invitesQueued.text (en) | false | Congratulations!&lt;br/&gt;Select more friends and colleagues to join you.&lt;br/&gt;&lt;small&gt;Please note that due to social network limitations, if you send a large number of invites, your invites may be delayed, and be sent out over the next few days or even weeks.&lt;/small&gt; |
+| texts.en.invitation.popup.invitesQueued.button | Key invitation.popup.invitesQueued.button (en) | false | Invite More |
+| texts.en.invitation.popup.groupMessage.title | Key invitation.popup.groupMessage.title (en) | false | Invites Ready To Send... |
+| texts.en.invitation.popup.groupMessage.text | Key invitation.popup.groupMessage.text (en) | false | &lt;b&gt;You've selected {count} contacts.&lt;/b&gt;&lt;br/&gt;Do you want to send these invites &lt;b&gt;individually&lt;/b&gt; or as a &lt;b&gt;group&lt;/b&gt; message? |
+| texts.en.invitation.popup.groupMessage.button.single | Key invitation.popup.groupMessage.button.single (en) | false | Send Individually |
+| texts.en.invitation.popup.groupMessage.button.group | Key invitation.popup.groupMessage.button.group (en) | false | Send Group Message |
+| texts.en.invitation.popup.tooManySelected.title | Key invitation.popup.tooManySelected.title (en) | false | Oops... |
+| texts.en.invitation.popup.tooManySelected.text | Key invitation.popup.tooManySelected.text (en) | false | You have selected more than {count} contacts. You may send invites to these contacts, but be advised that they will be delayed and sent out over the next few days or even weeks due to social network limitations. If you are inviting your entire network, please consider using our Share feature instead. |
+| texts.en.invitation.popup.tooManySelected.button | Key invitation.popup.tooManySelected.button (en) | false | Close |
+| texts.en.share.tabName | Key share.tabName (en) | false | Share |
+| texts.en.share.subHeader.Authed | Key share.subHeader.Authed (en) | false | Events are better together. Share thoughts with your friends. |
+| texts.en.share.sendPost.inProcess | Key share.sendPost.inProcess (en) | false | Sending Post... |
+| texts.en.share.sendPost.title | Key share.sendPost.title (en) | false | Please select a social network to post about the event |
+| texts.en.share.sendPost.post | Key share.sendPost.post (en) | false | Post |
+| texts.en.share.sendPost.postTo | Key share.sendPost.postTo (en) | false | Post to {service} |
+| texts.en.share.popup.postSent.title | Key share.popup.postSent.title (en) | false | Post Sent |
+| texts.en.share.popup.postSent.text | Key share.popup.postSent.text (en) | false | Thanks! Share on another network. |
+| texts.en.share.popup.postSent.button | Key share.popup.postSent.button (en) | false | Share Again |
+| texts.en.error.blankMessage | Key error.blankMessage (en) | false | Please provide a message |
+| texts.en.error.twitterMessageLength | Key error.twitterMessageLength (en) | false | Twitter message must be under 280 characters |
+| texts.en.error.facebookContactsCount | Key error.facebookContactsCount (en) | false | Cannot tag more than 10 persons in a Facebook invitation |
+| texts.en.error.vkFriendsCount | Key error.vkFriendsCount (en) | false | Cannot tag more than 10 persons in a VK invitation |
+
+## CONFIRMATION (AUTHORIZER) Widget Available Parameters
+------------------
+| Parameter | Meaning | Required | Default |
+|---|---|---|---|
+| attendee.email | Email | false |  |
+| attendee.firstName | First name | false |  |
+| attendee.lastName | Last name | false |  |
+| attendee.company | Company name | false |  |
+| attendee.title | Company position | false |  |
+| attendee.additional | Is the confirmed attendee an additional one? | false | false |
+| attendee.externalRegistrationId | External Registration ID | false |  |
+| attendee.isExhibitor | Is the confirmed attendee an exhibitor? | false | false |
+| lang | Locale of widget | false |  |
+| load | Should widget load user information from browser session? | false | true |
+
+## REGISTRATION (AUTO-FILLER) Widget Available Parameters
+------------------
+| Parameter | Meaning | Required | Default |
+|---|---|---|---|
+| fields.user.firstName | Selector for user first name | false |  |
+| fields.user.lastName | Selector for user last name | false |  |
+| fields.user.email | Selector for user email | false |  |
+| fields.user.industry | Selector for user industry | false |  |
+| fields.user.interests | Selector for user interests | false |  |
+| fields.user.company_position | Selector for user's company position | false |  |
+| fields.user.company | Selector for user's company name | false |  |
+| fields.user.twitter.username | Selector for user's twitter username | false |  |
+| fields.user.linkedin.profileUrl | Selector for user's LinkedIn profile url | false |  |
+| fields.user.pictureUrl | Selector for user's picture (img src will be replaced) | false |  |
+| save | Sync user's information back to InGo? | false | true |
 
 
 
@@ -1455,26 +1518,28 @@ with nested object notation like this:
 ```
 DO NOT specify these parameters with dot notation.
 
-Supported Language Tags
+## Supported Language Tags
 ----------------------
 | Locale | Description |
 |--------|------------|
-| ar | Arabic |
-| fr | French |
-| pt-PT | Portuguese (Portugal) |
-| zh-CN | Chinese (Standard) |
-| it | Italian |
-| pt-BR | Portuguese (Brazil) |
-| nl | Dutch |
-| de | German |
-| ru | Russian |
 | en | English |
+| de | German |
 | es | Spanish |
+| it | Italian |
+| fr | French |
+| ru | Russian |
+| nl | Dutch |
+| pt-PT | Portuguese (Portugal) |
+| pt-BR | Portuguese (Brazil) |
+| zh-CN | Chinese (Standard) |
+| ar | Arabic |
+| ja | Japanese |
+| tr | |
+| th | Thai |
+| ko-KR | Korean (South) |
 
 
-
-
-Widget Versions
+## Widget Versions
 ---------------
 We recommend you always specify "latest" as the widget version when creating widgets.
 Check the portal for existing widget versions if you need to create a specific version of a widget.
