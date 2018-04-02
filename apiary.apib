@@ -2127,10 +2127,57 @@ You can list attendee contacts for some attendee
             ]
 
 
-# Group Getting Statistics For Your Event
+# Group Getting Event Statistics
         
 You can get recent statistical data for your event from the API similar to what is present 
 in the Events Manager dashboard.
+
+## Getting Statistics For all Events [/1.0/statistics/{statType}]
+
+You can get cumulative, statistical data for all past and present InGo events.
+
+**SECURITY:** No authentication is required to view these public statistics
+
+As of 0.1.0
+
+### Get Statistics For all Events [GET]
+
++ Parameters
+    + statType: 'Advocates' (string, required) - the type of historical statistics you want to get
+
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                [
+                    {
+                        "year":2017,
+                        "quarter":3,
+                        "confirmed_count":2,
+                        "advocate_count":4,
+                        "manual_count":6,
+                        "attendee_count":10
+                    },
+                    {
+                        "year":2017,
+                        "quarter":4,
+                        "confirmed_count":1,
+                        "advocate_count":0,
+                        "manual_count":1,
+                        "attendee_count":1
+                    },
+                    {
+                        "year":2018,
+                        "quarter":1,
+                        "confirmed_count":0,
+                        "advocate_count":1,
+                        "manual_count":0,
+                        "attendee_count":1
+                    }
+                ]
+            }
 
 ## Getting Statistics For an Event [/1.0/events/{eventId}/statistics{?start,end}]
 
@@ -2141,7 +2188,7 @@ You can get the current statistics for your events.
 As of: 0.1.0
 
 ### Get Statistics For an Event [GET]
-t
+
 + Parameters
     + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
     + start: `2016-02-04T21:06:52.691Z` (string, optional) - start date for period to analyze
