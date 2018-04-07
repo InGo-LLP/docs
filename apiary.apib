@@ -2008,6 +2008,54 @@ As of: 0.1.0
                 }
             ]
 
+# Group Getting Event Advocates
+
+You can get event advocate data for your event, similar to what is present in the Events Manager dashboard
+
+## Getting Event Advocates [/1.0/events/{eventId}/advocates]
+
+You can get the advocates for your event
+
+**SECURITY:** You may only view the advocates for events you have permission to see.
+
+As of: 0.1.0
+
+### Getting Event Advocates [GET]
+
++ Parameters
+    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
+    
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+            
++ Response 200 (application/json)
+    + Body
+    
+            [
+                {
+                    "id":1,
+                    "firstname":"Bill",
+                    "lastname":"Isaguy",
+                    "email":"billisaguy@example.com",
+                    "display_name":"Bill Isaguy",
+                    "company_name":"A Company",
+                    "title":"Senior Employee",
+                    "picture":"https://s3.amazonaws.com/ingo.production.us-east.imgs/IF1UN5SSFM40X503/572431_10151799124414877_70235255277_n.jpg",
+                    "authorized_networks":[1,0],
+                    "linkedin_profile_url":"https://www.linkedin.com/in/link-to-billisaguy",
+                    "network_size":"339",
+                    "registrants_in_network":null,
+                    "posts":0,
+                    "invites":0,
+                    "acquisitions":0,
+                    "registered":false,
+                    "created":"2018-01-18T22:05:21.879Z",
+                    "is_exhibitor":false
+                }
+            ]
+
 
 # Group Getting Network Attending for Registrant
         
