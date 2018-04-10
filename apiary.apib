@@ -2191,41 +2191,39 @@ As of 0.1.0
 ### Get Statistics For all Events [GET]
 
 + Parameters
-    + statType: 'Advocates' (string, required) - the type of historical statistics you want to get
+    + statType: advocates (string, required) - the type of historical statistics you want to get
 
 + Request (application/json)
 
 + Response 200 (application/json)
     + Body
     
-            {
-                [
-                    {
-                        "year":2017,
-                        "quarter":3,
-                        "confirmed_count":2,
-                        "advocate_count":4,
-                        "manual_count":6,
-                        "attendee_count":10
-                    },
-                    {
-                        "year":2017,
-                        "quarter":4,
-                        "confirmed_count":1,
-                        "advocate_count":0,
-                        "manual_count":1,
-                        "attendee_count":1
-                    },
-                    {
-                        "year":2018,
-                        "quarter":1,
-                        "confirmed_count":0,
-                        "advocate_count":1,
-                        "manual_count":0,
-                        "attendee_count":1
-                    }
-                ]
-            }
+            [
+                {
+                    "year":2017,
+                    "quarter":3,
+                    "confirmed_count":2,
+                    "advocate_count":4,
+                    "manual_count":6,
+                    "attendee_count":10
+                },
+                {
+                    "year":2017,
+                    "quarter":4,
+                    "confirmed_count":1,
+                    "advocate_count":0,
+                    "manual_count":1,
+                    "attendee_count":1
+                },
+                {
+                    "year":2018,
+                    "quarter":1,
+                    "confirmed_count":0,
+                    "advocate_count":1,
+                    "manual_count":0,
+                    "attendee_count":1
+                }
+            ]
 
 ## Getting Statistics For an Event [/1.0/events/{eventId}/statistics{?start,end}]
 
