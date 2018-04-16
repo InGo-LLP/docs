@@ -1,0 +1,44 @@
+{
+  lang: {
+    "$name$": [
+      "lang"
+    ],
+    "$category$": "General",
+    "type": "string",
+    "title": "Language",
+    "default": "en",
+    "enum": [
+      "en",
+      "de",
+      "es",
+      "it",
+      "fr",
+      "ru",
+      "nl",
+      "pt-PT",
+      "pt-BR",
+      "zh-CN",
+      "ar",
+      "ja",
+      "tr",
+      "th",
+      "ko-KR"
+    ]
+  },
+  socialService: {
+    "$name$": [
+      "socialService"
+    ],
+    "type": "string",
+    "enum": [
+      "facebook",
+      "linkedin",
+      "google",
+      "twitter",
+      "xing",
+      "vk"
+    ]
+    "title": "Social Network",
+    "$category$": "Networks"
+  }
+}
