@@ -1,5 +1,5 @@
 {
-  lang: {
+  "lang": {
     "$name$": [
       "lang"
     ],
@@ -25,7 +25,7 @@
       "ko-KR"
     ]
   },
-  socialService: {
+  "socialService": {
     "$name$": [
       "socialService"
     ],
