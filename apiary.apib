@@ -410,8 +410,7 @@ As of: 0.1.0
                     "cors_domains": ["*"],
                     "use_post_registration": false,
                     "state": "testing",
-                    "account_id": 1,
-                    "facebook_page_id": "123"
+                    "account_id": 1
                 },
                 {
                     "creator": "user1@letsingo.com",
@@ -430,8 +429,7 @@ As of: 0.1.0
                     "cors_domains": ["*"],
                     "use_post_registration": false,
                     "state": "testing",
-                    "account_id": 1,
-                    "facebook_page_id": "123"
+                    "account_id": 1
                 }
             ]
 
@@ -460,7 +458,6 @@ As of: 0.1.0
     + cors_domains: example.com (array, required) - an array of domains where InGo code will run, or * for any, can be array or comma separated values ("https://one.com,https://two.com")
     + `use_post_registration`: false (boolean) - defauls to false, whether the widgets will be used after the event is over
     + account_id: 1 (number, required) - indicates which account owns this event, use /accounts endpoint to obtain the id
-    + `facebook_page_id`: 140489442646654  (string) - facebook page id used for creating post at facebook
 
 + Request (application/json)
     + Headers
@@ -513,8 +510,7 @@ As of: 0.1.0
             "cors_domains": ["example.com"],
             "use_post_registration": false,
             "state": "testing",
-            "account_id": 1,
-            "facebook_page_id": "123"
+            "account_id": 1
         }
 
 ## Updating Events [/1.0/events/{eventIdToUpdate}/]
@@ -542,7 +538,6 @@ You can update one of your events.
     + `use_post_registration`: false (boolean, optional) - defauls to false, whether the widgets will be used after the event is over
     + live_date: `2016-09-28` (string, optional) - the date your event will go live
     + state: live (string, optional) - one of {live,closed,archived,testing,deleted}
-    + `facebook_page_id`: 140489442646654 (string) - facebook page id to use while posting
 
 + Request (application/json)
     + Headers
@@ -570,8 +565,7 @@ You can update one of your events.
                 "cors_domains": ["example.com"],
                 "use_post_registration": false,
                 "state": "testing",
-                "account_id": 1,
-                "facebook_page_id": "123"
+                "account_id": 1
             }
 
 ## Deleting Events [/1.0/events/{eventIdToDelete}]
