@@ -688,7 +688,6 @@ registrants and social email templates. There are four types of images:
 | Type     | Description                                         | Expected Dimensions |
 |----------|-----------------------------------------------------|---------------------|
 | header-logo | Image used as the header for your events            |       110×45       |
-| social-post-logo | Image used as the image content in registrant posts |       1024×512      |
 | email-banner | Image used within email templates                   |       625×110       |
 | attendee-banner | Image used as the banner to brand the attendee page |       920×120       |
 
@@ -723,7 +722,7 @@ and frankly not the recommended way to execute a file upload API call.
     + Body
 
             -----------------------------386215073532303139996316699
-            Content-Disposition: form-data; name="social-post-logo"; filename="ingologo_with_gradient.png"
+            Content-Disposition: form-data; name="attendee-banner"; filename="ingologo_with_gradient.png"
             Content-Type: application/octet-stream
             
             < encoded data for image >
@@ -735,7 +734,7 @@ and frankly not the recommended way to execute a file upload API call.
             [
                 {
                     "url":"https://s3.amazonaws.com/ingo.development.us-east.imgs/9a821432-92da-41/01cd1e3c-2470-43b1-815b-f78e6c103561.png",
-                    "type":"social-post-logo"
+                    "type":"attendee-banner"
                 }
             ]
 
@@ -803,253 +802,11 @@ As of: 0.1.0
     + Body
     
             {
-                "social-post-logo":
+                "attendee-banner":
                     {
                         "url":"https://s3.amazonaws.com/ingo.development.us-east.imgs/DTXY3NE0YLUJNSME/VF1KWUN52NJ3BFY22JJ3E2GHBES0JQO4.jpg"
                     }
             }
-
-# Group Managing Event Advocacy Templates
-
-Advocacy Templates define the text and urls used for social media interaction.
-Each event has it's own advocacy templates. If you do not define any advocacy 
-templates the master defaults will be used. An advocacy template allows you to 
-customize the way that your advocates interact with social media through posts
-and invites.
-
-Advocacy Template Types:
-
-| Template Type  | Description  |
-|----------------|---------------|
-| advocacy_post | the text used by default for posting by an advocate (Social Widget) |
-| attendee_post | the text used by default for notifying contacts when registering for the event |
-| invitation_subject | the text used for the subject of an invite  |
-| invitation_body | the text used the default text used for an invitation |
-
-Advocacy templates can be customized *per* Social Network. Below are the service sesignations:
-
-| Service Designation | Information |
-|---------|--------| 
-| facebook | Facebook: http://www.facebook.com |
-| linkedin | LinkedIn: http://www.linkedin.com |
-| twitter  | Twitter: http://www.twitter.com |
-| google | Google+: http://plus.google.com |
-| vk | VK: http://www.vk.com |
-
-
-The following languages are supported for custom advocacy templates:
-
-----------------------
-| Locale | Description |
-|--------|------------|
-| en | English |
-| de | German |
-| es | Spanish |
-| it | Italian |
-| fr | French |
-| ru | Russian |
-| nl | Dutch |
-| pt-PT | Portuguese (Portugal) |
-| pt-BR | Portuguese (Brazil) |
-| zh-CN | Chinese (Standard) |
-| ar | Arabic |
-| ja | Japanese |
-| tr | |
-| th | Thai |
-| ko-KR | Korean (South) |
-
-Qualifiers:
-
-| Qualifier | Description |
-|--------|------|
-| url | indicates that the text is the url that should be used in the links for the post or invite |
-
-## Event Advocacy Templates Management [/1.0/events/{eventId}/advocacy-templates]
-
-You can list all of the advocacy templates for one of your events.
-
-**SECURITY:** You may only view advocacy templates for events you have permission to use.
-
-As of: 1.0
-
-### List the Advocacy Templates for an Event [GET]
-
-+ Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the unique ID of the event.
-
-+ Request
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-    
-+ Response 200 (application/json)
-    + Body
-
-            [
-                {
-                    "template_type": "advocacy_post",
-                    "locale": "en",
-                    "text": "Check out The Business Conference"
-                },
-                {
-                    "template_type": "attendee_post",
-                    "locale": "en",
-                    "text": "I just registered for The Business Conference"
-                },
-                {
-                    "social_service": "facebook",
-                    "template_type": "advocacy_post",
-                    "locale": "en",
-                    "text": "Hey friends, check out The Business Conference"
-                },
-                {
-                    "social_service": "facebook",
-                    "template_type": "attendee_post",
-                    "locale": "en",
-                    "text": "Hey friends, I just registered for The Business Conference"
-                }
-            ]
-
-## Advocacy Template [/1.0/events/{eventId}/advocacy-templates{?qualifier,social_service,template_type,locale}]
-
-
-+ Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event
-    + qualifier: url (enum[string], optional) - see qualifiers above
-        + Members
-            + url
-    + social_service: facebook (enum[string], optional) -  the social service designation 
-        + Members
-            + facebook
-            + linkedin
-            + twitter
-            + google
-            + vk
-    + `template_type`: `advocacy_post` (enum[string], required) - the template type
-        + Members
-            + advocacy_post
-            + attendee_post
-            + invitation_subject
-            + invitation_text
-    + locale: en (string, required) - the use this template text only for this locale
-        + Members
-            + ar - Arabic
-            + fr - French 
-            + `pt-PT` - Portuguese (Portugal)
-            + `zh-CN` - Chinese (Standard)
-            + it - Italian 
-            + `pt-BR` - Portuguese (Brazil)
-            + nl - Dutch
-            + de - German
-            + ru - Russian
-            + en - English
-            + es - Spanish        
-    
-
-### Get an Advocacy Template [GET]
-
-You can retrieve an advocacy template.
-
-**SECURITY:** You may only view advocacy templates for events you have permission to use.
-
-As of: 1.0
-
-
-+ Request (application/json)
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-
-    
-+ Response 201 (application/json)
-    + Body
-    
-                {
-                    "qualifier": null,
-                    "template_type": "advocacy_post",
-                    "locale": "en",
-                    "text": "Check out The Business Conference"
-                }
-
-
-### Create an Advocacy Template [POST]
-
-You can create advocacy templates for your event to customize the content of a post or invite. You can 
-change what text appears for posts and invites and what url the post or invite will link to. You can customize
-this behavior for some or all of the supported social networks.
-
-**SECURITY:** You may only create advocacy templates for events you have permission to use.
-
-As of: 1.0
-
-+ Attributes
-    + text: Come experience the best event of the year (string, required) - the text to use
-        
-+ Request (application/json)
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-    
-+ Response 201 (application/json)
-    + Body
-    
-                {
-                    "qualifier": null,
-                    "template_type": "advocacy_post",
-                    "locale": "en",
-                    "text": "Check out The Business Conference"
-                }
-
-### Updating an Advocacy Template [PATCH]
-
-You can update advocacy templates for your event.
-
-**SECURITY:** You may only update advocacy templates for events you have permission to use.
-
-As of: 1.0
-
-
-+ Attributes
-    + text: Come experience the best event of the year (string, required) - the text to use
-        
-+ Request (application/json)
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-    
-+ Response 200 (application/json)
-    + Body
-    
-                {
-                    "qualifier": null,
-                    "template_type": "advocacy_post",
-                    "locale": "en",
-                    "text": "Check out The Business Conference"
-                }
-
-### Removing Advocacy Template [DELETE]
-
-You can remove advocacy template for your event.
-
-**SECURITY:** You may only update advocacy templates for events you have permission to use.
-
-As of: 1.0
-
-+ Request (application/json)
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-
-
-+ Response 200 (application/json)
-    + Body
-    
-                {
-                    "qualifier": null,
-                    "template_type": "advocacy_post",
-                    "locale": "en",
-                    "text": "Check out The Business Conference"
-                }
 
 
 # Group Managing Event Contacts
@@ -1300,194 +1057,225 @@ Please note that the list of parameters documented below are for the latest widg
 
 ## LOGIN (ACTIVATOR) Widget Available Parameters
 -----------------------
-| Parameter | Meaning | Required | Default |
-|--------|---------|-------|---|
-| manual | URL for registrations | true |  |
-| isManualScript | Is registration URL a script? | false | false |
-| newWindow | Open registration URL in new Window | false | false |
-| layout | Layout | false | standard |
-| networks.facebook | Enable Facebook login | false | true |
-| networks.linkedin | Enable LinkedIn login | false | true |
-| networks.google | Enable Google login | false | false |
-| networks.twitter | Enable Twitter login | false | false |
-| networks.vk | Enable VK login | false | false |
-| modal | Run widget as a dialog | false | false |
-| disableClose | Disable dialog close | false | false |
-| autostart | Auto open dialog? | false | false |
-| closeModalOnManual | Close dialog upon manual registration | false | false |
-| authInPopup | Perform social authorization in popup | false | true |
-| fields.email.hide | Hide the email textbox | false | false |
-| fields.firstName.hide | Hide the first name textbox | false | false |
-| fields.lastName.hide | Hide the last name textbox | false | false |
-| fields.companyName.hide | Hide the company textbox | false | false |
-| fields.companyPosition.hide | Hide the position textbox | false | false |
-| fields.allowNotify.hide | Hide the notifications permission checkbox | false | false |
-| fields.allowIdentify.hide | Hide the identify permission checkbox | false | false |
-| previousUrl.url | URL to Redirect to on cancel | false |  |
-| previousUrl.useCurrent | Redirect to the current page on cancel | false | false |
-| breakout | Break out of iframe | false | false |
-| poweredBy | Show 'Powered by InGo' | false | true |
-| forwardQueryString | Forward Query String | false | false |
-| disableManualFields | Disable manual registration | false | false |
-| showManual | Automatically show manual fields | false | false |
-| registerDisplayFields | Slide down the manual fields | false | false |
-| showManualAsButton | Display manual registration option as a button | false | false |
-| registerColor | Manual registration button color | false |  |
-| fields.email.required | Require email? | false | true |
-| fields.firstName.required | Require first name? | false | true |
-| fields.lastName.required | Require last name? | false | true |
-| fields.companyName.required | Require company name? | false | true |
-| fields.companyPosition.required | Require position? | false | true |
-| fields.firstName.defaultValue | Default value for first name input | false |  |
-| fields.lastName.defaultValue | Default value for last name input | false |  |
-| fields.email.defaultValue | Default value for email input | false |  |
-| fields.companyName.defaultValue | Default value for company name input | false |  |
-| fields.companyPosition.defaultValue | Default value for company position input | false |  |
-| fields.allowNotify.defaultValue | Default value for allow to notify permission | false | true |
-| fields.allowIdentify.defaultValue | Default value for allow to identify permission | false | true |
-| lang | Language | false | en |
-| useRadioPermissions | Use radio buttons for permissions | false | false |
-| fields.isExhibitor.defaultValue | Mark all attendees that login through this widget as Exhibitors | false | false |
-| ui.height | Height | false |  |
-| ui.width | Width | false |  |
-| ui.fontFamily | Base font family | false |  |
-| ui.borderWidth | Border width | false |  |
-| ui.borderColor | Border color | false |  |
-| ui.background | Background | false |  |
-| ui.textColor | Base text color | false |  |
-| ui.popup.marginTop | Top margin of widget in popup mode | false |  |
-| simulateServerUnavailable | Simulate InGo widget backend failing to respond | false | false |
-| simulateFailureResponses | Simulate InGo widget backend encountering error | false | false |
-| texts.en.label.button.google | Key label.button.google (en) | false | Google+ |
-| texts.en.label.button.twitter | Key label.button.twitter (en) | false | Twitter |
-| texts.en.label.button.linkedin | Key label.button.linkedin (en) | false | LinkedIn |
-| texts.en.label.button.facebook | Key label.button.facebook (en) | false | Facebook |
-| texts.en.label.button.vk | Key label.button.vk (en) | false | VK |
-| texts.en.label.button.manual | Key label.button.manual (en) | false | Continue |
-| texts.en.label.button.register | Key label.button.register (en) | false | Register Manually |
-| texts.en.label.link.register | Key label.link.register (en) | false | or click here to register with your email |
-| texts.en.label.allowIdentify | Key label.allowIdentify (en) | false | Let people know I'm going to the event |
-| texts.en.label.allowNotify | Key label.allowNotify (en) | false | Notify me when my contacts register |
-| texts.en.tooltip.allowNotify | Key tooltip.allowNotify (en) | false | Events are better together! We will notify you via e-mail when one of your friends registers. |
-| texts.en.tooltip.allowIdentify | Key tooltip.allowIdentify (en) | false | This gives us permission to post on your social profile when you've registered. Announcing your attendance will influence your friends and encourage them to join you. This also gives us permission to display you in the "Who's-In" view for the event and e-mail notifications. |
-| texts.en.label.radio.yes | Key label.radio.yes (en) | false | Yes |
-| texts.en.label.radio.no | Key label.radio.no (en) | false | No |
-| texts.en.placeholder.firstName | Key placeholder.firstName (en) | false | First Name |
-| texts.en.placeholder.lastName | Key placeholder.lastName (en) | false | Last Name |
-| texts.en.placeholder.email | Key placeholder.email (en) | false | Email |
-| texts.en.placeholder.companyName | Key placeholder.companyName (en) | false | Company |
-| texts.en.placeholder.companyPosition | Key placeholder.companyPosition (en) | false | Position |
-| texts.en.header | Key header (en) | false | Register Socially |
-| texts.en.headerSub | Key headerSub (en) | false | Register using social media to speed up your registration, see who's going and invite your friends and contacts! |
-| texts.en.privacyPolicy | Key privacyPolicy (en) | false | Privacy Policy |
-| texts.en.privacyPolicyUrl | Key privacyPolicyUrl (en) | false | https://www.ingo.me/privacy-policy |
+| Parameter | Meaning | Required | Type | Default |
+|--------|---------|-------|-------|---|
+|manual|URL for registrations|yes|string||
+|is-manual-script|Is registration URL a script?|no|boolean|false|
+|new-window|Open registration URL in new Window|no|boolean|false|
+|layout|Layout|no|string|standard|
+|social-services[0]|Social Networks|no|array|facebook|
+|social-services[1]|Social Networks|no|array|linkedin|
+|modal|Run widget as a dialog|no|boolean|false|
+|disable-close|Disable dialog close|no|boolean|false|
+|autostart|Auto open dialog?|no|boolean|false|
+|close-modal-on-manual|Close dialog upon manual registration|no|boolean|false|
+|auth-in-popup|Perform social authorization in popup|no|boolean|true|
+|breakout|Break out of iframe|no|boolean|false|
+|powered-by|Show 'Powered by InGo'|no|boolean|true|
+|forward-query-string|Forward Query String|no|boolean|false|
+|disable-manual-fields|Disable manual registration|no|boolean|false|
+|show-manual|Automatically show manual fields|no|boolean|false|
+|register-display-fields|Slide down the manual fields|no|boolean|false|
+|show-manual-as-button|Display manual registration option as a button|no|boolean|false|
+|register-color|Manual registration button color|no|string||
+|lang|Language|no|string|en|
+|use-radio-permissions|Use radio buttons for permissions|no|boolean|false|
+|simulate-server-unavailable|Simulate InGo widget backend failing to respond|no|boolean|false|
+|simulate-failure-responses|Simulate InGo widget backend encountering error|no|boolean|false|
+|previous-url.url|URL to Redirect to on cancel|no|string||
+|previous-url.use-current|Redirect to the current page on cancel|no|boolean|true|
+|ui.height|Height|no|string||
+|ui.width|Width|no|string||
+|ui.font-family|Base font family|no|string||
+|ui.border-width|Border width|no|string||
+|ui.border-color|Border color|no|string||
+|ui.background|Background|no|string||
+|ui.text-color|Base text color|no|string||
+|fields.email.hide|Hide the email textbox|no|boolean|false|
+|fields.email.required|Require email?|no|boolean|true|
+|fields.email.default-value|Default value for email input|no|string||
+|fields.first-name.hide|Hide the first name textbox|no|boolean|false|
+|fields.first-name.required|Require first name?|no|boolean|true|
+|fields.first-name.default-value|Default value for first name input|no|string||
+|fields.last-name.hide|Hide the last name textbox|no|boolean|false|
+|fields.last-name.required|Require last name?|no|boolean|true|
+|fields.last-name.default-value|Default value for last name input|no|string||
+|fields.company-name.hide|Hide the company textbox|no|boolean|false|
+|fields.company-name.required|Require company name?|no|boolean|true|
+|fields.company-name.default-value|Default value for company name input|no|string||
+|fields.company-position.hide|Hide the position textbox|no|boolean|false|
+|fields.company-position.required|Require position?|no|boolean|true|
+|fields.company-position.default-value|Default value for company position input|no|string||
+|fields.allow-notify.hide|Hide the notifications permission checkbox|no|boolean|false|
+|fields.allow-notify.default-value|Default value for allow to notify permission|no|boolean|true|
+|fields.allow-identify.hide|Hide the identify permission checkbox|no|boolean|false|
+|fields.allow-identify.default-value|Default value for allow to identify permission|no|boolean|true|
+|fields.is-exhibitor.default-value|Mark all attendees that login through this widget as Exhibitors|no|boolean|false|
+|ui.margin-top|Top margin of widget in popup mode|no|string||
+|header.hide|Hide header?|no|boolean|false|
+|sub-header.hide|Hide sub header?|no|boolean|false|
+|footer.hide|Hide footer?|no|boolean|false|
+|texts.en['label.button.google']|label.button.google|no|string|Google+|
+|texts.en['label.button.twitter']|label.button.twitter|no|string|Twitter|
+|texts.en['label.button.linkedin']|label.button.linkedin|no|string|LinkedIn|
+|texts.en['label.button.facebook']|label.button.facebook|no|string|Facebook|
+|texts.en['label.button.xing']|label.button.xing|no|string|Xing|
+|texts.en['label.button.vk']|label.button.vk|no|string|VK|
+|texts.en['label.button.manual']|label.button.manual|no|string|Continue|
+|texts.en['label.button.register']|label.button.register|no|string|Register Manually|
+|texts.en['label.link.register']|label.link.register|no|string|or click here to register with your email|
+|texts.en['label.allow-identify']|label.allowIdentify|no|string|Let people know I&#39;m going to the event|
+|texts.en['label.allow-notify']|label.allowNotify|no|string|Notify me when my contacts register|
+|texts.en['tooltip.allow-notify']|tooltip.allowNotify|no|string|Events are better together! We will notify you via e-mail when one of your friends registers.|
+|texts.en['tooltip.allow-identify']|tooltip.allowIdentify|no|string|This gives us permission to post on your social profile when you&#39;ve registered. Announcing your attendance will influence your friends and encourage them to join you. This also gives us permission to display you in the &quot;Who&#39;s-In&quot; view for the event and e-mail notifications.|
+|texts.en['label.radio.yes']|label.radio.yes|no|string|Yes|
+|texts.en['label.radio.no']|label.radio.no|no|string|No|
+|texts.en['placeholder.first-name']|placeholder.firstName|no|string|First Name|
+|texts.en['placeholder.last-name']|placeholder.lastName|no|string|Last Name|
+|texts.en['placeholder.email']|placeholder.email|no|string|Email|
+|texts.en['placeholder.company-name']|placeholder.companyName|no|string|Company|
+|texts.en['placeholder.company-position']|placeholder.companyPosition|no|string|Position|
+|texts.en.header|header|no|string|Register Socially|
+|texts.en.header-sub|headerSub|no|string|Register using social media to speed up your registration, see who&#39;s going and invite your friends and contacts!|
+|texts.en.privacy-policy|privacyPolicy|no|string|Privacy Policy|
+|texts.en.privacy-policy-url|privacyPolicyUrl|no|string|https://www.ingo.me/privacy-policy|
 
+IMPORTANT: Community events should have field `fields.allow-identify.hide` set to `true` 
+always (or you will get according error). Like this:
+```json
+{ 
+  "params": {
+    "fields": {
+      "allowIdentify": {
+        "hide": true
+      }
+    }
+  }
+}
+```
 
 ## SOCIAL (AMPLIFIER) Widget Available Parameters
 -----------------------
-| Parameter Name | Meaning | Required | Default |
-|-----|---------|-------|---|
-| networks.facebook | Is facebook login enabled? | false | true |
-| networks.linkedin | Is linkedin login enabled? | false | true |
-| networks.google | Is google login enabled? | false | false |
-| networks.twitter | Is twitter login enabled? | false | true |
-| networks.vk | Is VK login enabled? | false | false |
-| show | Which tab to show? | false | invitation |
-| lang | Language | false | en |
-| showTab.invitation | Show Invites Tab? | false | true |
-| showTab.whosin | Show Who is In Tab? | false | true |
-| showTab.share | Show Share Tab? | false | true |
-| preselectedContacts.facebook | How many facebook contacts preselected? | false | 6 |
-| preselectedContacts.linkedin | How many linkedin contacts preselected? | false | 6 |
-| preselectedContacts.twitter | How many twitter contacts preselected? | false | 0 |
-| preselectedContacts.google | How many google contacts preselected? | false | 0 |
-| preselectedContacts.vk | How many vk contacts preselected? | false | 6 |
-| poweredBy | Show 'Powered by InGo' | false | true |
-| ui.height | Height | false |  |
-| ui.width | Width | false |  |
-| ui.fontFamily | Base font family | false |  |
-| ui.borderWidth | Border width | false |  |
-| ui.borderColor | Border color | false |  |
-| ui.background | Background | false |  |
-| ui.textColor | Base text color | false |  |
-| filters.filterLastNDays | Show registrants from the last N days in Who's In | false | -1 |
-| filters.filterWithPicsOnly | Show only registrants that have pictures | false | false |
-| texts.en.dropdown.logout | Key dropdown.logout (en) | false | Logout |
-| texts.en.authButton.linkedin | Key authButton.linkedin (en) | false | LinkedIn |
-| texts.en.authButton.google | Key authButton.google (en) | false | Google |
-| texts.en.authButton.twitter | Key authButton.twitter (en) | false | Twitter |
-| texts.en.authButton.facebook | Key authButton.facebook (en) | false | Facebook |
-| texts.en.authButton.vk | Key authButton.vk (en) | false | VK |
-| texts.en.whosin.tabName | Key whosin.tabName (en) | false | Who's In |
-| texts.en.whosin.subHeader.welcome | Key whosin.subHeader.welcome (en) | false | See who is attending. Experience an event tailored to you. |
-| texts.en.whosin.search.placeholder | Key whosin.search.placeholder (en) | false | Search people who are attending |
-| texts.en.whosin.nousers.placeholder | Key whosin.nousers.placeholder (en) | false | There are no attendees here yet. |
-| texts.en.whosin.tooltip.social-filter | Key whosin.tooltip.social-filter (en) | false | Click to filter by your {service} contacts |
-| texts.en.invitation.tabName | Key invitation.tabName (en) | false | Invites |
-| texts.en.invitation.subHeader.NotAuthed | Key invitation.subHeader.NotAuthed (en) | false | Sign in socially |
-| texts.en.invitation.subHeader.welcome | Key invitation.subHeader.welcome (en) | false | Invite your contacts. Experience an event tailored to you. |
-| texts.en.invitation.subHeader.Authed | Key invitation.subHeader.Authed (en) | false | Invite your contacts. Select from the list below then enter a message. |
-| texts.en.invitation.search.placeholder | Key invitation.search.placeholder (en) | false | Search people, titles, companies, etc |
-| texts.en.invitation.sendInvite.inProcess | Key invitation.sendInvite.inProcess (en) | false | Inviting... |
-| texts.en.invitation.sendInvite.invite | Key invitation.sendInvite.invite (en) | false | Invite {count, plural, one{1 contact} other{# contacts}} |
-| texts.en.invitation.preview.placeholder | Key invitation.preview.placeholder (en) | false | You should come because ... |
-| texts.en.invitation.preview.placeholder.facebook | Key invitation.preview.placeholder.facebook (en) | false | You are tagging your Facebook friends publicly, say something to encourage them to come to the show! |
-| texts.en.invitation.filter.someSelected | Key invitation.filter.someSelected (en) | false | Show selected |
-| texts.en.invitation.filter.showAll | Key invitation.filter.showAll (en) | false | Show all |
-| texts.en.invitation.popup.invitesQueued.title | Key invitation.popup.invitesQueued.title (en) | false | {count, plural, one{Invite On Its Way!} other{# Invites On Their Way!}} |
-| texts.en.invitation.popup.invitesQueued.text | Key invitation.popup.invitesQueued.text (en) | false | Congratulations!&lt;br/&gt;Select more friends and colleagues to join you.&lt;br/&gt;&lt;small&gt;Please note that due to social network limitations, if you send a large number of invites, your invites may be delayed, and be sent out over the next few days or even weeks.&lt;/small&gt; |
-| texts.en.invitation.popup.invitesQueued.button | Key invitation.popup.invitesQueued.button (en) | false | Invite More |
-| texts.en.invitation.popup.groupMessage.title | Key invitation.popup.groupMessage.title (en) | false | Invites Ready To Send... |
-| texts.en.invitation.popup.groupMessage.text | Key invitation.popup.groupMessage.text (en) | false | &lt;b&gt;You've selected {count} contacts.&lt;/b&gt;&lt;br/&gt;Do you want to send these invites &lt;b&gt;individually&lt;/b&gt; or as a &lt;b&gt;group&lt;/b&gt; message? |
-| texts.en.invitation.popup.groupMessage.button.single | Key invitation.popup.groupMessage.button.single (en) | false | Send Individually |
-| texts.en.invitation.popup.groupMessage.button.group | Key invitation.popup.groupMessage.button.group (en) | false | Send Group Message |
-| texts.en.invitation.popup.tooManySelected.title | Key invitation.popup.tooManySelected.title (en) | false | Oops... |
-| texts.en.invitation.popup.tooManySelected.text | Key invitation.popup.tooManySelected.text (en) | false | You have selected more than {count} contacts. You may send invites to these contacts, but be advised that they will be delayed and sent out over the next few days or even weeks due to social network limitations. If you are inviting your entire network, please consider using our Share feature instead. |
-| texts.en.invitation.popup.tooManySelected.button | Key invitation.popup.tooManySelected.button (en) | false | Close |
-| texts.en.share.tabName | Key share.tabName (en) | false | Share |
-| texts.en.share.subHeader.Authed | Key share.subHeader.Authed (en) | false | Events are better together. Share thoughts with your friends. |
-| texts.en.share.sendPost.inProcess | Key share.sendPost.inProcess (en) | false | Sending Post... |
-| texts.en.share.sendPost.title | Key share.sendPost.title (en) | false | Please select a social network to post about the event |
-| texts.en.share.sendPost.post | Key share.sendPost.post (en) | false | Post |
-| texts.en.share.sendPost.postTo | Key share.sendPost.postTo (en) | false | Post to {service} |
-| texts.en.share.popup.postSent.title | Key share.popup.postSent.title (en) | false | Post Sent |
-| texts.en.share.popup.postSent.text | Key share.popup.postSent.text (en) | false | Thanks! Share on another network. |
-| texts.en.share.popup.postSent.button | Key share.popup.postSent.button (en) | false | Share Again |
-| texts.en.error.blankMessage | Key error.blankMessage (en) | false | Please provide a message |
-| texts.en.error.twitterMessageLength | Key error.twitterMessageLength (en) | false | Twitter message must be under 280 characters |
-| texts.en.error.facebookContactsCount | Key error.facebookContactsCount (en) | false | Cannot tag more than 10 persons in a Facebook invitation |
-| texts.en.error.vkFriendsCount | Key error.vkFriendsCount (en) | false | Cannot tag more than 10 persons in a VK invitation |
+
+| Parameter | Meaning | Required | Type | Default |
+|--------|---------|-------|-------|---|
+|social-services[0]|Social Networks|no|array|facebook|
+|social-services[1]|Social Networks|no|array|linkedin|
+|lang|Language|no|string|en|
+|show|Which tab to show?|no|string|invitation|
+|tabs[0]|Which tabs to show?|no|array|whosin|
+|tabs[1]|Which tabs to show?|no|array|invitation|
+|tabs[2]|Which tabs to show?|no|array|share|
+|powered-by|Show 'Powered by InGo'|no|boolean|true|
+|preselected-contacts.facebook|How many facebook contacts preselected?|no|integer|6|
+|preselected-contacts.linkedin|How many linkedin contacts preselected?|no|integer|6|
+|preselected-contacts.twitter|How many twitter contacts preselected?|no|integer|0|
+|preselected-contacts.google|How many google contacts preselected?|no|integer|0|
+|preselected-contacts.vk|How many vk contacts preselected?|no|integer|6|
+|ui.height|Height|no|string||
+|ui.width|Width|no|string||
+|ui.font-family|Base font family|no|string||
+|ui.border-width|Border width|no|string||
+|ui.border-color|Border color|no|string||
+|ui.background|Background|no|string||
+|ui.text-color|Base text color|no|string||
+|filters.filter-last-n-days|Show registrants from the last N days in Who's In|no|integer|-1|
+|filters.filter-with-pics-only|Show only registrants that have pictures|no|boolean|false|
+|texts.en['dropdown.logout']|dropdown.logout|no|string|Logout|
+|texts.en['auth-button.linkedin']|authButton.linkedin|no|string|LinkedIn|
+|texts.en['auth-button.google']|authButton.google|no|string|Google|
+|texts.en['auth-button.twitter']|authButton.twitter|no|string|Twitter|
+|texts.en['auth-button.facebook']|authButton.facebook|no|string|Facebook|
+|texts.en['auth-button.xing']|authButton.xing|no|string|Xing|
+|texts.en['auth-button.vk']|authButton.vk|no|string|VK|
+|texts.en['whosin.tab-name']|whosin.tabName|no|string|Who&#39;s In|
+|texts.en['whosin.sub-header.welcome']|whosin.subHeader.welcome|no|string|See who is attending. Experience an event tailored to you.|
+|texts.en['whosin.search.placeholder']|whosin.search.placeholder|no|string|Search people who are attending|
+|texts.en['whosin.nousers.placeholder']|whosin.nousers.placeholder|no|string|There are no attendees here yet.|
+|texts.en['whosin.tooltip.social-filter']|whosin.tooltip.social-filter|no|string|Click to filter by your {service} contacts|
+|texts.en['invitation.tab-name']|invitation.tabName|no|string|Invites|
+|texts.en['invitation.sub-header.-not-authed']|invitation.subHeader.NotAuthed|no|string|Sign in socially|
+|texts.en['invitation.sub-header.welcome']|invitation.subHeader.welcome|no|string|Invite your contacts. Experience an event tailored to you.|
+|texts.en['invitation.sub-header.-authed']|invitation.subHeader.Authed|no|string|Invite your contacts. Select from the list below then enter a message.|
+|texts.en['invitation.sub-header.no-invites.title']|invitation.subHeader.noInvites.title|no|string|Invites Unavailable|
+|texts.en['invitation.sub-header.no-invites.message']|invitation.subHeader.noInvites.message|no|string|{service} invites are currently not supported due to social network restrictions|
+|texts.en['invitation.switch-networks.title']|invitation.switchNetworks.title|no|string|To Send Invites, Switch To:|
+|texts.en['invitation.search.placeholder']|invitation.search.placeholder|no|string|Search people, titles, companies, etc|
+|texts.en['invitation.send-invite.in-process']|invitation.sendInvite.inProcess|no|string|Inviting...|
+|texts.en['invitation.send-invite.invite']|invitation.sendInvite.invite|no|string|Invite {count, plural, one{1 contact} other{# contacts}}|
+|texts.en['invitation.preview.placeholder']|invitation.preview.placeholder|no|string|You should come because ...|
+|texts.en['invitation.preview.placeholder.facebook']|invitation.preview.placeholder.facebook|no|string|You are tagging your Facebook friends publicly, say something to encourage them to come to the show!|
+|texts.en['invitation.filter.some-selected']|invitation.filter.someSelected|no|string|Show selected|
+|texts.en['invitation.filter.show-all']|invitation.filter.showAll|no|string|Show all|
+|texts.en['invitation.popup.invites-queued.title']|invitation.popup.invitesQueued.title|no|string|{count, plural, one{Invite On Its Way!} other{# Invites On Their Way!}}|
+|texts.en['invitation.popup.invites-queued.text']|invitation.popup.invitesQueued.text|no|string|Congratulations!&lt;br/&gt;Select more friends and colleagues to join you.&lt;br/&gt;&lt;small&gt;Please note that due to social network limitations, if you send a large number of invites, your invites may be delayed, and be sent out over the next few days or even weeks.&lt;/small&gt;|
+|texts.en['invitation.popup.invites-queued.button']|invitation.popup.invitesQueued.button|no|string|Invite More|
+|texts.en['invitation.popup.group-message.title']|invitation.popup.groupMessage.title|no|string|Invites Ready To Send...|
+|texts.en['invitation.popup.group-message.text']|invitation.popup.groupMessage.text|no|string|&lt;b&gt;You&#39;ve selected {count} contacts.&lt;/b&gt;&lt;br/&gt;Do you want to send these invites &lt;b&gt;individually&lt;/b&gt; or as a &lt;b&gt;group&lt;/b&gt; message?|
+|texts.en['invitation.popup.group-message.button.single']|invitation.popup.groupMessage.button.single|no|string|Send Individually|
+|texts.en['invitation.popup.group-message.button.group']|invitation.popup.groupMessage.button.group|no|string|Send Group Message|
+|texts.en['invitation.popup.too-many-selected.title']|invitation.popup.tooManySelected.title|no|string|Oops...|
+|texts.en['invitation.popup.too-many-selected.text']|invitation.popup.tooManySelected.text|no|string|You have selected more than {count} contacts. You may send invites to these contacts, but be advised that they will be delayed and sent out over the next few days or even weeks due to social network limitations.|
+|texts.en['invitation.popup.too-many-selected.alternative.text']|invitation.popup.tooManySelected.alternative.text|no|string|If you are inviting your entire network, please consider using our Share feature instead.|
+|texts.en['invitation.popup.too-many-too-late-selected.text']|invitation.popup.tooManyTooLateSelected.text|no|string|This event is also {days} days away. Some of your invites may not be sent until after the event has begun.|
+|texts.en['invitation.popup.too-many-selected.close.button']|invitation.popup.tooManySelected.close.button|no|string|Close|
+|texts.en['invitation.popup.too-many-selected.send-anyway.button']|invitation.popup.tooManySelected.sendAnyway.button|no|string|Send Anyway|
+|texts.en['share.tab-name']|share.tabName|no|string|Share|
+|texts.en['share.sub-header.-authed']|share.subHeader.Authed|no|string|Events are better together. Share thoughts with your friends.|
+|texts.en['share.send-post.in-process']|share.sendPost.inProcess|no|string|Sending Post...|
+|texts.en['share.send-post.title']|share.sendPost.title|no|string|Please select a social network to post about the event|
+|texts.en['share.send-post.post']|share.sendPost.post|no|string|Post|
+|texts.en['share.send-post.post-to']|share.sendPost.postTo|no|string|Post to {service}|
+|texts.en['share.popup.post-sent.title']|share.popup.postSent.title|no|string|Post Sent|
+|texts.en['share.popup.post-sent.text']|share.popup.postSent.text|no|string|Thanks! Share on another network.|
+|texts.en['share.popup.post-sent.button']|share.popup.postSent.button|no|string|Share Again|
+|texts.en['share.preview.placeholder']|share.preview.placeholder|no|string|You are posting to your social network. Say something to encourage others to attend!|
+|texts.en['share.preview.placeholder.facebook']|share.preview.placeholder.facebook|no|string|You are posting to your Facebook wall. Say something to encourage your friends to attend!|
+|texts.en['error.blank-message']|error.blankMessage|no|string|Please provide a message|
+|texts.en['error.twitter-message-length']|error.twitterMessageLength|no|string|Twitter message must be under 280 characters|
+|texts.en['error.facebook-contacts-count']|error.facebookContactsCount|no|string|Cannot tag more than 10 persons in a Facebook invitation|
+|texts.en['error.vk-friends-count']|error.vkFriendsCount|no|string|Cannot tag more than 10 persons in a VK invitation|
+
+IMPORTANT: Community events should have field `tabs` set to `["whosin"]`. Example:
+```json
+{
+  "params": {
+    "tabs": ["whosin"]
+  }
+}
+```
+
 
 ## CONFIRMATION (AUTHORIZER) Widget Available Parameters
 ------------------
-| Parameter | Meaning | Required | Default |
-|---|---|---|---|
-| attendee.email | Email | false |  |
-| attendee.firstName | First name | false |  |
-| attendee.lastName | Last name | false |  |
-| attendee.company | Company name | false |  |
-| attendee.title | Company position | false |  |
-| attendee.additional | Is the confirmed attendee an additional one? | false | false |
-| attendee.externalRegistrationId | External Registration ID | false |  |
-| attendee.isExhibitor | Is the confirmed attendee an exhibitor? | false | false |
-| lang | Locale of widget | false |  |
-| load | Should widget load user information from browser session? | false | true |
+| Parameter | Meaning | Required | Type | Default |
+|--------|---------|-------|-------|---|
+|lang|Locale of widget|no|string|en|
+|load|Should widget load user information from browser session?|no|boolean|true|
+|attendee.email|Email|no|string||
+|attendee.first-name|First name|no|string||
+|attendee.last-name|Last name|no|string||
+|attendee.company|Company name|no|string||
+|attendee.title|Company position|no|string||
+|attendee.additional|Is the confirmed attendee an additional one?|no|boolean|false|
+|attendee.external-registration-id|External Registration ID|no|string||
+|attendee.is-exhibitor|Is the confirmed attendee an exhibitor?|no|boolean|false|
 
 ## REGISTRATION (AUTO-FILLER) Widget Available Parameters
 ------------------
-| Parameter | Meaning | Required | Default |
-|---|---|---|---|
-| fields.user.firstName | Selector for user first name | false |  |
-| fields.user.lastName | Selector for user last name | false |  |
-| fields.user.email | Selector for user email | false |  |
-| fields.user.industry | Selector for user industry | false |  |
-| fields.user.interests | Selector for user interests | false |  |
-| fields.user.company_position | Selector for user's company position | false |  |
-| fields.user.company | Selector for user's company name | false |  |
-| fields.user.twitter.username | Selector for user's twitter username | false |  |
-| fields.user.linkedin.profileUrl | Selector for user's LinkedIn profile url | false |  |
-| fields.user.pictureUrl | Selector for user's picture (img src will be replaced) | false |  |
-| save | Sync user's information back to InGo? | false | true |
+| Parameter | Meaning | Required | Type | Default |
+|--------|---------|-------|-------|---|
+|fields.user.first-name|Selector for user first name|no|string|undefined|
+|fields.user.last-name|Selector for user last name|no|string|undefined|
+|fields.user.email|Selector for user email|no|string|undefined|
+|fields.user.industry|Selector for user industry|no|string|undefined|
+|fields.user.interests|Selector for user interests|no|string|undefined|
+|fields.user.company_position|Selector for user's company position|no|string|undefined|
+|fields.user.company|Selector for user's company name|no|string|undefined|
+|fields.user.twitter.username|Selector for user's twitter username|no|string|undefined|
+|fields.user.linkedin.profile-url|Selector for user's LinkedIn profile url|no|string|undefined|
+|fields.user.picture-url|Selector for user's picture (img src will be replaced)|no|string|undefined|
+|save|Sync user's information back to InGo?|no|boolean|true|
 
 
 
@@ -1526,6 +1314,42 @@ DO NOT specify these parameters with dot notation.
 | th | Thai |
 | ko-KR | Korean (South) |
 
+## Templates in widgets
+
+Widgets templates is objects with keys which are template types.
+For social widget it is 'share-post' and 'invitation-message'.
+For confirmation widget it is 'advocacy-post'.
+Each template type is an array of object each containing such keys (all values is strings):
+ * url - used as <Conference URL> value in template
+ * text - template text
+ * picture - picture url to be used while posting
+ * socialService - one of social services or word default (to be used for all social services)
+ * lang - language of post (default is en)
+ 
+Example of templates:
+```json
+{ "templates": {
+    "share-post": [
+        {
+            "url": "http://www.dropbox.com",
+            "lang": "en",
+            "text": "Link <Conference URL>",
+            "picture": "",
+            "socialService": "default"
+        }
+    ],
+    "invitation-message": [
+        {
+            "url": "http://www.ingo.me",
+            "lang": "en",
+            "text": "Test <Conference URL>",
+            "picture": "",
+            "socialService": "default"
+        }
+    ]
+}
+}
+```
 
 ## Widget Versions
 ---------------
@@ -1551,6 +1375,7 @@ As of: 0.1.0
     + custom_css (array) - optional array of custom css urls
     + custom_js (array) - optional array of custom js urls
     + params (object, required) - the parameters for the widget
+    + templates (object) - object with templates used for social network posting (used only by confrimation and social widgets)
         
 + Request (application/json)
     + Headers
@@ -1561,21 +1386,34 @@ As of: 0.1.0
     + Body
     
             {
-                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
+                "unique_id": "7681F0F5C0324518A21EB2D7CF779AE4",
                 "type": "social",
-                "key": "social-S5LI",
-                "version": "0.5.1",
-                "conference_id": "431",
-                "custom_css":
-                [
-                ],
-                "custom_js":
-                [
-                ],
-                "json": "{"css":["http://cdn.ingo.me/widgets-social/0.5.1/css/ingo.social.widget.css"],"js":["http://cdn.ingo.me/widgets-social/0.5.1/js/ingo.social.widget.js"],"useJQuery":true,"type":"social","version":"0.5.1","status":0,"params":{"ingoId":"BA8A4314276C45398FFEA33C55CD3F96"}}",
-                "created_at": "2016-02-04T21:06:52.691Z",
-                "status": "Production Ready",
-                "script": "<script src=\"https://cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5\"></script>"
+                "version": "2.9.10",
+                "custom_css": [],
+                "custom_js": [],
+                "json": "{\"js\":[\"https://cdn-staging.ingo.me/widgets-social/2.9.10/js/ingo.social.widget.min.js\"],\"css\":[\"https://cdn-staging.ingo.me/widgets-social/2.9.10/css/ingo.social.widget.min.css\"],\"type\":\"social\",\"version\":\"2.9.10\",\"params\":{\"socialServices\":[\"facebook\",\"linkedin\",\"twitter\",\"vk\"],\"ingoId\":\"783F0CB16B44420CBB6939AB67648830\",\"eventState\":\"testing\",\"widgetId\":\"7681F0F5C0324518A21EB2D7CF779AE4\",\"baseUrl\":\"https://api-staging.ingo.me\",\"cdnUrl\":\"https://cdn-staging.ingo.me\"},\"mandatoryParams\":{\"enabled\":true}}",
+                "created_at": "2018-06-13T11:18:53.789Z",
+                "script": "<script src=\"https://cdn-staging.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"7681F0F5C0324518A21EB2D7CF779AE4\"></script>",
+                "templates": {
+                    "share-post": [
+                        {
+                            "url": "http://www.dropbox.com",
+                            "lang": "en",
+                            "text": "Link <Conference URL>",
+                            "picture": "",
+                            "socialService": "default"
+                        }
+                    ],
+                    "invitation-message": [
+                        {
+                            "url": "http://www.ingo.me",
+                            "lang": "en",
+                            "text": "Test <Conference URL>",
+                            "picture": "",
+                            "socialService": "default"
+                        }
+                    ]
+                }
             }
 
 ## Listing Widgets [/1.0/events/{eventId}/widget-configs]
@@ -1600,40 +1438,74 @@ As of: 0.1.0
     + Body
 
             [
-                {
-                    "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
-                    "type": "social",
-                    "key": "social-S5LI",
-                    "version": "0.5.1",
-                    "conference_id": "431",
-                    "custom_css":
-                    [
-                    ],
-                    "custom_js":
-                    [
-                    ],
-                    "json": "{"css":["http://cdn.ingo.me/widgets-social/0.5.1/css/ingo.social.widget.css"],"js":["http://cdn.ingo.me/widgets-social/0.5.1/js/ingo.social.widget.js"],"useJQuery":true,"type":"social","version":"0.5.1","status":0,"params":{"ingoId":"BA8A4314276C45398FFEA33C55CD3F96"}}",
-                    "created_at": "2016-02-04T21:06:52.691Z",
-                    "status": "Production Ready"
-                    "script": "<script src=\"https://cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5\"></script>"
-                },
-                {
-                    "unique_id": "T4IGMGRFQIPHWZE5LSYCQDY32SU1FSP3",
-                    "type": "login",
-                    "key": "login-S5LI",
-                    "version": "0.1.0",
-                    "conference_id": "431",
-                    "custom_css":
-                    [
-                    ],
-                    "custom_js":
-                    [
-                    ],
-                    "json": "{"css":["http://cdn.ingo.me/widgets-login/0.1.0/css/ingo.login.widget.css"],"js":["http://cdn.ingo.me/widgets-login/0.1.0/js/ingo.login.widget.js"],"useJQuery":true,"type":"login","version":"0.1.0","status":0,"params":{"ingoId":"BA8A4314276C45398FFEA33C55CD3F96"}}",
-                    "created_at": "2016-02-04T21:06:52.691Z",
-                    "status": "Production Ready"
-                    "script": "<script src=\"https://cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"T4IGMGRFQIPHWZE5LSYCQDY32SU1FSP3\"></script>"
+              {
+                "unique_id": "4CDAC4C4EDF44C349776C1BCC2770981",
+                "type": "login",
+                "version": "2.12.7",
+                "custom_css": [],
+                "custom_js": [],
+                "json":
+                  "{\"js\":[\"https://cdn-staging.ingo.me/widgets-login/2.12.7/js/ingo.login.widget.min.js\"],\"css\":[\"https://cdn-staging.ingo.me/widgets-login/2.12.7/css/ingo.login.widget.min.css\"],\"type\":\"login\",\"version\":\"2.12.7\",\"params\":{\"manual\":\"http://www.mailinator.com\",\"socialServices\":[\"facebook\",\"linkedin\",\"twitter\",\"vk\"],\"ingoId\":\"783F0CB16B44420CBB6939AB67648830\",\"eventState\":\"testing\",\"widgetId\":\"4CDAC4C4EDF44C349776C1BCC2770981\",\"baseUrl\":\"https://api-staging.ingo.me\",\"cdnUrl\":\"https://cdn-staging.ingo.me\"},\"mandatoryParams\":{\"enabled\":true}}",
+                "created_at": "2018-06-13T11:19:00.602Z",
+                "script":
+                  "<script src=\"https://cdn-staging.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"4CDAC4C4EDF44C349776C1BCC2770981\" data-ingo-manual=\"http://www.insert_your_next_page_where_users_should_land.com\"></script>",
+                "templates": {}
+              },
+              {
+                "unique_id": "7681F0F5C0324518A21EB2D7CF779AE4",
+                "type": "social",
+                "version": "2.9.10",
+                "custom_css": [],
+                "custom_js": [],
+                "json":
+                  "{\"js\":[\"https://cdn-staging.ingo.me/widgets-social/2.9.10/js/ingo.social.widget.min.js\"],\"css\":[\"https://cdn-staging.ingo.me/widgets-social/2.9.10/css/ingo.social.widget.min.css\"],\"type\":\"social\",\"version\":\"2.9.10\",\"params\":{\"socialServices\":[\"facebook\",\"linkedin\",\"twitter\",\"vk\"],\"ingoId\":\"783F0CB16B44420CBB6939AB67648830\",\"eventState\":\"testing\",\"widgetId\":\"7681F0F5C0324518A21EB2D7CF779AE4\",\"baseUrl\":\"https://api-staging.ingo.me\",\"cdnUrl\":\"https://cdn-staging.ingo.me\"},\"mandatoryParams\":{\"enabled\":true}}",
+                "created_at": "2018-06-13T11:18:53.789Z",
+                "script":
+                  "<script src=\"https://cdn-staging.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"7681F0F5C0324518A21EB2D7CF779AE4\"></script>",
+                "templates": {
+                  "share-post": [
+                    {
+                      "url": "http://www.dropbox.com",
+                      "lang": "en",
+                      "text": "Link <Conference URL>",
+                      "picture": "",
+                      "socialService": "default"
+                    }
+                  ],
+                  "invitation-message": [
+                    {
+                      "url": "http://www.ingo.me",
+                      "lang": "en",
+                      "text": "Test <Conference URL>",
+                      "picture": "",
+                      "socialService": "default"
+                    }
+                  ]
                 }
+              },
+              {
+                "unique_id": "DA34BE09296543F9BF0BAECDA8DEFAC7",
+                "type": "confirmation",
+                "version": "1.0.25",
+                "custom_css": [],
+                "custom_js": [],
+                "json":
+                  "{\"js\":[\"https://cdn-staging.ingo.me/widgets-confirmation/1.0.25/js/ingo.confirmation.widget.min.js\"],\"css\":[],\"type\":\"confirmation\",\"version\":\"1.0.25\",\"params\":{\"ingoId\":\"783F0CB16B44420CBB6939AB67648830\",\"eventState\":\"testing\",\"widgetId\":\"DA34BE09296543F9BF0BAECDA8DEFAC7\",\"baseUrl\":\"https://api-staging.ingo.me\",\"cdnUrl\":\"https://cdn-staging.ingo.me\"},\"mandatoryParams\":{\"enabled\":true}}",
+                "created_at": "2018-06-13T11:19:06.194Z",
+                "script":
+                  "<script src=\"https://cdn-staging.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"DA34BE09296543F9BF0BAECDA8DEFAC7\" data-ingo-attendee.email=\"Your_system_email_param\" data-ingo-attendee.first-name=\"Your_system_firstname_param\" data-ingo-attendee.last-name=\"Your_system_lastname_param\" data-ingo-attendee.company=\"Your_system_company_param\" data-ingo-attendee.title=\"Your_system_title_or_position_param\" data-ingo-attendee.external-registration-id=\"Your_system_generated_external_id\"></script>",
+                "templates": {
+                  "advocacy-post": [
+                    {
+                      "url": "http://www.mailinator.com",
+                      "lang": "en",
+                      "text": "Check <Conference URL>",
+                      "picture": "",
+                      "socialService": "default"
+                    }
+                  ]
+                }
+              }
             ]
 
 
@@ -1660,21 +1532,17 @@ As of: 0.1.0
     + Body
 
             {
-                "unique_id": "LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5",
-                "type": "social",
-                "key": "social-S5LI",
-                "version": "0.5.1",
-                "conference_id": "431",
-                "custom_css":
-                [
-                ],
-                "custom_js":
-                [
-                ],
-                "json": "{"css":["http://cdn.ingo.me/widgets-social/0.5.1/css/ingo.social.widget.css"],"js":["http://cdn.ingo.me/widgets-social/0.5.1/js/ingo.social.widget.js"],"useJQuery":true,"type":"social","version":"0.5.1","status":0,"params":{"ingoId":"BA8A4314276C45398FFEA33C55CD3F96"}}",
-                "created_at": "2016-02-04T21:06:52.691Z",
-                "status": "Production Ready",
-                "script": "<script src=\"https://cdn.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"LSYCQDY32SU1FSP3T4IGMGRFQIPHWZE5\"></script>"
+                "unique_id": "4CDAC4C4EDF44C349776C1BCC2770981",
+                "type": "login",
+                "version": "2.12.7",
+                "custom_css": [],
+                "custom_js": [],
+                "json":
+                  "{\"js\":[\"https://cdn-staging.ingo.me/widgets-login/2.12.7/js/ingo.login.widget.min.js\"],\"css\":[\"https://cdn-staging.ingo.me/widgets-login/2.12.7/css/ingo.login.widget.min.css\"],\"type\":\"login\",\"version\":\"2.12.7\",\"params\":{\"manual\":\"http://www.mailinator.com\",\"socialServices\":[\"facebook\",\"linkedin\",\"twitter\",\"vk\"],\"ingoId\":\"783F0CB16B44420CBB6939AB67648830\",\"eventState\":\"testing\",\"widgetId\":\"4CDAC4C4EDF44C349776C1BCC2770981\",\"baseUrl\":\"https://api-staging.ingo.me\",\"cdnUrl\":\"https://cdn-staging.ingo.me\"},\"mandatoryParams\":{\"enabled\":true}}",
+                "created_at": "2018-06-13T11:19:00.602Z",
+                "script":
+                  "<script src=\"https://cdn-staging.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"4CDAC4C4EDF44C349776C1BCC2770981\" data-ingo-manual=\"http://www.insert_your_next_page_where_users_should_land.com\"></script>",
+                "templates": {}
             }
 
 ## Deleting Widgets [/1.0/events/{eventId}/widget-configs/{widgetIdToDelete}/]
@@ -1721,6 +1589,7 @@ As of: 0.1.0
     + custom_css (array) - optional array of custom css urls
     + custom_js (array) - optional array of custom js urls
     + params (object) - the parameters for the widget
+    + templates (object) - the templates for the widget
 
 + Request (application/json)
     + Headers
