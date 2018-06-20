@@ -1027,6 +1027,23 @@ You can remove contacts you've previously created for your event.
                 "cost": 10
             }
 
+### Create bew Event Keywords [PUT]
+
++ Attributes
+    + value: abc (string, required) - text to be used for keywords extraction, only new keywords will be added
+    + cost: 1 (number) - cost of this keywords, default 1
+    
++ Request (application/json)
+    + Headers
+    
+            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
+
++ Response 201 (application/json)
+
+    + Body
+    
+            [
+            ]
 
 # Group Managing Widgets
 
