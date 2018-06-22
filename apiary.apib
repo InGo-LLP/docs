@@ -1393,6 +1393,7 @@ As of: 0.1.0
     + custom_js (array) - optional array of custom js urls
     + params (object, required) - the parameters for the widget
     + templates (object) - object with templates used for social network posting (used only by confrimation and social widgets)
+    + description (string) - the name or purpose of a widget
         
 + Request (application/json)
     + Headers
@@ -1430,7 +1431,8 @@ As of: 0.1.0
                             "socialService": "default"
                         }
                     ]
-                }
+                },
+                "description": "For non-paying attendees"
             }
 
 ## Listing Widgets [/1.0/events/{eventId}/widget-configs]
@@ -1466,7 +1468,8 @@ As of: 0.1.0
                 "created_at": "2018-06-13T11:19:00.602Z",
                 "script":
                   "<script src=\"https://cdn-staging.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"4CDAC4C4EDF44C349776C1BCC2770981\" data-ingo-manual=\"http://www.insert_your_next_page_where_users_should_land.com\"></script>",
-                "templates": {}
+                "templates": {},
+                "description": null
               },
               {
                 "unique_id": "7681F0F5C0324518A21EB2D7CF779AE4",
@@ -1498,7 +1501,8 @@ As of: 0.1.0
                       "socialService": "default"
                     }
                   ]
-                }
+                },
+                "description": "For testing"
               },
               {
                 "unique_id": "DA34BE09296543F9BF0BAECDA8DEFAC7",
@@ -1521,7 +1525,8 @@ As of: 0.1.0
                       "socialService": "default"
                     }
                   ]
-                }
+                },
+                "description": "For premium exhibitors"
               }
             ]
 
@@ -1559,7 +1564,8 @@ As of: 0.1.0
                 "created_at": "2018-06-13T11:19:00.602Z",
                 "script":
                   "<script src=\"https://cdn-staging.ingo.me/widgets-loader/latest/js/ingo.loader.widget.js\" data-ingo-id=\"4CDAC4C4EDF44C349776C1BCC2770981\" data-ingo-manual=\"http://www.insert_your_next_page_where_users_should_land.com\"></script>",
-                "templates": {}
+                "templates": {},
+                "description": "A very specific purpose"
             }
 
 ## Deleting Widgets [/1.0/events/{eventId}/widget-configs/{widgetIdToDelete}/]
@@ -1607,6 +1613,7 @@ As of: 0.1.0
     + custom_js (array) - optional array of custom js urls
     + params (object) - the parameters for the widget
     + templates (object) - the templates for the widget
+    + description (string) - the name or purpose of the widget
 
 + Request (application/json)
     + Headers
