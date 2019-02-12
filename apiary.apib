@@ -2156,130 +2156,13 @@ As of: 0.1.0
                 }
             }
 
-            
-# Group Troubleshooting Your Event
-
-## Listing Widget Events [/1.0/events/{eventId}/widget-configs/{widgetId}/widget-events]
-        
-Widgets produce tracking events (activity log) that can help you determine if they are
-running properly. You can get a list of all events for a particular widget.
-
-**SECURITY:** You may only view the widget events for events you have permission to see.
-
-As of: 0.1.0
-
-### Get Widget Events For an Event [GET]
-
-+ Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
-    + widgetId: W3RFVUG0DHMXMHII02DPBEQVUDJAKYQE (string, required) - the ID of the widget 
-
-+ Request (application/json)
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-    
-+ Response 200 (application/json)
-    + Body
-    
-            [ 
-                { 
-                    "event":"render:started",
-                    "widget_type":"login",
-                    "widget_id":"W3RFVUG0DHMXMHII02DPBEQVUDJAKYQE",
-                    "widget_version":"1.1.1",
-                    "url":"https://www.example.com/loginpage",
-                    "session_id":"yn6bp0nnxd0w1eo72ocowwapz",
-                    "note":"",
-                    "client_id":"IT-823267877000.0466614842731",
-                    "event_time":"2017-01-014 13:34:27.527000-04"}
-                },
-                                { 
-                    "event":"render:finished",
-                    "widget_type":"login",
-                    "widget_id":"W3RFVUG0DHMXMHII02DPBEQVUDJAKYQE",
-                    "widget_version":"1.1.1",
-                    "url":"https://www.example.com/loginpage",
-                    "session_id":"yn6bp0nnxd0w1eo72ocowwapz",
-                    "note":"",
-                    "client_id":"IT-823267877000.0466614842731",
-                    "event_time":"2017-01-014 13:34:56.527000-04"}
-                }
-
-            ]
-
-
-## Counting Widget Events [/1.0/events/{eventId}/widget-configs/{widgetId}/widget-events/count]
-        
-Widgets produce tracking events (activity log) that can help you determine if they are
-running properly. You can get a count of all events for a particular widget.
-
-**SECURITY:** You may only view the widget events for events you have permission to see.
-
-As of: 0.1.0
-
-### Get Widget Events Counts For an Event [GET]
-
-+ Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
-    + widgetId: W3RFVUG0DHMXMHII02DPBEQVUDJAKYQE (string, required) - the ID of the widget 
-
-+ Request (application/json)
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-    
-+ Response 200 (application/json)
-    + Body
-    
-            { 
-                "count":2,
-            }
-
-
-## Listing Widget Problems [/1.0/events/{eventId}/problems/widgets{?start,end}]
-
-You can list the widget problems for your events. You can supply a date range 
-but the date range may not exceed 14 days. If you do not supply a date range
-the default will be the last 14 days. This request returns a list of problems
-in the same format.  If there are no problem the list will be empty.
-
-**SECURITY:** You may only view the widget problems for events you have permission to see.
-
-As of: 0.1.0
-
-### Get Widget Problems For an Event [GET]
-
-+ Parameters
-    + eventId: KET3PCS5TWAAK0ANYCLP420LVNEKNJPL (string, required) - the ID of the event 
-    + start: `2016-02-04T21:06:52.691Z` (string, optional) - start date for period to analyze
-    + end: `2016-02-04T21:06:52.691Z` (string, optional) - end date for period to analyze (cannot exceed 14 days from start date)
-
-+ Request (application/json)
-    + Headers
-    
-            Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni....
-    
-+ Response 200 (application/json)
-    + Body
-    
-            [ 
-                { 
-                    problem_description: 'Post Button clicked but did not send',
-                    `number_of_sessions`: 2,
-                    problem_frequency: 3, 
-                    first_occurrence: null,
-                    last_occurrence: null,
-                    `problem_widget_ids`: null,
-                    problem_locations: null 
-                }
-            ]
-            
 
 # Group Changelog
 Below is a date sorted list of changes to the API starting from 2016-08-11. If a change 
 is deemed a "breaking change" we will note it as such.
 
+##### **2019-02-12:**
+* _breaking_ Removed section related to widget events, as it is internal info
 
 ##### **2016-08-11:** Added update (PATCH) for events
 > *Non-breaking* - You can now edit an event
